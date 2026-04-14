@@ -1,6 +1,7 @@
 package io.github.jvuong4.bloomfestal.registry;
 
 import io.github.jvuong4.bloomfestal.BloomFestal;
+import io.github.jvuong4.bloomfestal.item.HealingStaff;
 import net.minecraft.core.Registry;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -14,7 +15,6 @@ import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.SwingAnimationType;
-import net.minecraft.world.item.ToolMaterial;
 import net.minecraft.world.item.component.*;
 
 import java.util.Optional;
@@ -134,6 +134,9 @@ public class BFItems {
 		)
 		.component(DataComponents.USE_EFFECTS, new UseEffects(true, false, 1.0F))
 		.component(DataComponents.WEAPON, new Weapon(1)));
+
+	public static HealingStaff BLOOM_FESTAL = register("bloom_festal", HealingStaff:: new,
+		new HealingStaff.Properties().durability(200).useCooldown(0.4f).enchantable(1));
 
 
 

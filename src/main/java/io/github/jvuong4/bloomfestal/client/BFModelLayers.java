@@ -1,0 +1,25 @@
+package io.github.jvuong4.bloomfestal.client;
+
+import io.github.jvuong4.bloomfestal.BloomFestal;
+import io.github.jvuong4.bloomfestal.client.model.HealOrbModel;
+import io.github.jvuong4.bloomfestal.client.renderer.HealOrbRenderer;
+import io.github.jvuong4.bloomfestal.registry.BFEntities;
+import net.fabricmc.fabric.api.client.rendering.v1.ModelLayerRegistry;
+import net.minecraft.client.model.geom.ModelLayerLocation;
+import net.minecraft.client.renderer.entity.DragonFireballRenderer;
+import net.minecraft.client.renderer.entity.EntityRenderers;
+import net.minecraft.client.renderer.entity.TntRenderer;
+import net.minecraft.resources.Identifier;
+
+public class BFModelLayers {
+
+	public static final ModelLayerLocation HEAL_ORB = createMain("heal_orb");
+
+	private static ModelLayerLocation createMain(String name) {
+		return new ModelLayerLocation(Identifier.fromNamespaceAndPath(BloomFestal.ID, name), "main");
+	}
+
+	public static void init() {
+		EntityRenderers.register(BFEntities.HEAL_ORB, HealOrbRenderer::new);
+	}
+}

@@ -1,5 +1,6 @@
 package io.github.jvuong4.bloomfestal;
 
+import io.github.jvuong4.bloomfestal.registry.BFEntities;
 import io.github.jvuong4.bloomfestal.registry.BFItems;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.core.registries.Registries;
@@ -18,5 +19,6 @@ public class BloomFestal implements ModInitializer {
 	public void onInitialize() {
 		LOGGER.info("[Bloom Festal] you are the ocean's BLOOM waves");
 		BFItems.init();
+		BFEntities.init();
 	}
 }

@@ -1,65 +1,52 @@
 package io.github.jvuong4.bloomfestal.entity;
 
 import io.github.jvuong4.bloomfestal.registry.BFEntities;
-import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.projectile.Projectile;
-import net.minecraft.world.entity.projectile.hurtingprojectile.AbstractHurtingProjectile;
 import net.minecraft.world.entity.projectile.hurtingprojectile.Fireball;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
-import net.minecraft.world.item.enchantment.effects.SpawnParticlesEffect;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.BaseFireBlock;
-import net.minecraft.world.level.gameevent.GameEvent;
-import net.minecraft.world.level.gamerules.GameRules;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 
-import java.util.Random;
-
-public class HealOrb extends Fireball {
-	private int range = 6;
-	private float potency = 4.0F;
+public class EclipseOrb extends Fireball {
+	private int range = 32;
 	private int age = 0;
 
-
-	public HealOrb(final EntityType<? extends HealOrb> type, final Level level) {
+	public EclipseOrb (final EntityType<? extends EclipseOrb> type, final Level level) {
 		super(type, level);
 		age = 0;
-		accelerationPower = 1;
+		accelerationPower = 0.1;
 	}
 
 
-	public HealOrb(final Level level, final LivingEntity mob, final Vec3 direction) {
-		super(BFEntities.HEAL_ORB, mob, direction, level);
+	public EclipseOrb (final Level level, final LivingEntity mob, final Vec3 direction) {
+		super(BFEntities.ECLIPSE_ORB, mob, direction, level);
 		age = 0;
-		accelerationPower = 1;
+		accelerationPower = 0.1;
 	}
 
-	public HealOrb(final Level level, final double x, final double y, final double z, final Vec3 direction) {
-		super(BFEntities.HEAL_ORB, x, y, z, direction, level);
+	public EclipseOrb (final Level level, final double x, final double y, final double z, final Vec3 direction) {
+		super(BFEntities.ECLIPSE_ORB, x, y, z, direction, level);
 		age = 0;
-		accelerationPower = 1;
+		accelerationPower = 0.1;
 	}
 
-	public void setStats(int r, float p)
+	public void setStats(int r)
 	{
 		range = r;
-		potency = p;
 		age = 0;
-		accelerationPower = 1;
+		accelerationPower = 0.1;
 	}
+
 	@Override
 	protected void createParticleTrail() {
 		//less particles!!
@@ -76,7 +63,7 @@ public class HealOrb extends Fireball {
 
 	@Override
 	protected ParticleOptions getTrailParticle() {
-		return ParticleTypes.CHERRY_LEAVES;
+		return ParticleTypes.SCULK_SOUL;
 	}
 
 	@Override
@@ -95,31 +82,24 @@ public class HealOrb extends Fireball {
 
 			if(var7 instanceof LivingEntity mob)
 			{
-				if(mob.isInvertedHealAndHarm())
-				{
-					DamageSource damageSource = this.damageSources().indirectMagic(this, owner);
-					playSound(SoundEvents.BAMBOO_PLACE,0.5f,0.4F / (level().getRandom().nextFloat() * 0.4F + 0.8F));
-					if (!var7.hurtServer(serverLevel, damageSource, potency)) {
-						//var7.setRemainingFireTicks(remainingFireTicks);
-					} else {
-						EnchantmentHelper.doPostAttackEffects(serverLevel, var7, damageSource);
-					}
-				}
-				else
-				{
-					double xa = this.random.nextGaussian() * 0.02;
-					double ya = this.random.nextGaussian() * 0.02;
-					double za = this.random.nextGaussian() * 0.02;
-					mob.level().addParticle(ParticleTypes.HEART, mob.getRandomX(1.0), mob.getRandomY() + 0.5, mob.getRandomZ(1.0), xa, ya, za);
-					//this.level().addParticle(ParticleTypes.HEART, var7.getX(), var7.getY() + 0.5, var7.getZ(), 0.0, 1.0, 0.0);
-					//this.level().addParticle(ParticleTypes.HEART, this.getX(), this.getY() + 0.5, this.getZ(), 0.0, 1.0, 0.0);
-					mob.playSound(SoundEvents.ALLAY_ITEM_GIVEN,2f,0.4F / (level().getRandom().nextFloat() + 0.8F));
+				DamageSource damageSource = this.damageSources().indirectMagic(this, owner);
+				playSound(SoundEvents.TRIDENT_THUNDER.value(),0.5f,0.4F / (level().getRandom().nextFloat() * 0.4F + 0.8F));
 
-					mob.heal(potency);
+				boolean lethal = mob.getHealth() <= 1.0F;
+				float minDamage = lethal ? 2048.0F : 1.0F;
+				if (!var7.hurtServer(serverLevel, damageSource, Math.max(mob.getHealth()-1.0F, minDamage))) {
+					if(mob.getHealth() > 1F)
+						mob.setHealth(1.0F);
+					//var7.setRemainingFireTicks(remainingFireTicks);
+				} else {
+					if(mob.getHealth() > 1F)
+						mob.setHealth(1.0F);
+					EnchantmentHelper.doPostAttackEffects(serverLevel, var7, damageSource);
 				}
+				//if they're somehow still not dead yet LMFAOO
+				if(lethal)
+					mob.kill(serverLevel);
 			}
-
-
 		}
 		super.onHitEntity(hitResult);
 	}

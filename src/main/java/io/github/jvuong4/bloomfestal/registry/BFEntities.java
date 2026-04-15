@@ -1,6 +1,7 @@
 package io.github.jvuong4.bloomfestal.registry;
 
 import io.github.jvuong4.bloomfestal.BloomFestal;
+import io.github.jvuong4.bloomfestal.entity.EclipseOrb;
 import io.github.jvuong4.bloomfestal.entity.HealOrb;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.minecraft.core.Registry;
@@ -19,16 +20,13 @@ public class BFEntities {
 	public static final EntityType<HealOrb> HEAL_ORB = register(
 		"heal_orb",
 		EntityType.Builder.<HealOrb>of(HealOrb::new, MobCategory.MISC)
-			.noLootTable().sized(0.3125F, 0.3125F).clientTrackingRange(4).updateInterval(10)
+			.noLootTable().sized(0.5F, 0.5F).clientTrackingRange(4).updateInterval(10)
 	);
-
-	/*
-	public static final EntityType<SmallFireball> SMALL_FIREBALL = register(
-		"small_fireball",
-		EntityType.Builder.<SmallFireball>of(SmallFireball::new, MobCategory.MISC)
+	public static final EntityType<EclipseOrb> ECLIPSE_ORB = register(
+		"eclipse_orb",
+		EntityType.Builder.<EclipseOrb>of(EclipseOrb::new, MobCategory.MISC)
+			.noLootTable().sized(0.5F, 0.5F).clientTrackingRange(4).updateInterval(10)
 	);
-	*/
-
 
 	private static <T extends Entity> EntityType<T> register(String name, EntityType.Builder<T> builder) {
 		ResourceKey<EntityType<?>> key = ResourceKey.create(Registries.ENTITY_TYPE, Identifier.fromNamespaceAndPath(BloomFestal.ID, name));

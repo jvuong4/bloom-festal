@@ -27,6 +27,7 @@
 	},
 	"suggests": {
 	},
+	"accessWidener": "bloom_festal.accesswidener",
 	"entrypoints": {
 		"main": [
           "io.github.jvuong4.bloomfestal.BloomFestal"

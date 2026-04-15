@@ -1,7 +1,7 @@
 package io.github.jvuong4.bloomfestal.registry;
 
 import io.github.jvuong4.bloomfestal.BloomFestal;
-import io.github.jvuong4.bloomfestal.item.HealingStaff;
+import io.github.jvuong4.bloomfestal.item.*;
 import net.minecraft.core.Registry;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -136,9 +136,22 @@ public class BFItems {
 		.component(DataComponents.WEAPON, new Weapon(1)));
 
 	public static HealingStaff BLOOM_FESTAL = register("bloom_festal", HealingStaff:: new,
-		new HealingStaff.Properties().durability(200).useCooldown(0.4f).enchantable(1));
+		new HealingStaff.Properties().durability(40).useCooldown(0.3f).enchantable(1));
 
+	public static SunFestal SUN_FESTAL = register("sun_festal", SunFestal:: new,
+		new SunFestal.Properties().durability(30).useCooldown(0.3f).enchantable(1));
 
+	public static WaneFestal WANE_FESTAL = register("wane_festal", WaneFestal:: new,
+		new WaneFestal.Properties().durability(10).useCooldown(0.3f).enchantable(1));
+
+	public static MoonFestal MOON_FESTAL = register("moon_festal", MoonFestal:: new,
+		new MoonFestal.Properties().durability(10).useCooldown(0.3f).enchantable(1));
+
+	public static GreatFestal GREAT_FESTAL = register("great_festal", GreatFestal:: new,
+		new GreatFestal.Properties().durability(4).useCooldown(1.0f).enchantable(1));
+
+	public static Eclipse ECLIPSE = register("eclipse", Eclipse:: new,
+		new Eclipse.Properties().durability(10).useCooldown(4.0f).enchantable(1));
 
 	public static <T extends Item> T register(String name, Function<Item.Properties, T> itemFactory, Item.Properties settings) {
 		// Create the item key.

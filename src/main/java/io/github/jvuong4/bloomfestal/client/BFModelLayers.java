@@ -2,6 +2,7 @@ package io.github.jvuong4.bloomfestal.client;
 
 import io.github.jvuong4.bloomfestal.BloomFestal;
 import io.github.jvuong4.bloomfestal.client.model.HealOrbModel;
+import io.github.jvuong4.bloomfestal.client.renderer.EclipseOrbRenderer;
 import io.github.jvuong4.bloomfestal.client.renderer.HealOrbRenderer;
 import io.github.jvuong4.bloomfestal.registry.BFEntities;
 import net.fabricmc.fabric.api.client.rendering.v1.ModelLayerRegistry;
@@ -14,6 +15,7 @@ import net.minecraft.resources.Identifier;
 public class BFModelLayers {
 
 	public static final ModelLayerLocation HEAL_ORB = createMain("heal_orb");
+	public static final ModelLayerLocation ECLIPSE_ORB = createMain("eclipse_orb");
 
 	private static ModelLayerLocation createMain(String name) {
 		return new ModelLayerLocation(Identifier.fromNamespaceAndPath(BloomFestal.ID, name), "main");
@@ -21,5 +23,6 @@ public class BFModelLayers {
 
 	public static void init() {
 		EntityRenderers.register(BFEntities.HEAL_ORB, HealOrbRenderer::new);
+		EntityRenderers.register(BFEntities.ECLIPSE_ORB, EclipseOrbRenderer::new);
 	}
 }

@@ -1,5 +1,6 @@
 package io.github.jvuong4.bloomfestal.item;
 
+import io.github.jvuong4.bloomfestal.entity.EclipseOrb;
 import io.github.jvuong4.bloomfestal.entity.HealOrb;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
@@ -15,11 +16,10 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.Vec3;
 
-public class HealingStaff extends Item {
-	protected float healingPotency = 4.0f;
-	protected int range = 6;
+public class Eclipse extends Item {
+	protected int range = 32;
 
-	public HealingStaff(final net.minecraft.world.item.Item.Properties properties) {
+	public Eclipse(final net.minecraft.world.item.Item.Properties properties) {
 		super(properties);
 	}
 
@@ -40,9 +40,9 @@ public class HealingStaff extends Item {
 			double d = 20.0;
 			Vec3 viewVector = player.getViewVector(1.0F);
 			Vec3 direction = new Vec3(viewVector.x, viewVector.y, viewVector.z);
-			HealOrb entity = new HealOrb(level, player, (direction.normalize()).scale(d));
+			EclipseOrb entity = new EclipseOrb(level, player, (direction.normalize()).scale(d));
 			entity.setPos(player.getX() + viewVector.x, player.getY(0.5) + 0.5, entity.getZ() + viewVector.z);
-			entity.setStats(range, healingPotency);
+			entity.setStats(range);
 			Projectile.spawnProjectile(entity, serverLevel, itemStack);
 		}
 		player.awardStat(Stats.ITEM_USED.get(this));

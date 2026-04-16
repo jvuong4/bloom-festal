@@ -2,10 +2,14 @@ package io.github.jvuong4.bloomfestal.item;
 
 import io.github.jvuong4.bloomfestal.entity.HealOrb;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.core.particles.SimpleParticleType;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.util.random.WeightedList;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
@@ -17,13 +21,17 @@ import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.level.ExplosionDamageCalculator;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.SimpleExplosionDamageCalculator;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 
 import javax.swing.*;
 import java.util.List;
+import java.util.Optional;
+import java.util.function.Function;
 
 import static net.minecraft.world.level.block.entity.BeaconBlockEntity.playSound;
 
@@ -50,7 +58,7 @@ public class GreatFestal extends Item {
 			player.getX(),
 			player.getY(),
 			player.getZ(),
-			SoundEvents.ALLAY_ITEM_GIVEN,
+			SoundEvents.EVOKER_CAST_SPELL,
 			SoundSource.NEUTRAL,
 			0.5F,
 			0.4F / (level.getRandom().nextFloat() * 0.4F + 0.8F)
@@ -61,14 +69,13 @@ public class GreatFestal extends Item {
 			AABB box = new AABB(min,max);
 
 			List<LivingEntity> entityList = ((ServerLevel) level).getNearbyEntities(LivingEntity.class, TARGETING_CONDITIONS, player, box);
-			for(LivingEntity entity: entityList)
+			for (LivingEntity entity : level.getEntitiesOfClass(LivingEntity.class, player.getBoundingBox().inflate(range)))
 			{
 				if(entity.isInvertedHealAndHarm())
 				{
 					DamageSource damageSource = player.damageSources().indirectMagic(entity, player);
 					entity.playSound(SoundEvents.BAMBOO_PLACE,0.5f,0.4F / (level.getRandom().nextFloat() * 0.4F + 0.8F));
 					if (!entity.hurtServer(serverLevel, damageSource, healingPotency)) {
-						//var7.setRemainingFireTicks(remainingFireTicks);
 					} else {
 						EnchantmentHelper.doPostAttackEffects(serverLevel, entity, damageSource);
 					}
@@ -82,10 +89,18 @@ public class GreatFestal extends Item {
 					//this.level().addParticle(ParticleTypes.HEART, var7.getX(), var7.getY() + 0.5, var7.getZ(), 0.0, 1.0, 0.0);
 					//this.level().addParticle(ParticleTypes.HEART, this.getX(), this.getY() + 0.5, this.getZ(), 0.0, 1.0, 0.0);
 					//entity.playSound(SoundEvents.ALLAY_ITEM_GIVEN,2f,0.4F / (level.getRandom().nextFloat() + 0.8F));
-
 					entity.heal(healingPotency);
 				}
 			}
+			player.level().explode(player, null,
+				HealOrb.DEFAULT_EXPLOSION_DAMAGE_CALCULATOR,
+				player.getX(), player.getY(0.5) + 0.5, player.getZ(), 1.2F, false,
+				Level.ExplosionInteraction.NONE,
+				ParticleTypes.CHERRY_LEAVES,
+				ParticleTypes.CHERRY_LEAVES,
+				WeightedList.of(),
+				SoundEvents.HONEY_DRINK
+			);
 
 			double end = 16.0;
 			for(double i=0; i<end; i++)

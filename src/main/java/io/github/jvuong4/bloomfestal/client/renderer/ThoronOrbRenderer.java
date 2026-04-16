@@ -2,8 +2,8 @@ package io.github.jvuong4.bloomfestal.client.renderer;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import io.github.jvuong4.bloomfestal.BloomFestal;
-import io.github.jvuong4.bloomfestal.entity.EclipseOrb;
 import io.github.jvuong4.bloomfestal.entity.HealOrb;
+import io.github.jvuong4.bloomfestal.entity.ThoronOrb;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.model.geom.ModelLayers;
@@ -18,11 +18,11 @@ import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.Identifier;
 
 @Environment(EnvType.CLIENT)
-public class EclipseOrbRenderer extends EntityRenderer<EclipseOrb, EntityRenderState> {
-	private static final Identifier TEXTURE_LOCATION = Identifier.fromNamespaceAndPath(BloomFestal.ID,"textures/entity/projectiles/dark_orb.png");
+public class ThoronOrbRenderer extends EntityRenderer<ThoronOrb, EntityRenderState> {
+	private static final Identifier TEXTURE_LOCATION = Identifier.fromNamespaceAndPath(BloomFestal.ID,"textures/entity/projectiles/thoron_orb.png");
 	private final WindChargeModel model;
 
-	public EclipseOrbRenderer(final EntityRendererProvider.Context context) {
+	public ThoronOrbRenderer(final EntityRendererProvider.Context context) {
 		super(context);
 		this.model = new WindChargeModel(context.bakeLayer(ModelLayers.WIND_CHARGE));
 	}
@@ -46,9 +46,27 @@ public class EclipseOrbRenderer extends EntityRenderer<EclipseOrb, EntityRenderS
 		return t * 0.03F;
 	}
 
+	/*
 	@Override
 	public EntityRenderState createRenderState() {
 		return new EntityRenderState();
 	}
+	 */
+
+	//public EntityRenderer(EntityRendererProvider.Context context) {
+		//super(context, new HealOrbModel(context.bakeLayer(BFModelLayers.HEAL_ORB))); // 0.375 shadow radius
+	//}
+
+	@Override
+	public EntityRenderState createRenderState() {
+		return new EntityRenderState();
+	}
+
+	/*
+	@Override
+	public Identifier getTextureLocation(EntityRenderState state) {
+		return TEXTURE_LOCATION;
+	}
+	 */
 }
 

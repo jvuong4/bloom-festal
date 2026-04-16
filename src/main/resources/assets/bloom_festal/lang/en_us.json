@@ -1,2 +1,31 @@
 {
+	"creativeTab.bloom_festal": "Bloom Festal",
+
+	"item.bloom_festal.bloom_festal": "Bloom Festal",
+	"item.bloom_festal.sun_festal": "Dawn Festal",
+	"item.bloom_festal.wane_festal": "Horizon Festal",
+	"item.bloom_festal.moon_festal": "Twilight Festal",
+	"item.bloom_festal.great_festal": "Grand Festal",
+
+	"item.bloom_festal.levin_sword": "Actinon Sword",
+	"item.bloom_festal.brave_lance": "Valor Lance",
+	"item.bloom_festal.guard_naginata": "Vanguard Naginata",
+
+	"item.bloom_festal.eclipse": "Equinox",
+	"item.bloom_festal.thoron": "Actinon",
+	"item.bloom_festal.rexcalibur": "Tempest",
+
+	"lore.item.bloom_festal.bloom_festal": "A humble healing staff. Recovers 4 hp to its target.",
+	"lore.item.bloom_festal.sun_festal": "A bright staff to embrace a brand new day. Recovers 10 hp to its target.",
+	"lore.item.bloom_festal.wane_festal": "A staff to heal those beyond the horizon. Recovers 4 hp to its target, and has increased range.",
+	"lore.item.bloom_festal.moon_festal": "A revitalizing staff to ward misfortune. Recovers 24 hp to its target.",
+	"lore.item.bloom_festal.great_festal": "A bountiful staff that heals all within range for 4 hp.",
+
+	"lore.item.bloom_festal.levin_sword": "A unique weapon that can slash be used to cast quick-moving thunder magic that deals 14 magic damage.",
+	"lore.item.bloom_festal.brave_lance": "A spear that can be used for particularly swift jabs or can be held out to deal damage while charging.",
+	"lore.item.bloom_festal.guard_naginata": "A slow spear that protects the wielder and can be used to jab or can be held out to deal damage while charging.",
+
+	"lore.item.bloom_festal.eclipse": "A forbidden tome. Casts slow-moving dark magic that sets the target's hp to 1. Lethal if already 1 hp.",
+	"lore.item.bloom_festal.thoron": "A magical tome. Casts quick-moving thunder magic that deals 14 magic damage.",
+	"lore.item.bloom_festal.rexcalibur": "A magical tome. Casts quick-moving wind magic that deals 10 magic damage and heavy knockback. Effective against airborne enemies (2x damage)."
 }

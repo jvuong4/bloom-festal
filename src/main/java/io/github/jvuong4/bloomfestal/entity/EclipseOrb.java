@@ -18,39 +18,36 @@ import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 
 public class EclipseOrb extends Fireball {
-	private int range = 32;
+	private int range = 640;
 	private int age = 0;
 
 	public EclipseOrb (final EntityType<? extends EclipseOrb> type, final Level level) {
 		super(type, level);
-		age = 0;
-		accelerationPower = 0.1;
+		accelerationPower = 0.03;
 	}
 
 
 	public EclipseOrb (final Level level, final LivingEntity mob, final Vec3 direction) {
 		super(BFEntities.ECLIPSE_ORB, mob, direction, level);
-		age = 0;
-		accelerationPower = 0.1;
+		accelerationPower = 0.03;
 	}
 
 	public EclipseOrb (final Level level, final double x, final double y, final double z, final Vec3 direction) {
 		super(BFEntities.ECLIPSE_ORB, x, y, z, direction, level);
-		age = 0;
-		accelerationPower = 0.1;
+		accelerationPower = 0.03;
 	}
 
 	public void setStats(int r)
 	{
 		range = r;
 		age = 0;
-		accelerationPower = 0.1;
+		accelerationPower = 0.03;
 	}
 
 	@Override
 	protected void createParticleTrail() {
 		//less particles!!
-		if(this.level().getRandom().nextFloat() < 0.5F)
+		if(this.level().getRandom().nextFloat() > 0.5F)
 		{
 			return;
 		}
@@ -83,7 +80,7 @@ public class EclipseOrb extends Fireball {
 			if(var7 instanceof LivingEntity mob)
 			{
 				DamageSource damageSource = this.damageSources().indirectMagic(this, owner);
-				playSound(SoundEvents.TRIDENT_THUNDER.value(),0.5f,0.4F / (level().getRandom().nextFloat() * 0.4F + 0.8F));
+				playSound(SoundEvents.TRIDENT_THUNDER.value(),0.3f,0.4F / (level().getRandom().nextFloat() * 0.4F + 0.8F));
 
 				boolean lethal = mob.getHealth() <= 1.0F;
 				float minDamage = lethal ? 2048.0F : 1.0F;

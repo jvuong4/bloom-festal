@@ -2,11 +2,16 @@ package io.github.jvuong4.bloomfestal.entity;
 
 import io.github.jvuong4.bloomfestal.registry.BFEntities;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.util.random.WeightedList;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -17,7 +22,9 @@ import net.minecraft.world.entity.projectile.hurtingprojectile.AbstractHurtingPr
 import net.minecraft.world.entity.projectile.hurtingprojectile.Fireball;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.effects.SpawnParticlesEffect;
+import net.minecraft.world.level.ExplosionDamageCalculator;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.SimpleExplosionDamageCalculator;
 import net.minecraft.world.level.block.BaseFireBlock;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.gamerules.GameRules;
@@ -26,9 +33,15 @@ import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 
+import java.util.Optional;
 import java.util.Random;
+import java.util.function.Function;
 
 public class HealOrb extends Fireball {
+	public static final ExplosionDamageCalculator DEFAULT_EXPLOSION_DAMAGE_CALCULATOR = new SimpleExplosionDamageCalculator(
+		false, false, Optional.of(0F), BuiltInRegistries.BLOCK.get(BlockTags.BLOCKS_WIND_CHARGE_EXPLOSIONS).map(Function.identity())
+	);
+
 	private int range = 6;
 	private float potency = 4.0F;
 	private int age = 0;
@@ -62,15 +75,15 @@ public class HealOrb extends Fireball {
 	}
 	@Override
 	protected void createParticleTrail() {
-		//less particles!!
-		if(this.level().getRandom().nextFloat() < 0.5F)
-		{
-			return;
-		}
 		ParticleOptions trailParticle = this.getTrailParticle();
 		Vec3 position = this.position();
 		if (trailParticle != null) {
 			this.level().addParticle(trailParticle, position.x, position.y, position.z, 0.0, 0.0, 0.0);
+			if(this.level().getRandom().nextFloat() < 0.3F)
+			{
+				Vec3 prevDirection = this.getDeltaMovement().scale(-0.5);
+				this.level().addParticle(trailParticle, position.x + prevDirection.x, position.y + prevDirection.y, position.z + prevDirection.z, 0.0, 0.0, 0.0);
+			}
 		}
 	}
 
@@ -104,6 +117,15 @@ public class HealOrb extends Fireball {
 					} else {
 						EnchantmentHelper.doPostAttackEffects(serverLevel, var7, damageSource);
 					}
+					var7.level().explode(this, null,
+						DEFAULT_EXPLOSION_DAMAGE_CALCULATOR,
+						var7.getX(), var7.getY(0.5) + 0.5, var7.getZ(), 1.2F, false,
+						Level.ExplosionInteraction.NONE,
+						ParticleTypes.CHERRY_LEAVES,
+						ParticleTypes.CHERRY_LEAVES,
+						WeightedList.of(),
+						SoundEvents.HONEY_DRINK
+					);
 				}
 				else
 				{
@@ -113,8 +135,16 @@ public class HealOrb extends Fireball {
 					mob.level().addParticle(ParticleTypes.HEART, mob.getRandomX(1.0), mob.getRandomY() + 0.5, mob.getRandomZ(1.0), xa, ya, za);
 					//this.level().addParticle(ParticleTypes.HEART, var7.getX(), var7.getY() + 0.5, var7.getZ(), 0.0, 1.0, 0.0);
 					//this.level().addParticle(ParticleTypes.HEART, this.getX(), this.getY() + 0.5, this.getZ(), 0.0, 1.0, 0.0);
-					mob.playSound(SoundEvents.ALLAY_ITEM_GIVEN,2f,0.4F / (level().getRandom().nextFloat() + 0.8F));
-
+					//mob.playSound(SoundEvents.ALLAY_ITEM_GIVEN,2f,0.4F / (level().getRandom().nextFloat() + 0.8F));
+					var7.level().explode(this, null,
+						DEFAULT_EXPLOSION_DAMAGE_CALCULATOR,
+						var7.getX(), var7.getY(0.5) + 0.5, var7.getZ(), 1.2F, false,
+						Level.ExplosionInteraction.NONE,
+						ParticleTypes.CHERRY_LEAVES,
+						ParticleTypes.HEART,
+						WeightedList.of(),
+						SoundEvents.HONEY_DRINK
+					);
 					mob.heal(potency);
 				}
 			}

@@ -17,7 +17,7 @@ import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.Vec3;
 
 public class Eclipse extends Item {
-	protected int range = 32;
+	protected int range = 640;
 
 	public Eclipse(final net.minecraft.world.item.Item.Properties properties) {
 		super(properties);
@@ -31,7 +31,7 @@ public class Eclipse extends Item {
 			player.getX(),
 			player.getY(),
 			player.getZ(),
-			SoundEvents.ALLAY_AMBIENT_WITHOUT_ITEM,
+			SoundEvents.EVOKER_CAST_SPELL,
 			SoundSource.NEUTRAL,
 			0.5F,
 			0.4F / (level.getRandom().nextFloat() * 0.4F + 0.8F)

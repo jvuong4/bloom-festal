@@ -3,6 +3,9 @@ package io.github.jvuong4.bloomfestal.registry;
 import io.github.jvuong4.bloomfestal.BloomFestal;
 import io.github.jvuong4.bloomfestal.entity.EclipseOrb;
 import io.github.jvuong4.bloomfestal.entity.HealOrb;
+import io.github.jvuong4.bloomfestal.entity.LightningBolt.VisualLightning;
+import io.github.jvuong4.bloomfestal.entity.RexcaliburOrb;
+import io.github.jvuong4.bloomfestal.entity.ThoronOrb;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -26,6 +29,25 @@ public class BFEntities {
 		"eclipse_orb",
 		EntityType.Builder.<EclipseOrb>of(EclipseOrb::new, MobCategory.MISC)
 			.noLootTable().sized(0.5F, 0.5F).clientTrackingRange(4).updateInterval(10)
+	);
+	public static final EntityType<ThoronOrb> THORON_ORB = register(
+		"thoron_orb",
+		EntityType.Builder.<ThoronOrb>of(ThoronOrb::new, MobCategory.MISC)
+			.noLootTable().sized(0.5F, 0.5F).clientTrackingRange(4).updateInterval(10)
+	);
+	public static final EntityType<RexcaliburOrb> REXCALIBUR_ORB = register(
+		"rexcalibur_orb",
+		EntityType.Builder.<RexcaliburOrb>of(RexcaliburOrb::new, MobCategory.MISC)
+			.noLootTable().sized(0.5F, 0.5F).clientTrackingRange(4).updateInterval(10)
+	);
+
+	public static final EntityType<VisualLightning> VISUAL_LIGHTNING = register(
+		"visual_lightning", EntityType.Builder.<VisualLightning>of(VisualLightning::new, MobCategory.MISC)
+			.noLootTable()
+			.noSave()
+			.sized(0.0F, 0.0F)
+			.clientTrackingRange(16)
+			.updateInterval(Integer.MAX_VALUE)
 	);
 
 	private static <T extends Entity> EntityType<T> register(String name, EntityType.Builder<T> builder) {

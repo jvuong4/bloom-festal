@@ -2,10 +2,12 @@ package io.github.jvuong4.bloomfestal.registry;
 
 import io.github.jvuong4.bloomfestal.BloomFestal;
 import io.github.jvuong4.bloomfestal.item.*;
+import net.fabricmc.fabric.api.creativetab.v1.FabricCreativeModeTab;
 import net.minecraft.core.Registry;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.sounds.SoundEvents;
@@ -13,8 +15,7 @@ import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.SwingAnimationType;
+import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.*;
 
 import java.util.Optional;
@@ -151,7 +152,15 @@ public class BFItems {
 		new GreatFestal.Properties().durability(4).useCooldown(1.0f).enchantable(1));
 
 	public static Eclipse ECLIPSE = register("eclipse", Eclipse:: new,
-		new Eclipse.Properties().durability(10).useCooldown(4.0f).enchantable(1));
+		new Eclipse.Properties().durability(10).useCooldown(6.0f).enchantable(1));
+
+	public static Thoron THORON = register("thoron", Thoron:: new,
+		new Thoron.Properties().durability(50).useCooldown(3f).enchantable(1));
+	public static Thoron LEVIN_SWORD = register("levin_sword", Thoron:: new,
+		new Thoron.Properties().sword(ToolMaterial.GOLD, 9.0F, -2.4F).durability(25).useCooldown(4.0f).enchantable(64));
+
+	public static Rexcalibur REXCALIBUR = register("rexcalibur", Rexcalibur:: new,
+		new Rexcalibur.Properties().durability(50).useCooldown(1.5f).enchantable(1));
 
 	public static <T extends Item> T register(String name, Function<Item.Properties, T> itemFactory, Item.Properties settings) {
 		// Create the item key.
@@ -166,7 +175,31 @@ public class BFItems {
 		return item;
 	}
 
+	public static final ResourceKey<CreativeModeTab> CUSTOM_CREATIVE_TAB_KEY = ResourceKey.create(
+		BuiltInRegistries.CREATIVE_MODE_TAB.key(), Identifier.fromNamespaceAndPath(BloomFestal.ID, "creative_tab")
+	);
+	public static final CreativeModeTab CUSTOM_CREATIVE_TAB = FabricCreativeModeTab.builder()
+		.icon(() -> new ItemStack(BLOOM_FESTAL))
+		.title(Component.translatable("creativeTab.bloom_festal"))
+		.displayItems((params, output) -> {
+			output.accept(BLOOM_FESTAL);
+			output.accept(SUN_FESTAL);
+			output.accept(WANE_FESTAL);
+			output.accept(MOON_FESTAL);
+			output.accept(GREAT_FESTAL);
+			output.accept(LEVIN_SWORD);
 
+			output.accept(BRAVE_LANCE);
+			output.accept(GUARD_NAGINATA);
 
-	public static void init(){}
+			output.accept(THORON);
+
+			output.accept(REXCALIBUR);
+			output.accept(ECLIPSE);
+		})
+		.build();
+
+	public static void init(){
+		Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, CUSTOM_CREATIVE_TAB_KEY, CUSTOM_CREATIVE_TAB);
+	}
 }

@@ -1,5 +1,5 @@
 {
-	"parent": "minecraft:item/generated",
+	"parent": "minecraft:item/handheld",
 	"textures": {
 		"layer0": "bloom_festal:item/bloom_festal"
 	}

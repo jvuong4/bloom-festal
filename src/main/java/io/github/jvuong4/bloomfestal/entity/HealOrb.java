@@ -102,10 +102,6 @@ public class HealOrb extends Fireball {
 		if (this.level() instanceof ServerLevel serverLevel) {
 			Entity var7 = hitResult.getEntity();
 			Entity owner = this.getOwner();
-			//no burning!
-			//int remainingFireTicks = var7.getRemainingFireTicks();
-			//var7.igniteForSeconds(5.0F);
-
 			if(var7 instanceof LivingEntity mob)
 			{
 				if(mob.isInvertedHealAndHarm())
@@ -113,7 +109,6 @@ public class HealOrb extends Fireball {
 					DamageSource damageSource = this.damageSources().indirectMagic(this, owner);
 					playSound(SoundEvents.BAMBOO_PLACE,0.5f,0.4F / (level().getRandom().nextFloat() * 0.4F + 0.8F));
 					if (!var7.hurtServer(serverLevel, damageSource, potency)) {
-						//var7.setRemainingFireTicks(remainingFireTicks);
 					} else {
 						EnchantmentHelper.doPostAttackEffects(serverLevel, var7, damageSource);
 					}

@@ -117,39 +117,32 @@ public class HealOrb extends Fireball {
 					} else {
 						EnchantmentHelper.doPostAttackEffects(serverLevel, var7, damageSource);
 					}
-					var7.level().explode(this, null,
-						DEFAULT_EXPLOSION_DAMAGE_CALCULATOR,
-						var7.getX(), var7.getY(0.5) + 0.5, var7.getZ(), 1.2F, false,
-						Level.ExplosionInteraction.NONE,
-						ParticleTypes.CHERRY_LEAVES,
-						ParticleTypes.CHERRY_LEAVES,
-						WeightedList.of(),
-						SoundEvents.HONEY_DRINK
-					);
 				}
 				else
 				{
-					double xa = this.random.nextGaussian() * 0.02;
-					double ya = this.random.nextGaussian() * 0.02;
-					double za = this.random.nextGaussian() * 0.02;
-					mob.level().addParticle(ParticleTypes.HEART, mob.getRandomX(1.0), mob.getRandomY() + 0.5, mob.getRandomZ(1.0), xa, ya, za);
+					//double xa = this.random.nextGaussian() * 0.02;
+					//double ya = this.random.nextGaussian() * 0.02;
+					//double za = this.random.nextGaussian() * 0.02;
+					//mob.level().addParticle(ParticleTypes.HEART, mob.getRandomX(1.0), mob.getRandomY() + 0.5, mob.getRandomZ(1.0), xa, ya, za);
 					//this.level().addParticle(ParticleTypes.HEART, var7.getX(), var7.getY() + 0.5, var7.getZ(), 0.0, 1.0, 0.0);
 					//this.level().addParticle(ParticleTypes.HEART, this.getX(), this.getY() + 0.5, this.getZ(), 0.0, 1.0, 0.0);
-					//mob.playSound(SoundEvents.ALLAY_ITEM_GIVEN,2f,0.4F / (level().getRandom().nextFloat() + 0.8F));
-					var7.level().explode(this, null,
-						DEFAULT_EXPLOSION_DAMAGE_CALCULATOR,
-						var7.getX(), var7.getY(0.5) + 0.5, var7.getZ(), 1.2F, false,
-						Level.ExplosionInteraction.NONE,
-						ParticleTypes.CHERRY_LEAVES,
-						ParticleTypes.HEART,
-						WeightedList.of(),
-						SoundEvents.HONEY_DRINK
-					);
+					mob.playSound(SoundEvents.ALLAY_ITEM_GIVEN,2f,0.4F / (level().getRandom().nextFloat() + 0.8F));
 					mob.heal(potency);
 				}
 			}
-
-
+		}
+		else
+		{
+			/*
+			Entity mob = hitResult.getEntity();
+			if((mob instanceof LivingEntity livingEntity && !livingEntity.isInvertedHealAndHarm()) || !(mob instanceof LivingEntity))
+			for(int i = this.random.nextIntBetweenInclusive(3,5); i >= 0; i++) {
+				double xa = this.random.nextGaussian() * 0.02;
+				double ya = this.random.nextGaussian() * 0.02;
+				double za = this.random.nextGaussian() * 0.02;
+				mob.level().addParticle(ParticleTypes.HEART, mob.getRandomX(1.0), mob.getRandomY() + 0.5, mob.getRandomZ(1.0), xa, ya, za);
+			}
+			 */
 		}
 		super.onHitEntity(hitResult);
 	}

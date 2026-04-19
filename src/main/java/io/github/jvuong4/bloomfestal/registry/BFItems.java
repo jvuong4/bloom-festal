@@ -152,15 +152,17 @@ public class BFItems {
 		new GreatFestal.Properties().durability(4).useCooldown(1.0f).enchantable(1));
 
 	public static Eclipse ECLIPSE = register("eclipse", Eclipse:: new,
-		new Eclipse.Properties().durability(10).useCooldown(6.0f).enchantable(1));
+		new Eclipse.Properties().durability(10).useCooldown(9f).enchantable(1));
 
 	public static Thoron THORON = register("thoron", Thoron:: new,
-		new Thoron.Properties().durability(50).useCooldown(3f).enchantable(1));
+		new Thoron.Properties().durability(50).useCooldown(4f).enchantable(1));
 	public static Thoron LEVIN_SWORD = register("levin_sword", Thoron:: new,
-		new Thoron.Properties().sword(ToolMaterial.GOLD, 9.0F, -2.4F).durability(25).useCooldown(4.0f).enchantable(64));
+		new Thoron.Properties().sword(ToolMaterial.GOLD, 9.0F, -2.4F).durability(25).useCooldown(5f).enchantable(64));
 
 	public static Rexcalibur REXCALIBUR = register("rexcalibur", Rexcalibur:: new,
-		new Rexcalibur.Properties().durability(50).useCooldown(1.5f).enchantable(1));
+		new Rexcalibur.Properties().durability(50).useCooldown(3f).enchantable(1));
+	public static Bolganone BOLGANONE = register("bolganone", Bolganone:: new,
+		new Bolganone.Properties().durability(50).useCooldown(3.5f).enchantable(1));
 
 	public static <T extends Item> T register(String name, Function<Item.Properties, T> itemFactory, Item.Properties settings) {
 		// Create the item key.
@@ -193,7 +195,7 @@ public class BFItems {
 			output.accept(GUARD_NAGINATA);
 
 			output.accept(THORON);
-
+			output.accept(BOLGANONE);
 			output.accept(REXCALIBUR);
 			output.accept(ECLIPSE);
 		})

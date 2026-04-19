@@ -1,11 +1,8 @@
 package io.github.jvuong4.bloomfestal.registry;
 
 import io.github.jvuong4.bloomfestal.BloomFestal;
-import io.github.jvuong4.bloomfestal.entity.EclipseOrb;
-import io.github.jvuong4.bloomfestal.entity.HealOrb;
+import io.github.jvuong4.bloomfestal.entity.*;
 import io.github.jvuong4.bloomfestal.entity.LightningBolt.VisualLightning;
-import io.github.jvuong4.bloomfestal.entity.RexcaliburOrb;
-import io.github.jvuong4.bloomfestal.entity.ThoronOrb;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -38,6 +35,11 @@ public class BFEntities {
 	public static final EntityType<RexcaliburOrb> REXCALIBUR_ORB = register(
 		"rexcalibur_orb",
 		EntityType.Builder.<RexcaliburOrb>of(RexcaliburOrb::new, MobCategory.MISC)
+			.noLootTable().sized(0.5F, 0.5F).clientTrackingRange(4).updateInterval(10)
+	);
+	public static final EntityType<BolganoneOrb> BOLGANONE_ORB = register(
+		"bolganone_orb",
+		EntityType.Builder.<BolganoneOrb>of(BolganoneOrb::new, MobCategory.MISC)
 			.noLootTable().sized(0.5F, 0.5F).clientTrackingRange(4).updateInterval(10)
 	);
 

@@ -92,15 +92,6 @@ public class GreatFestal extends Item {
 					entity.heal(healingPotency);
 				}
 			}
-			player.level().explode(player, null,
-				HealOrb.DEFAULT_EXPLOSION_DAMAGE_CALCULATOR,
-				player.getX(), player.getY(0.5) + 0.5, player.getZ(), 1.2F, false,
-				Level.ExplosionInteraction.NONE,
-				ParticleTypes.CHERRY_LEAVES,
-				ParticleTypes.CHERRY_LEAVES,
-				WeightedList.of(),
-				SoundEvents.HONEY_DRINK
-			);
 
 			double end = 16.0;
 			for(double i=0; i<end; i++)

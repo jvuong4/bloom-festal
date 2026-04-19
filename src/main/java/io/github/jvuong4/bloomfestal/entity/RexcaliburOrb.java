@@ -25,7 +25,7 @@ import java.util.function.Function;
 
 public class RexcaliburOrb extends ExplodingOrb{
 	private static final ExplosionDamageCalculator DEFAULT_EXPLOSION_DAMAGE_CALCULATOR = new SimpleExplosionDamageCalculator(
-		false, false, Optional.of(3F), BuiltInRegistries.BLOCK.get(BlockTags.BLOCKS_WIND_CHARGE_EXPLOSIONS).map(Function.identity())
+		false, false, Optional.of(2F), BuiltInRegistries.BLOCK.get(BlockTags.BLOCKS_WIND_CHARGE_EXPLOSIONS).map(Function.identity())
 	);
 
 	public RexcaliburOrb(final EntityType<? extends RexcaliburOrb> type, final Level level) {
@@ -47,7 +47,7 @@ public class RexcaliburOrb extends ExplodingOrb{
 	{
 		accelerationPower = 1.0;
 		range = 8;
-		potency = 10.0F;
+		potency = 6.0F;
 		explosionRadius = 7.0F;
 		particleSpawnChance = 2.0F;
 		explosionSound = SoundEvents.BREEZE_WIND_CHARGE_BURST.value();
@@ -119,7 +119,7 @@ public class RexcaliburOrb extends ExplodingOrb{
 						float damage = potency * (float)Math.sqrt((explosionRadius - this.distanceTo(target)) / explosionRadius);
 						if(!target.onGround() && !target.isInPowderSnow && !target.isInWater() && !target.isInLava())
 							//double damage against airborne enemies!
-							damage *= 2;
+							damage *= 3;
 						target.hurtServer(level, this.damageSources().indirectMagic(this, this.getOwner()), damage);
 
 					}

@@ -2,10 +2,7 @@ package io.github.jvuong4.bloomfestal.client;
 
 import io.github.jvuong4.bloomfestal.BloomFestal;
 import io.github.jvuong4.bloomfestal.client.model.HealOrbModel;
-import io.github.jvuong4.bloomfestal.client.renderer.EclipseOrbRenderer;
-import io.github.jvuong4.bloomfestal.client.renderer.HealOrbRenderer;
-import io.github.jvuong4.bloomfestal.client.renderer.RexcaliburOrbRenderer;
-import io.github.jvuong4.bloomfestal.client.renderer.ThoronOrbRenderer;
+import io.github.jvuong4.bloomfestal.client.renderer.*;
 import io.github.jvuong4.bloomfestal.registry.BFEntities;
 import net.fabricmc.fabric.api.client.rendering.v1.ModelLayerRegistry;
 import net.minecraft.client.model.geom.ModelLayerLocation;
@@ -27,6 +24,7 @@ public class BFModelLayers {
 		EntityRenderers.register(BFEntities.ECLIPSE_ORB, EclipseOrbRenderer::new);
 		EntityRenderers.register(BFEntities.THORON_ORB, ThoronOrbRenderer::new);
 		EntityRenderers.register(BFEntities.REXCALIBUR_ORB, RexcaliburOrbRenderer::new);
+		EntityRenderers.register(BFEntities.BOLGANONE_ORB, BolganoneOrbRenderer::new);
 
 		EntityRenderers.register(BFEntities.VISUAL_LIGHTNING, LightningBoltRenderer::new);
 	}

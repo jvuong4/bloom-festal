@@ -1,0 +1,10 @@
+{
+	"replace": false,
+	"values": [
+		"bloom_festal:bloom_festal",
+		"bloom_festal:sun_festal",
+		"bloom_festal:wane_festal",
+		"bloom_festal:moon_festal",
+		"bloom_festal:great_festal"
+	]
+}

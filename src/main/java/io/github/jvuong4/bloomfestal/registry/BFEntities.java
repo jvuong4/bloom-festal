@@ -43,6 +43,11 @@ public class BFEntities {
 			.noLootTable().sized(0.5F, 0.5F).clientTrackingRange(4).updateInterval(10)
 	);
 
+	/*
+	public static final EntityType<KodachiEntity> THROWN_KODACHI = register(
+		"thrown_kodachi", EntityType.Builder.<KodachiEntity>of(KodachiEntity::new, MobCategory.MISC)
+			.noLootTable().sized(0.5F, 0.5F).eyeHeight(0.13F).clientTrackingRange(4).updateInterval(20));
+ */
 	public static final EntityType<VisualLightning> VISUAL_LIGHTNING = register(
 		"visual_lightning", EntityType.Builder.<VisualLightning>of(VisualLightning::new, MobCategory.MISC)
 			.noLootTable()

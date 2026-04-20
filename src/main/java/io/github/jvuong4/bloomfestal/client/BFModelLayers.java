@@ -6,7 +6,9 @@ import io.github.jvuong4.bloomfestal.client.renderer.*;
 import io.github.jvuong4.bloomfestal.registry.BFEntities;
 import net.fabricmc.fabric.api.client.rendering.v1.ModelLayerRegistry;
 import net.minecraft.client.model.geom.ModelLayerLocation;
+import net.minecraft.client.model.geom.ModelLayers;
 import net.minecraft.client.renderer.entity.*;
+import net.minecraft.client.renderer.entity.state.ThrownItemRenderState;
 import net.minecraft.resources.Identifier;
 
 public class BFModelLayers {
@@ -25,6 +27,8 @@ public class BFModelLayers {
 		EntityRenderers.register(BFEntities.THORON_ORB, ThoronOrbRenderer::new);
 		EntityRenderers.register(BFEntities.REXCALIBUR_ORB, RexcaliburOrbRenderer::new);
 		EntityRenderers.register(BFEntities.BOLGANONE_ORB, BolganoneOrbRenderer::new);
+
+		//EntityRenderers.register(BFEntities.THROWN_KODACHI, ThrownItemRenderer::new);
 
 		EntityRenderers.register(BFEntities.VISUAL_LIGHTNING, LightningBoltRenderer::new);
 	}

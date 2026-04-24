@@ -1,6 +1,7 @@
 package io.github.jvuong4.bloomfestal.entity;
 
 import io.github.jvuong4.bloomfestal.registry.BFEntities;
+import io.github.jvuong4.bloomfestal.registry.BFSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.particles.ParticleOptions;
@@ -121,7 +122,8 @@ public class HealOrb extends Fireball {
 					//mob.level().addParticle(ParticleTypes.HEART, mob.getRandomX(1.0), mob.getRandomY() + 0.5, mob.getRandomZ(1.0), xa, ya, za);
 					//this.level().addParticle(ParticleTypes.HEART, var7.getX(), var7.getY() + 0.5, var7.getZ(), 0.0, 1.0, 0.0);
 					//this.level().addParticle(ParticleTypes.HEART, this.getX(), this.getY() + 0.5, this.getZ(), 0.0, 1.0, 0.0);
-					mob.playSound(SoundEvents.ALLAY_ITEM_GIVEN,2f,0.4F / (level().getRandom().nextFloat() + 0.8F));
+					if(mob.getMaxHealth() > mob.getHealth())
+						mob.playSound(BFSounds.HEAL,2f,1F);
 					mob.heal(potency);
 				}
 			}

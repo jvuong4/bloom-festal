@@ -1,6 +1,7 @@
 package io.github.jvuong4.bloomfestal.item;
 
 import io.github.jvuong4.bloomfestal.entity.HealOrb;
+import io.github.jvuong4.bloomfestal.registry.BFSounds;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -58,17 +59,17 @@ public class GreatFestal extends Item {
 			player.getX(),
 			player.getY(),
 			player.getZ(),
-			SoundEvents.EVOKER_CAST_SPELL,
+			BFSounds.HEAL,
 			SoundSource.NEUTRAL,
 			0.5F,
-			0.4F / (level.getRandom().nextFloat() * 0.4F + 0.8F)
+			1F
 		);
 		if (level instanceof ServerLevel serverLevel) {
-			Vec3 min = player.position().add(range*-1F,range*-0.3F,range*-1F);
-			Vec3 max = player.position().add(range,range*0.3F,range);
-			AABB box = new AABB(min,max);
+			//Vec3 min = player.position().add(range*-1F,range*-0.3F,range*-1F);
+			//Vec3 max = player.position().add(range,range*0.3F,range);
+			//AABB box = new AABB(min,max);
 
-			List<LivingEntity> entityList = ((ServerLevel) level).getNearbyEntities(LivingEntity.class, TARGETING_CONDITIONS, player, box);
+			//List<LivingEntity> entityList = ((ServerLevel) level).getNearbyEntities(LivingEntity.class, TARGETING_CONDITIONS, player, box);
 			for (LivingEntity entity : level.getEntitiesOfClass(LivingEntity.class, player.getBoundingBox().inflate(range)))
 			{
 				if(entity.isInvertedHealAndHarm())

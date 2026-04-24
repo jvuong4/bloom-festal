@@ -29,5 +29,7 @@
 	"lore.item.bloom_festal.eclipse": "A forbidden tome. Casts slow-moving dark magic that sets the target's hp to 1. Lethal if already 1 hp.",
 	"lore.item.bloom_festal.thoron": "A magical tome. Casts quick-moving thunder magic that deals 14 magic damage.",
 	"lore.item.bloom_festal.rexcalibur": "A magical tome. Casts quick-moving wind magic that deals 6 magic damage and heavy knockback. Effective against airborne enemies (3x damage).",
-	"lore.item.bloom_festal.bolganone": "A magical tome. Casts fire magic that deals 6 magic damage and heavy knockback. Effective against airborne enemies (3x damage)."
+	"lore.item.bloom_festal.bolganone": "A magical tome. Casts fire magic that deals 6 magic damage and heavy knockback. Effective against airborne enemies (3x damage).",
+
+	"subtitles.entity.heal_orb.heal": "Healing"
 }

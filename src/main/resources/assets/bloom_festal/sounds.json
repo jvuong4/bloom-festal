@@ -2,5 +2,9 @@
 	"thunder": {
 		"subtitle": "subtitles.entity.lightning_bolt.thunder",
 		"sounds": ["bloom_festal:thunder1","bloom_festal:thunder2","bloom_festal:thunder3"]
+	},
+	"heal": {
+		"subtitle": "subtitles.entity.heal_orb.heal",
+		"sounds": ["bloom_festal:heal"]
 	}
 }

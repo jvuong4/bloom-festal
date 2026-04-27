@@ -1,5 +1,6 @@
 package io.github.jvuong4.bloomfestal.entity;
 
+import io.github.jvuong4.bloomfestal.registry.BFDamageTypes;
 import io.github.jvuong4.bloomfestal.registry.BFEntities;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
@@ -9,6 +10,7 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.hurtingprojectile.Fireball;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
@@ -68,34 +70,38 @@ public class EclipseOrb extends Fireball {
 		return false;
 	}
 
+	private boolean cannotHarmPlayer(LivingEntity target)
+	{
+		Entity owner = this.getOwner();
+		if(owner instanceof Player playerAttacker)
+			if(target instanceof Player playerTarget)
+				return !playerAttacker.canHarmPlayer(playerTarget);
+		return false;
+	}
+
 	@Override
 	protected void onHitEntity(final EntityHitResult hitResult) {
 		if (this.level() instanceof ServerLevel serverLevel) {
 			Entity var7 = hitResult.getEntity();
 			Entity owner = this.getOwner();
-			//no burning!
-			//int remainingFireTicks = var7.getRemainingFireTicks();
-			//var7.igniteForSeconds(5.0F);
 
 			if(var7 instanceof LivingEntity mob)
 			{
-				DamageSource damageSource = this.damageSources().indirectMagic(this, owner);
+				DamageSource damageSource = this.damageSources().source(BFDamageTypes.ECLIPSE_DAMAGE,this, owner);
 				playSound(SoundEvents.TRIDENT_THUNDER.value(),0.3f,0.4F / (level().getRandom().nextFloat() * 0.4F + 0.8F));
 
-				boolean lethal = mob.getHealth() <= 1.0F;
-				float minDamage = lethal ? 2048.0F : 1.0F;
-				if (!var7.hurtServer(serverLevel, damageSource, Math.max(mob.getHealth()-1.0F, minDamage))) {
-					if(mob.getHealth() > 1F)
-						mob.setHealth(1.0F);
-					//var7.setRemainingFireTicks(remainingFireTicks);
-				} else {
-					if(mob.getHealth() > 1F)
-						mob.setHealth(1.0F);
-					EnchantmentHelper.doPostAttackEffects(serverLevel, var7, damageSource);
+				if (!(
+						mob.isInvulnerable() //does nothing against invulnerable mobs
+					|| cannotHarmPlayer(mob)	//does nothing against players that this orb's owner cannot hurt
+				))
+				{
+					boolean lethal = mob.getHealth() <= 1.0F;
+					float minDamage = lethal ? 2048.0F : 1.0F;
+					if (var7.hurtServer(serverLevel, damageSource, Math.max(mob.getHealth() - 1.0F, minDamage)))
+					{
+						EnchantmentHelper.doPostAttackEffects(serverLevel, var7, damageSource);
+					}
 				}
-				//if they're somehow still not dead yet LMFAOO
-				if(lethal)
-					mob.kill(serverLevel);
 			}
 		}
 		super.onHitEntity(hitResult);

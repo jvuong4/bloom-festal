@@ -31,7 +31,7 @@ public class BFItems {
 	public static Item BRAVE_LANCE = register("brave_lance", Item :: new, new Item.Properties().durability(188)
 		//.repairable() screw anvil repairability
 		.enchantable(10)
-		.delayedHolderComponent(DataComponents.DAMAGE_TYPE, BloomFestal.BRAVE_LANCE_DAMAGE)
+		.delayedHolderComponent(DataComponents.DAMAGE_TYPE, BFDamageTypes.BRAVE_LANCE_DAMAGE)
 		.component(
 			DataComponents.KINETIC_WEAPON,
 			new KineticWeapon(

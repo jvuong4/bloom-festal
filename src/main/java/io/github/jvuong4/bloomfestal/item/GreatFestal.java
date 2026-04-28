@@ -79,8 +79,6 @@ public class GreatFestal extends Item {
 						}
 					}
 					else {
-						MobEffectInstance instance = new MobEffectInstance(MobEffects.GLOWING,  10, 0, false, false, false);
-						entity.addEffect(instance,player);
 						entity.heal(healingPotency);
 					}
 				}

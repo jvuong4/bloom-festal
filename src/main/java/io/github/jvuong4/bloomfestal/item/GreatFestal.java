@@ -14,6 +14,8 @@ import net.minecraft.util.random.WeightedList;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
@@ -65,58 +67,72 @@ public class GreatFestal extends Item {
 			1F
 		);
 		if (level instanceof ServerLevel serverLevel) {
-			//Vec3 min = player.position().add(range*-1F,range*-0.3F,range*-1F);
-			//Vec3 max = player.position().add(range,range*0.3F,range);
-			//AABB box = new AABB(min,max);
-
-			//List<LivingEntity> entityList = ((ServerLevel) level).getNearbyEntities(LivingEntity.class, TARGETING_CONDITIONS, player, box);
 			for (LivingEntity entity : level.getEntitiesOfClass(LivingEntity.class, player.getBoundingBox().inflate(range)))
 			{
-				if(entity.isInvertedHealAndHarm())
-				{
-					DamageSource damageSource = player.damageSources().indirectMagic(entity, player);
-					entity.playSound(SoundEvents.BAMBOO_PLACE,0.5f,0.4F / (level.getRandom().nextFloat() * 0.4F + 0.8F));
-					if (!entity.hurtServer(serverLevel, damageSource, healingPotency)) {
-					} else {
-						EnchantmentHelper.doPostAttackEffects(serverLevel, entity, damageSource);
+				if(entity.distanceToSqr(player) < range * range) {
+					if (entity.isInvertedHealAndHarm()) {
+						DamageSource damageSource = player.damageSources().indirectMagic(entity, player);
+						entity.playSound(SoundEvents.BAMBOO_PLACE, 0.5f, 0.4F / (level.getRandom().nextFloat() * 0.4F + 0.8F));
+						if (!entity.hurtServer(serverLevel, damageSource, healingPotency)) {
+						} else {
+							EnchantmentHelper.doPostAttackEffects(serverLevel, entity, damageSource);
+						}
+					}
+					else {
+						MobEffectInstance instance = new MobEffectInstance(MobEffects.GLOWING,  10, 0, false, false, false);
+						entity.addEffect(instance,player);
+						entity.heal(healingPotency);
 					}
 				}
-				else
-				{
-					double xa = level.getRandom().nextGaussian() * 0.02;
-					double ya = level.getRandom().nextGaussian() * 0.02;
-					double za = level.getRandom().nextGaussian() * 0.02;
-					entity.level().addParticle(ParticleTypes.HEART, entity.getRandomX(1.0), entity.getRandomY() + 0.5, entity.getRandomZ(1.0), xa, ya, za);
-					//this.level().addParticle(ParticleTypes.HEART, var7.getX(), var7.getY() + 0.5, var7.getZ(), 0.0, 1.0, 0.0);
-					//this.level().addParticle(ParticleTypes.HEART, this.getX(), this.getY() + 0.5, this.getZ(), 0.0, 1.0, 0.0);
-					//entity.playSound(SoundEvents.ALLAY_ITEM_GIVEN,2f,0.4F / (level.getRandom().nextFloat() + 0.8F));
-					entity.heal(healingPotency);
+			}
+		}
+		else
+		{
+			for (LivingEntity entity : level.getEntitiesOfClass(LivingEntity.class, player.getBoundingBox().inflate(range)))
+			{
+				if(entity.distanceToSqr(player) < range * range) {
+					if (entity.isInvertedHealAndHarm()) {
+						for(int i = 0; i < 3; i++)
+						{
+							double xa = level.getRandom().nextGaussian() * 0.02;
+							double ya = level.getRandom().nextGaussian() * 0.02;
+							double za = level.getRandom().nextGaussian() * 0.02;
+							entity.level().addParticle(ParticleTypes.SOUL_FIRE_FLAME, entity.getRandomX(1.0), entity.getRandomY() + 0.5, entity.getRandomZ(1.0), xa, ya, za);
+						}
+					} else {
+						for(int i = 0; i < 3; i++)
+						{
+							double xa = level.getRandom().nextGaussian() * 0.02;
+							double ya = level.getRandom().nextGaussian() * 0.02;
+							double za = level.getRandom().nextGaussian() * 0.02;
+							entity.level().addParticle(ParticleTypes.HEART, entity.getRandomX(1.0), entity.getRandomY() + 0.5, entity.getRandomZ(1.0), xa, ya, za);
+						}
+					}
 				}
 			}
 
-			double end = 16.0;
+
+
+			double end = 48.0;
+			double pivot = player.getRandom().nextDouble();
 			for(double i=0; i<end; i++)
 			{
-				serverLevel.addParticle(ParticleTypes.CHERRY_LEAVES,
-					true,
-					true,
-					player.getX() + Math.cos(i/end * 2.0 * Math.PI) * 16.0,
+				level.addParticle(ParticleTypes.CHERRY_LEAVES,
+					player.getX() + Math.cos((i+pivot)/end * 2.0 * Math.PI) * 16.0,
 					player.getY() + 0.5,
-					player.getZ() + Math.cos(i/end * 2.0 * Math.PI) * 16.0,
-					0.0, 0.0, 0.0);
+					player.getZ() + Math.sin((i+pivot)/end * 2.0 * Math.PI) * 16.0,
+					0.0, 0.5, 0.0);
 			}
 			end = 8.0;
+			pivot = player.getRandom().nextDouble();
 			for(double i=0; i<end; i++)
 			{
-				serverLevel.addParticle(ParticleTypes.CHERRY_LEAVES,
-					false,
-					false,
-					player.getX() + Math.cos(i/end * 2.0 * Math.PI) * 8.0,
-					player.getY() + 0.5,
-					player.getZ() + Math.cos(i/end * 2.0 * Math.PI) * 8.0,
-					0.0, 0.0, 0.0);
+				level.addParticle(ParticleTypes.CHERRY_LEAVES,
+					player.getX() + Math.cos((i+pivot)/end * 2.0 * Math.PI) * 8.0,
+					player.getY() + 1,
+					player.getZ() + Math.sin((i+pivot)/end * 2.0 * Math.PI) * 8.0,
+					0.0, 0.5, 0.0);
 			}
-
 		}
 		player.awardStat(Stats.ITEM_USED.get(this));
 		itemStack.causeUseVibration(player, GameEvent.ITEM_INTERACT_START);

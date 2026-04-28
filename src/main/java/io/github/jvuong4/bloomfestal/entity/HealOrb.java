@@ -14,6 +14,8 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.random.WeightedList;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -116,30 +118,35 @@ public class HealOrb extends Fireball {
 				}
 				else
 				{
-					//double xa = this.random.nextGaussian() * 0.02;
-					//double ya = this.random.nextGaussian() * 0.02;
-					//double za = this.random.nextGaussian() * 0.02;
-					//mob.level().addParticle(ParticleTypes.HEART, mob.getRandomX(1.0), mob.getRandomY() + 0.5, mob.getRandomZ(1.0), xa, ya, za);
-					//this.level().addParticle(ParticleTypes.HEART, var7.getX(), var7.getY() + 0.5, var7.getZ(), 0.0, 1.0, 0.0);
-					//this.level().addParticle(ParticleTypes.HEART, this.getX(), this.getY() + 0.5, this.getZ(), 0.0, 1.0, 0.0);
 					if(mob.getMaxHealth() > mob.getHealth())
 						mob.playSound(BFSounds.HEAL,2f,1F);
 					mob.heal(potency);
+					MobEffectInstance instance = new MobEffectInstance(MobEffects.GLOWING,  10, 0, false, false, false);
+					mob.addEffect(instance,owner);
 				}
 			}
 		}
 		else
 		{
-			/*
 			Entity mob = hitResult.getEntity();
-			if((mob instanceof LivingEntity livingEntity && !livingEntity.isInvertedHealAndHarm()) || !(mob instanceof LivingEntity))
-			for(int i = this.random.nextIntBetweenInclusive(3,5); i >= 0; i++) {
-				double xa = this.random.nextGaussian() * 0.02;
-				double ya = this.random.nextGaussian() * 0.02;
-				double za = this.random.nextGaussian() * 0.02;
-				mob.level().addParticle(ParticleTypes.HEART, mob.getRandomX(1.0), mob.getRandomY() + 0.5, mob.getRandomZ(1.0), xa, ya, za);
+			if(mob instanceof LivingEntity livingEntity) {
+				if(!livingEntity.isInvertedHealAndHarm()) {
+					for (int i = 0; i < 3; i++) {
+						double xa = this.random.nextGaussian() * 0.02;
+						double ya = this.random.nextGaussian() * 0.02;
+						double za = this.random.nextGaussian() * 0.02;
+						this.level().addParticle(ParticleTypes.HEART, mob.getRandomX(1.0), mob.getRandomY() + 0.5, mob.getRandomZ(1.0), xa, ya, za);
+					}
+				}
+				else {
+					for(int i = 0; i < 3; i++) {
+						double xa = this.random.nextGaussian() * 0.02;
+						double ya = this.random.nextGaussian() * 0.02;
+						double za = this.random.nextGaussian() * 0.02;
+						this.level().addParticle(ParticleTypes.SOUL_FIRE_FLAME, mob.getRandomX(1.0), mob.getRandomY() + 0.5, mob.getRandomZ(1.0), xa, ya, za);
+					}
+				}
 			}
-			 */
 		}
 		super.onHitEntity(hitResult);
 	}

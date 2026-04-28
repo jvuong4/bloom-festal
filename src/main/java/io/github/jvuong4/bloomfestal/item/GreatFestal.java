@@ -1,6 +1,7 @@
 package io.github.jvuong4.bloomfestal.item;
 
 import io.github.jvuong4.bloomfestal.entity.HealOrb;
+import io.github.jvuong4.bloomfestal.registry.BFEffects;
 import io.github.jvuong4.bloomfestal.registry.BFSounds;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.particles.SimpleParticleType;
@@ -79,8 +80,6 @@ public class GreatFestal extends Item {
 						}
 					}
 					else {
-						MobEffectInstance instance = new MobEffectInstance(MobEffects.GLOWING,  10, 0, false, false, false);
-						entity.addEffect(instance,player);
 						entity.heal(healingPotency);
 					}
 				}
@@ -134,6 +133,8 @@ public class GreatFestal extends Item {
 					0.0, 0.5, 0.0);
 			}
 		}
+		MobEffectInstance instance = new MobEffectInstance(BFEffects.CHERRY_BLOOM,  3, 0, false, false, false);
+		player.addEffect(instance);
 		player.awardStat(Stats.ITEM_USED.get(this));
 		itemStack.causeUseVibration(player, GameEvent.ITEM_INTERACT_START);
 		itemStack.hurtAndBreak(1, player, hand.asEquipmentSlot());

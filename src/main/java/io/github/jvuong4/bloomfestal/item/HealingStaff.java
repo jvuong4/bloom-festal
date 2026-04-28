@@ -1,12 +1,15 @@
 package io.github.jvuong4.bloomfestal.item;
 
 import io.github.jvuong4.bloomfestal.entity.HealOrb;
+import io.github.jvuong4.bloomfestal.registry.BFEffects;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.Item;
@@ -45,6 +48,8 @@ public class HealingStaff extends Item {
 			entity.setStats(range, healingPotency);
 			Projectile.spawnProjectile(entity, serverLevel, itemStack);
 		}
+		MobEffectInstance instance = new MobEffectInstance(BFEffects.CHERRY_BLOOM,  3, 0, false, false, false);
+		player.addEffect(instance);
 		player.awardStat(Stats.ITEM_USED.get(this));
 		itemStack.causeUseVibration(player, GameEvent.ITEM_INTERACT_START);
 		itemStack.hurtAndBreak(1, player, hand.asEquipmentSlot());

@@ -1,5 +1,6 @@
 package io.github.jvuong4.bloomfestal.entity;
 
+import io.github.jvuong4.bloomfestal.registry.BFEffects;
 import io.github.jvuong4.bloomfestal.registry.BFEntities;
 import io.github.jvuong4.bloomfestal.registry.BFSounds;
 import net.minecraft.core.BlockPos;
@@ -114,6 +115,8 @@ public class HealOrb extends Fireball {
 					if (!var7.hurtServer(serverLevel, damageSource, potency)) {
 					} else {
 						EnchantmentHelper.doPostAttackEffects(serverLevel, var7, damageSource);
+						MobEffectInstance instance = new MobEffectInstance(BFEffects.SOUL_BLOOM,  3, 0, false, false, false);
+						mob.addEffect(instance,owner);
 					}
 				}
 				else
@@ -121,7 +124,7 @@ public class HealOrb extends Fireball {
 					if(mob.getMaxHealth() > mob.getHealth())
 						mob.playSound(BFSounds.HEAL,2f,1F);
 					mob.heal(potency);
-					MobEffectInstance instance = new MobEffectInstance(MobEffects.GLOWING,  10, 0, false, false, false);
+					MobEffectInstance instance = new MobEffectInstance(BFEffects.HEART_BLOOM,  3, 0, false, false, false);
 					mob.addEffect(instance,owner);
 				}
 			}

@@ -72,7 +72,6 @@ public class GreatFestal extends Item {
 				if(entity.distanceToSqr(player) < range * range) {
 					if (entity.isInvertedHealAndHarm()) {
 						DamageSource damageSource = player.damageSources().indirectMagic(entity, player);
-						entity.playSound(SoundEvents.BAMBOO_PLACE, 0.5f, 0.4F / (level.getRandom().nextFloat() * 0.4F + 0.8F));
 						if (!entity.hurtServer(serverLevel, damageSource, healingPotency)) {
 						} else {
 							EnchantmentHelper.doPostAttackEffects(serverLevel, entity, damageSource);

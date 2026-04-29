@@ -1,7 +1,7 @@
 package io.github.jvuong4.bloomfestal.item;
 
-import io.github.jvuong4.bloomfestal.entity.EclipseOrb;
-import io.github.jvuong4.bloomfestal.entity.HealOrb;
+import io.github.jvuong4.bloomfestal.entity.HexingOrb;
+import io.github.jvuong4.bloomfestal.entity.RevelationOrb;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -16,10 +16,8 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.Vec3;
 
-public class Eclipse extends Item {
-	protected int range = 400;
-
-	public Eclipse(final net.minecraft.world.item.Item.Properties properties) {
+public class HexingRod extends Item {
+	public HexingRod(final Properties properties) {
 		super(properties);
 	}
 
@@ -40,9 +38,8 @@ public class Eclipse extends Item {
 			double d = 20.0;
 			Vec3 viewVector = player.getViewVector(1.0F);
 			Vec3 direction = new Vec3(viewVector.x, viewVector.y, viewVector.z);
-			EclipseOrb entity = new EclipseOrb(level, player, (direction.normalize()).scale(d));
+			HexingOrb entity = new HexingOrb(level, player, (direction.normalize()).scale(d));
 			entity.setPos(player.getX() + viewVector.x, player.getY(0.5) + 0.5, entity.getZ() + viewVector.z);
-			entity.setStats(range);
 			Projectile.spawnProjectile(entity, serverLevel, itemStack);
 		}
 		player.awardStat(Stats.ITEM_USED.get(this));

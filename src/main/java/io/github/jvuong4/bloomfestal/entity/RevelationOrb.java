@@ -30,7 +30,6 @@ import java.util.function.Function;
 
 public class RevelationOrb extends Fireball {
 	private int range = 6;
-	private float potency = 6.0F;
 	private int age = 0;
 
 	public RevelationOrb(final EntityType<? extends RevelationOrb> type, final Level level) {
@@ -55,7 +54,6 @@ public class RevelationOrb extends Fireball {
 	public void setStats(int r, float p)
 	{
 		range = r;
-		potency = p;
 		age = 0;
 		accelerationPower = 1;
 	}
@@ -72,7 +70,7 @@ public class RevelationOrb extends Fireball {
 
 	@Override
 	protected ParticleOptions getTrailParticle() {
-		return ParticleTypes.SONIC_BOOM;
+		return ParticleTypes.SCULK_SOUL;
 	}
 
 	@Override
@@ -87,22 +85,6 @@ public class RevelationOrb extends Fireball {
 			Entity owner = this.getOwner();
 			if(var7 instanceof LivingEntity mob)
 			{
-				if(mob.isInvertedHealAndHarm())
-				{
-					DamageSource damageSource = this.damageSources().indirectMagic(this, owner);
-					playSound(SoundEvents.TRIDENT_THUNDER.value(),0.3f,0.4F / (level().getRandom().nextFloat() * 0.4F + 0.8F));
-					if (!var7.hurtServer(serverLevel, damageSource, potency)) {
-					} else {
-						EnchantmentHelper.doPostAttackEffects(serverLevel, var7, damageSource);
-					}
-				}
-				else
-				{
-					playSound(SoundEvents.TRIDENT_THUNDER.value(),0.3f,0.4F / (level().getRandom().nextFloat() * 0.4F + 0.8F));
-					mob.heal(potency);
-					MobEffectInstance instance = new MobEffectInstance(MobEffects.GLOWING,  10, 0, false, false, false);
-					mob.addEffect(instance,owner);
-				}
 				if(mob.hasEffect(BFEffects.REVELATION))
 				{
 					mob.removeEffect(BFEffects.REVELATION);
@@ -112,6 +94,7 @@ public class RevelationOrb extends Fireball {
 					MobEffectInstance instance = new MobEffectInstance(BFEffects.REVELATION,  6000, 0, false, true, true);
 					mob.addEffect(instance, owner);
 				}
+				playSound(SoundEvents.TRIDENT_THUNDER.value(),0.3f,0.4F / (level().getRandom().nextFloat() * 0.4F + 0.8F));
 			}
 		}
 		else

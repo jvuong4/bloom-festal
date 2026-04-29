@@ -7,6 +7,7 @@
 	"item.bloom_festal.moon_festal": "Twilight Festal",
 	"item.bloom_festal.great_festal": "Grand Festal",
 	"item.bloom_festal.revelation_festal": "Revelation Festal",
+	"item.bloom_festal.hexing_rod": "Hexing Festal",
 
 	"item.bloom_festal.levin_sword": "Actinon Sword",
 	"item.bloom_festal.brave_lance": "Valor Lance",
@@ -22,13 +23,14 @@
 	"lore.item.bloom_festal.wane_festal": "A staff to heal those beyond the horizon. Recovers 4 hp to its target, and has increased range.",
 	"lore.item.bloom_festal.moon_festal": "A revitalizing staff to ward misfortune. Recovers 24 hp to its target.",
 	"lore.item.bloom_festal.great_festal": "A bountiful staff that heals all within range for 4 hp.",
-	"lore.item.bloom_festal.revelation_festal": "An odd healing staff of neither light nor dark. Recovers 6 hp to its target, then inverts the effects of healing and harming.",
+	"lore.item.bloom_festal.revelation_festal": "An odd healing staff of neither light nor dark. Inverts the effects of healing and harming for its target.",
+	"lore.item.bloom_festal.hexing_festal": "A staff to seal away an opponent's strength. Halves the Maximum Health of its target.",
 
 	"lore.item.bloom_festal.levin_sword": "A unique weapon that can slash be used to cast quick-moving thunder magic that deals 14 magic damage.",
 	"lore.item.bloom_festal.brave_lance": "A spear that can be used for particularly swift jabs or can be held out to deal damage while charging.",
 	"lore.item.bloom_festal.guard_naginata": "A slow spear that protects the wielder and can be used to jab or can be held out to deal damage while charging.",
 
-	"lore.item.bloom_festal.eclipse": "A forbidden tome. Casts slow-moving dark magic that sets the target's hp to 1. Lethal if already 1 hp.",
+	"lore.item.bloom_festal.eclipse": "A forbidden tome. Casts slow-moving dark magic that is untouchable for 2 seconds before activating. On contact, sets the target's hp to 1. Lethal if already 1 hp.",
 	"lore.item.bloom_festal.thoron": "A magical tome. Casts quick-moving thunder magic that deals 14 magic damage.",
 	"lore.item.bloom_festal.rexcalibur": "A magical tome. Casts quick-moving wind magic that deals 6 magic damage and heavy knockback. Effective against airborne enemies (3x damage).",
 	"lore.item.bloom_festal.bolganone": "A magical tome. Casts fire magic that deals 6 magic damage and heavy knockback. Effective against airborne enemies (3x damage).",

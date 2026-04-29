@@ -5,11 +5,11 @@ import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
 
-public class RevelationEffect extends MobEffect {
-	public RevelationEffect() {
+public class HexedEffect extends MobEffect {
+	public HexedEffect() {
 		// category: StatusEffectCategory - describes if the effect is helpful (BENEFICIAL), harmful (HARMFUL) or useless (NEUTRAL)
 		// color: int - Color is the color assigned to the effect (in RGB)
-		super(MobEffectCategory.NEUTRAL, 0xe9b8b3);
+		super(MobEffectCategory.HARMFUL, 0xe9b8b3);
 	}
 
 	// Called every tick to check if the effect can be applied or not

@@ -153,6 +153,8 @@ public class BFItems {
 
 	public static RevelationFestal REVELATION_FESTAL = register("revelation_festal", RevelationFestal:: new,
 		new RevelationFestal.Properties().durability(40).useCooldown(0.8f).enchantable(1));
+	public static HexingRod HEXING_ROD = register("hexing_rod", HexingRod:: new,
+		new HexingRod.Properties().durability(6).useCooldown(6).enchantable(1));
 
 	public static Eclipse ECLIPSE = register("eclipse", Eclipse:: new,
 		new Eclipse.Properties().durability(10).useCooldown(9f).enchantable(1));

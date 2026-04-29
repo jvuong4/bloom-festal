@@ -1,6 +1,6 @@
 package io.github.jvuong4.bloomfestal.entity;
 
-import io.github.jvuong4.bloomfestal.registry.BFDamageTypes;
+import io.github.jvuong4.bloomfestal.registry.BFEffects;
 import io.github.jvuong4.bloomfestal.registry.BFEntities;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
@@ -12,7 +12,6 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.hurtingprojectile.Fireball;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
@@ -21,71 +20,46 @@ import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 
-public class EclipseOrb extends Fireball {
-	private int range = 400;
-	private final int lethalAge = 40;
+public class HexingOrb extends Fireball {
+	private int range = 12;
 	private int age = 0;
 
-	public EclipseOrb (final EntityType<? extends EclipseOrb> type, final Level level) {
+	public HexingOrb(final EntityType<? extends HexingOrb> type, final Level level) {
 		super(type, level);
-		accelerationPower = 0.005;
-		noPhysics = true;
-	}
-
-
-	public EclipseOrb (final Level level, final LivingEntity mob, final Vec3 direction) {
-		super(BFEntities.ECLIPSE_ORB, mob, direction, level);
-		accelerationPower = 0.005;
-		noPhysics = true;
-	}
-
-	public EclipseOrb (final Level level, final double x, final double y, final double z, final Vec3 direction) {
-		super(BFEntities.ECLIPSE_ORB, x, y, z, direction, level);
-		accelerationPower = 0.005;
-		noPhysics = true;
-	}
-
-	public void setStats(int r)
-	{
-		range = r;
 		age = 0;
-		accelerationPower = 0.005;
+		accelerationPower = 0.5;
 	}
 
+
+	public HexingOrb(final Level level, final LivingEntity mob, final Vec3 direction) {
+		super(BFEntities.HEXING_ORB, mob, direction, level);
+		age = 0;
+		accelerationPower = 0.5;
+	}
+
+	public HexingOrb(final Level level, final double x, final double y, final double z, final Vec3 direction) {
+		super(BFEntities.HEXING_ORB, x, y, z, direction, level);
+		age = 0;
+		accelerationPower = 0.5;
+	}
 	@Override
 	protected void createParticleTrail() {
-		//less particles!!
-		if(age % 4  > 0)
-		{
-			return;
-		}
-		ParticleOptions trailParticle;
-		if(age < lethalAge)
-			trailParticle = ParticleTypes.ENCHANTED_HIT;
-		else
-			trailParticle = this.getTrailParticle();
+		ParticleOptions trailParticle = this.getTrailParticle();
 		Vec3 position = this.position();
 		if (trailParticle != null) {
 			this.level().addParticle(trailParticle, position.x, position.y, position.z, 0.0, 0.0, 0.0);
+			//Vec3 prevDirection = this.getDeltaMovement().scale(-0.5);
+			//this.level().addParticle(trailParticle, position.x + prevDirection.x, position.y + prevDirection.y, position.z + prevDirection.z, 0.0, 0.0, 0.0);
 		}
 	}
 
 	@Override
 	protected ParticleOptions getTrailParticle() {
-		return ParticleTypes.SONIC_BOOM;
+		return ParticleTypes.DAMAGE_INDICATOR;
 	}
 
 	@Override
 	protected boolean shouldBurn() {
-		return false;
-	}
-
-	private boolean cannotHarmPlayer(LivingEntity target)
-	{
-		Entity owner = this.getOwner();
-		if(owner instanceof Player playerAttacker)
-			if(target instanceof Player playerTarget)
-				return !playerAttacker.canHarmPlayer(playerTarget);
 		return false;
 	}
 
@@ -94,23 +68,22 @@ public class EclipseOrb extends Fireball {
 		if (this.level() instanceof ServerLevel serverLevel) {
 			Entity var7 = hitResult.getEntity();
 			Entity owner = this.getOwner();
-
 			if(var7 instanceof LivingEntity mob)
 			{
-				DamageSource damageSource = this.damageSources().source(BFDamageTypes.ECLIPSE_DAMAGE,this, owner);
+				MobEffectInstance instance = new MobEffectInstance(BFEffects.HEXED,  6000, 0, false, true, true);
+				mob.addEffect(instance, owner);
 				playSound(SoundEvents.TRIDENT_THUNDER.value(),0.3f,0.4F / (level().getRandom().nextFloat() * 0.4F + 0.8F));
-
-				if (!(
-						mob.isInvulnerable() //does nothing against invulnerable mobs
-					|| cannotHarmPlayer(mob)	//does nothing against players that this orb's owner cannot hurt
-				))
-				{
-					boolean lethal = mob.getHealth() <= 1.0F;
-					float minDamage = lethal ? 2048.0F : 1.0F;
-					if (var7.hurtServer(serverLevel, damageSource, Math.max(mob.getHealth() - 1.0F, minDamage)))
-					{
-						EnchantmentHelper.doPostAttackEffects(serverLevel, var7, damageSource);
-					}
+			}
+		}
+		else
+		{
+			Entity mob = hitResult.getEntity();
+			if(mob instanceof LivingEntity livingEntity) {
+				for(int i = 0; i < 3; i++) {
+					double xa = this.random.nextGaussian() * 0.02;
+					double ya = this.random.nextGaussian() * 0.02;
+					double za = this.random.nextGaussian() * 0.02;
+					this.level().addParticle(ParticleTypes.DAMAGE_INDICATOR, mob.getRandomX(1.0), mob.getRandomY() + 0.5, mob.getRandomZ(1.0), xa, ya, za);
 				}
 			}
 		}
@@ -121,19 +94,7 @@ public class EclipseOrb extends Fireball {
 	public void tick() {
 		super.tick();
 		age++;
-		if(age == lethalAge)
-		{
-			noPhysics = false;
-			setViewScale(1);
-			createParticleTrail();
-		}
-		else
-		{
-			Vec3 vec = this.getDeltaMovement();
-			Vec3 newpos = vec.add(this.position());
-			this.setPosRaw(newpos.x,newpos.y,newpos.z);
-		}
-		if(age == range && range <= 10)
+		if(age == range)
 		{
 			this.level().addParticle(ParticleTypes.SMOKE, this.getX(), this.getY(), this.getZ(), 0.0, 0.2, 0.0);
 			for(int i = 0; i < 4; i++)
@@ -157,8 +118,6 @@ public class EclipseOrb extends Fireball {
 
 	@Override
 	protected void onHit(final HitResult hitResult) {
-		if(age < lethalAge)
-			return;
 		super.onHit(hitResult);
 		if (hitResult.getType() == HitResult.Type.BLOCK) {
 			this.level().addParticle(ParticleTypes.SMOKE, this.getX(), this.getY()+0.5, this.getZ(), 0.0, 0.2, 0.0);

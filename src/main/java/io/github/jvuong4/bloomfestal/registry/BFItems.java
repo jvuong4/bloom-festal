@@ -137,19 +137,22 @@ public class BFItems {
 		.component(DataComponents.WEAPON, new Weapon(1)));
 
 	public static HealingStaff BLOOM_FESTAL = register("bloom_festal", HealingStaff:: new,
-		new HealingStaff.Properties().durability(40).useCooldown(0.3f).enchantable(1));
+		new HealingStaff.Properties().durability(40).useCooldown(0.8f).enchantable(1));
 
 	public static SunFestal SUN_FESTAL = register("sun_festal", SunFestal:: new,
-		new SunFestal.Properties().durability(30).useCooldown(0.3f).enchantable(1));
+		new SunFestal.Properties().durability(30).useCooldown(0.8f).enchantable(1));
 
 	public static WaneFestal WANE_FESTAL = register("wane_festal", WaneFestal:: new,
-		new WaneFestal.Properties().durability(10).useCooldown(0.3f).enchantable(1));
+		new WaneFestal.Properties().durability(10).useCooldown(0.8f).enchantable(1));
 
 	public static MoonFestal MOON_FESTAL = register("moon_festal", MoonFestal:: new,
-		new MoonFestal.Properties().durability(10).useCooldown(0.3f).enchantable(1));
+		new MoonFestal.Properties().durability(10).useCooldown(0.8f).enchantable(1));
 
 	public static GreatFestal GREAT_FESTAL = register("great_festal", GreatFestal:: new,
-		new GreatFestal.Properties().durability(4).useCooldown(1.0f).enchantable(1));
+		new GreatFestal.Properties().durability(4).useCooldown(3f).enchantable(1));
+
+	public static RevelationFestal REVELATION_FESTAL = register("revelation_festal", RevelationFestal:: new,
+		new RevelationFestal.Properties().durability(40).useCooldown(0.8f).enchantable(1));
 
 	public static Eclipse ECLIPSE = register("eclipse", Eclipse:: new,
 		new Eclipse.Properties().durability(10).useCooldown(9f).enchantable(1));
@@ -189,6 +192,7 @@ public class BFItems {
 			output.accept(WANE_FESTAL);
 			output.accept(MOON_FESTAL);
 			output.accept(GREAT_FESTAL);
+			output.accept(REVELATION_FESTAL);
 			output.accept(LEVIN_SWORD);
 
 			output.accept(BRAVE_LANCE);

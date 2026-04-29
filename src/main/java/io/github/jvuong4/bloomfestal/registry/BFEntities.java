@@ -42,6 +42,11 @@ public class BFEntities {
 		EntityType.Builder.<BolganoneOrb>of(BolganoneOrb::new, MobCategory.MISC)
 			.noLootTable().sized(0.5F, 0.5F).clientTrackingRange(4).updateInterval(10)
 	);
+	public static final EntityType<RevelationOrb> REVELATION_ORB = register(
+		"revelation_orb",
+		EntityType.Builder.<RevelationOrb>of(RevelationOrb::new, MobCategory.MISC)
+			.noLootTable().sized(0.5F, 0.5F).clientTrackingRange(4).updateInterval(10)
+	);
 
 	/*
 	public static final EntityType<KodachiEntity> THROWN_KODACHI = register(

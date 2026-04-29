@@ -1,9 +1,6 @@
 package io.github.jvuong4.bloomfestal;
 
-import io.github.jvuong4.bloomfestal.registry.BFDamageTypes;
-import io.github.jvuong4.bloomfestal.registry.BFEntities;
-import io.github.jvuong4.bloomfestal.registry.BFItems;
-import io.github.jvuong4.bloomfestal.registry.BFSounds;
+import io.github.jvuong4.bloomfestal.registry.*;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.Identifier;
@@ -23,5 +20,6 @@ public class BloomFestal implements ModInitializer {
 		BFEntities.init();
 		BFSounds.init();
 		BFDamageTypes.init();
+		BFEffects.init();
 	}
 }

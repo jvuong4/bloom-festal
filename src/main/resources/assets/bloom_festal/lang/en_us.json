@@ -6,6 +6,7 @@
 	"item.bloom_festal.wane_festal": "Horizon Festal",
 	"item.bloom_festal.moon_festal": "Twilight Festal",
 	"item.bloom_festal.great_festal": "Grand Festal",
+	"item.bloom_festal.revelation_festal": "Revelation Festal",
 
 	"item.bloom_festal.levin_sword": "Actinon Sword",
 	"item.bloom_festal.brave_lance": "Valor Lance",
@@ -21,6 +22,7 @@
 	"lore.item.bloom_festal.wane_festal": "A staff to heal those beyond the horizon. Recovers 4 hp to its target, and has increased range.",
 	"lore.item.bloom_festal.moon_festal": "A revitalizing staff to ward misfortune. Recovers 24 hp to its target.",
 	"lore.item.bloom_festal.great_festal": "A bountiful staff that heals all within range for 4 hp.",
+	"lore.item.bloom_festal.revelation_festal": "An odd healing staff of neither light nor dark. Recovers 6 hp to its target, then inverts the effects of healing and harming.",
 
 	"lore.item.bloom_festal.levin_sword": "A unique weapon that can slash be used to cast quick-moving thunder magic that deals 14 magic damage.",
 	"lore.item.bloom_festal.brave_lance": "A spear that can be used for particularly swift jabs or can be held out to deal damage while charging.",

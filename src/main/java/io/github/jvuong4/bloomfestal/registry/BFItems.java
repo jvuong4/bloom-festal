@@ -155,10 +155,8 @@ public class BFItems {
 		new RevelationFestal.Properties().durability(40).useCooldown(1f).enchantable(1));
 	public static HexingRod HEXING_ROD = register("hexing_rod", HexingRod:: new,
 		new HexingRod.Properties().durability(6).useCooldown(10f).enchantable(1));
-	public static StillnessRod STILLNESS_ROD = register("stillness_rod", StillnessRod:: new,
-		new StillnessRod.Properties().durability(6).useCooldown(10f).enchantable(1));
 	public static SilentRod SILENT_ROD = register("silent_rod", SilentRod:: new,
-		new SilentRod.Properties().durability(6).useCooldown(10f).enchantable(1));
+		new SilentRod.Properties().durability(6).useCooldown(3f).enchantable(1));
 
 	public static Eclipse ECLIPSE = register("eclipse", Eclipse:: new,
 		new Eclipse.Properties().durability(10).useCooldown(9f).enchantable(1));
@@ -199,7 +197,7 @@ public class BFItems {
 			output.accept(MOON_FESTAL);
 			output.accept(GREAT_FESTAL);
 			output.accept(REVELATION_FESTAL);
-			output.accept(STILLNESS_ROD);
+			//output.accept(STILLNESS_ROD);
 			output.accept(SILENT_ROD);
 			output.accept(HEXING_ROD);
 

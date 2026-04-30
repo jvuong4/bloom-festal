@@ -19,11 +19,14 @@ public class BFEffects {
 		Identifier.fromNamespaceAndPath(BloomFestal.ID, "hexed"),
 		(new HexedEffect().addAttributeModifier(Attributes.MAX_HEALTH, Identifier.withDefaultNamespace("effect.hexed"), (double)-0.5F, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)));
 
+	/*
 	public static final Holder<MobEffect> STILLNESS =
 		Registry.registerForHolder(BuiltInRegistries.MOB_EFFECT, Identifier.fromNamespaceAndPath(BloomFestal.ID, "stillness"), new StillnessEffect()
 			.addAttributeModifier(Attributes.MOVEMENT_SPEED, Identifier.withDefaultNamespace("effect.stillness"), (double)-1.00F, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
 
 		);
+
+	 */
 
 	public static final Holder<MobEffect> SILENCE =
 		Registry.registerForHolder(BuiltInRegistries.MOB_EFFECT, Identifier.fromNamespaceAndPath(BloomFestal.ID, "silence"), new SilenceEffect());

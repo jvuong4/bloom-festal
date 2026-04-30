@@ -29,13 +29,15 @@ public class StillnessOrb extends Fireball {
 
 
 	public StillnessOrb(final Level level, final LivingEntity mob, final Vec3 direction) {
-		super(BFEntities.STILLNESS_ORB, mob, direction, level);
+		super(BFEntities.SILENCE_ORB //BFEntities.STILLNESS_ORB
+			, mob, direction, level);
 		age = 0;
 		accelerationPower = 0.8;
 	}
 
 	public StillnessOrb(final Level level, final double x, final double y, final double z, final Vec3 direction) {
-		super(BFEntities.STILLNESS_ORB, x, y, z, direction, level);
+		super(BFEntities.SILENCE_ORB //BFEntities.STILLNESS_ORB
+			, x, y, z, direction, level);
 		age = 0;
 		accelerationPower = 0.8;
 	}
@@ -67,7 +69,8 @@ public class StillnessOrb extends Fireball {
 			Entity owner = this.getOwner();
 			if(var7 instanceof LivingEntity mob)
 			{
-				MobEffectInstance instance = new MobEffectInstance(BFEffects.STILLNESS,  60, 0, false, true, true);
+				//MobEffectInstance instance = new MobEffectInstance(BFEffects.STILLNESS,  60, 0, false, true, true);
+				MobEffectInstance instance = new MobEffectInstance(BFEffects.SILENCE,  60, 0, false, true, true);
 				mob.addEffect(instance, owner);
 				playSound(SoundEvents.TRIDENT_THUNDER.value(),0.3f,0.4F / (level().getRandom().nextFloat() * 0.4F + 0.8F));
 			}

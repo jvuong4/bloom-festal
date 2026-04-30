@@ -26,7 +26,7 @@ public class BFModelLayers {
 		EntityRenderers.register(BFEntities.HEAL_ORB, HealOrbRenderer::new);
 		EntityRenderers.register(BFEntities.REVELATION_ORB, RevelationOrbRenderer::new);
 		EntityRenderers.register(BFEntities.SILENCE_ORB, SilenceOrbRenderer::new);
-		EntityRenderers.register(BFEntities.STILLNESS_ORB, StillnessOrbRenderer::new);
+		//EntityRenderers.register(BFEntities.STILLNESS_ORB, StillnessOrbRenderer::new);
 		EntityRenderers.register(BFEntities.HEXING_ORB, HexingOrbRenderer::new);
 		EntityRenderers.register(BFEntities.ECLIPSE_ORB, EclipseOrbRenderer::new);
 		EntityRenderers.register(BFEntities.THORON_ORB, ThoronOrbRenderer::new);

@@ -57,11 +57,13 @@ public class BFEntities {
 		EntityType.Builder.<SilenceOrb>of(SilenceOrb::new, MobCategory.MISC)
 			.noLootTable().sized(0.5F, 0.5F).clientTrackingRange(4).updateInterval(10)
 	);
+	/*
 	public static final EntityType<StillnessOrb> STILLNESS_ORB = register(
 		"stillness_orb",
 		EntityType.Builder.<StillnessOrb>of(StillnessOrb::new, MobCategory.MISC)
 			.noLootTable().sized(0.5F, 0.5F).clientTrackingRange(4).updateInterval(10)
 	);
+	 */
 
 	/*
 	public static final EntityType<KodachiEntity> THROWN_KODACHI = register(

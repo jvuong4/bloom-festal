@@ -9,6 +9,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.Item;
@@ -60,6 +61,8 @@ public class Eclipse extends Item {
 			entity.setStats(range);
 			Projectile.spawnProjectile(entity, serverLevel, itemStack);
 		}
+		MobEffectInstance instance = new MobEffectInstance(BFEffects.SILENCE,  20, 0, false, true, true);
+		player.addEffect(instance);
 		player.awardStat(Stats.ITEM_USED.get(this));
 		itemStack.causeUseVibration(player, GameEvent.ITEM_INTERACT_START);
 		itemStack.hurtAndBreak(1, player, hand.asEquipmentSlot());

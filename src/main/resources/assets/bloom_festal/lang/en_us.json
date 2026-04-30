@@ -6,8 +6,11 @@
 	"item.bloom_festal.wane_festal": "Horizon Festal",
 	"item.bloom_festal.moon_festal": "Twilight Festal",
 	"item.bloom_festal.great_festal": "Grand Festal",
-	"item.bloom_festal.revelation_festal": "Revelation Festal",
-	"item.bloom_festal.hexing_rod": "Hexing Festal",
+
+	"item.bloom_festal.revelation_festal": "Revelation Rod",
+	"item.bloom_festal.hexing_rod": "Hexing Rod",
+	"item.bloom_festal.silent_rod": "Silent Rod",
+	"item.bloom_festal.stillness_rod": "Stillness Rod",
 
 	"item.bloom_festal.levin_sword": "Actinon Sword",
 	"item.bloom_festal.brave_lance": "Valor Lance",
@@ -18,13 +21,16 @@
 	"item.bloom_festal.rexcalibur": "Tempest",
 	"item.bloom_festal.bolganone": "Caldera",
 
-	"lore.item.bloom_festal.bloom_festal": "A humble healing staff. Recovers 4 hp to its target.",
-	"lore.item.bloom_festal.sun_festal": "A bright staff to embrace a brand new day. Recovers 10 hp to its target.",
-	"lore.item.bloom_festal.wane_festal": "A staff to heal those beyond the horizon. Recovers 4 hp to its target, and has increased range.",
+	"lore.item.bloom_festal.bloom_festal": "A humble healing staff. Recovers 6 hp to its target.",
+	"lore.item.bloom_festal.sun_festal": "A bright staff to embrace a brand new day. Recovers 12 hp to its target.",
+	"lore.item.bloom_festal.wane_festal": "A staff to heal those beyond the horizon. Recovers 8 hp to its target, and has increased range.",
 	"lore.item.bloom_festal.moon_festal": "A revitalizing staff to ward misfortune. Recovers 24 hp to its target.",
-	"lore.item.bloom_festal.great_festal": "A bountiful staff that heals all within range for 4 hp.",
-	"lore.item.bloom_festal.revelation_festal": "An odd healing staff of neither light nor dark. Inverts the effects of healing and harming for its target.",
-	"lore.item.bloom_festal.hexing_festal": "A staff to seal away an opponent's strength. Halves the Maximum Health of its target.",
+	"lore.item.bloom_festal.great_festal": "A bountiful staff that heals all within range for 8 hp.",
+
+	"lore.item.bloom_festal.revelation_festal": "An rod that swaps the effects of healing and harming.",
+	"lore.item.bloom_festal.hexing_rod": "A rod that seals away an opponent's strength. Halves the Maximum Health of its target.",
+	"lore.item.bloom_festal.silent_rod": "A rod that seals away an opponent's magic. Prevents usage of magic for 10 seconds.",
+	"lore.item.bloom_festal.stillness_rod": "A rod that freezes opponents in time. They will be completely still for 3 seconds.",
 
 	"lore.item.bloom_festal.levin_sword": "A unique weapon that can slash be used to cast quick-moving thunder magic that deals 14 magic damage.",
 	"lore.item.bloom_festal.brave_lance": "A spear that can be used for particularly swift jabs or can be held out to deal damage while charging.",
@@ -35,5 +41,10 @@
 	"lore.item.bloom_festal.rexcalibur": "A magical tome. Casts quick-moving wind magic that deals 6 magic damage and heavy knockback. Effective against airborne enemies (3x damage).",
 	"lore.item.bloom_festal.bolganone": "A magical tome. Casts fire magic that deals 6 magic damage and heavy knockback. Effective against airborne enemies (3x damage).",
 
-	"subtitles.entity.heal_orb.heal": "Healing"
+	"subtitles.entity.heal_orb.heal": "Healing",
+
+	"effect.bloom_festal.hexed": "Hexed",
+	"effect.bloom_festal.revelation": "Revelation",
+	"effect.bloom_festal.silence": "Silence",
+	"effect.bloom_festal.stillness": "Stillness"
 }

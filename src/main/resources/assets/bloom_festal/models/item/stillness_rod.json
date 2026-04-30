@@ -1,0 +1,6 @@
+{
+	"parent": "minecraft:item/handheld",
+	"textures": {
+		"layer0": "bloom_festal:item/stillness_rod"
+	}
+}

@@ -2,6 +2,7 @@ package io.github.jvuong4.bloomfestal.item;
 
 import io.github.jvuong4.bloomfestal.entity.HexingOrb;
 import io.github.jvuong4.bloomfestal.entity.RevelationOrb;
+import io.github.jvuong4.bloomfestal.registry.BFEffects;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -23,6 +24,20 @@ public class HexingRod extends Item {
 
 	@Override
 	public InteractionResult use(final Level level, final Player player, final InteractionHand hand) {
+		if(player.hasEffect(BFEffects.SILENCE))
+		{
+			level.playSound(
+				null,
+				player.getX(),
+				player.getY(),
+				player.getZ(),
+				SoundEvents.SHIELD_BLOCK,
+				SoundSource.NEUTRAL,
+				0.5F,
+				0.4F / (level.getRandom().nextFloat() * 0.4F + 0.8F)
+			);
+			return InteractionResult.FAIL;
+		}
 		ItemStack itemStack = player.getItemInHand(hand);
 		level.playSound(
 			null,

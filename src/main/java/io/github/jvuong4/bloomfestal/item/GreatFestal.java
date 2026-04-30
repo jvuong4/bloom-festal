@@ -1,6 +1,7 @@
 package io.github.jvuong4.bloomfestal.item;
 
 import io.github.jvuong4.bloomfestal.entity.HealOrb;
+import io.github.jvuong4.bloomfestal.registry.BFEffects;
 import io.github.jvuong4.bloomfestal.registry.BFSounds;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.particles.SimpleParticleType;
@@ -46,7 +47,7 @@ public class GreatFestal extends Item {
 		.ignoreLineOfSight()
 		.range(range);
 
-	protected float healingPotency = 4.0f;
+	protected float healingPotency = 8.0f;
 
 
 	public GreatFestal(final net.minecraft.world.item.Item.Properties properties) {
@@ -55,6 +56,20 @@ public class GreatFestal extends Item {
 
 	@Override
 	public InteractionResult use(final Level level, final Player player, final InteractionHand hand) {
+		if(player.hasEffect(BFEffects.SILENCE))
+		{
+			level.playSound(
+				null,
+				player.getX(),
+				player.getY(),
+				player.getZ(),
+				SoundEvents.SHIELD_BLOCK,
+				SoundSource.NEUTRAL,
+				0.5F,
+				0.4F / (level.getRandom().nextFloat() * 0.4F + 0.8F)
+			);
+			return InteractionResult.FAIL;
+		}
 		ItemStack itemStack = player.getItemInHand(hand);
 		level.playSound(
 			null,

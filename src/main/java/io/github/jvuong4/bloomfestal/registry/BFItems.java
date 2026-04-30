@@ -140,21 +140,25 @@ public class BFItems {
 		new HealingStaff.Properties().durability(40).useCooldown(0.8f).enchantable(1));
 
 	public static SunFestal SUN_FESTAL = register("sun_festal", SunFestal:: new,
-		new SunFestal.Properties().durability(30).useCooldown(0.8f).enchantable(1));
+		new SunFestal.Properties().durability(30).useCooldown(1.2f).enchantable(1));
 
 	public static WaneFestal WANE_FESTAL = register("wane_festal", WaneFestal:: new,
-		new WaneFestal.Properties().durability(10).useCooldown(0.8f).enchantable(1));
+		new WaneFestal.Properties().durability(10).useCooldown(2f).enchantable(1));
 
 	public static MoonFestal MOON_FESTAL = register("moon_festal", MoonFestal:: new,
-		new MoonFestal.Properties().durability(10).useCooldown(0.8f).enchantable(1));
+		new MoonFestal.Properties().durability(10).useCooldown(2f).enchantable(1));
 
 	public static GreatFestal GREAT_FESTAL = register("great_festal", GreatFestal:: new,
-		new GreatFestal.Properties().durability(4).useCooldown(3f).enchantable(1));
+		new GreatFestal.Properties().durability(4).useCooldown(4f).enchantable(1));
 
 	public static RevelationFestal REVELATION_FESTAL = register("revelation_festal", RevelationFestal:: new,
-		new RevelationFestal.Properties().durability(40).useCooldown(0.8f).enchantable(1));
+		new RevelationFestal.Properties().durability(40).useCooldown(1f).enchantable(1));
 	public static HexingRod HEXING_ROD = register("hexing_rod", HexingRod:: new,
-		new HexingRod.Properties().durability(6).useCooldown(6).enchantable(1));
+		new HexingRod.Properties().durability(6).useCooldown(10f).enchantable(1));
+	public static StillnessRod STILLNESS_ROD = register("stillness_rod", StillnessRod:: new,
+		new StillnessRod.Properties().durability(6).useCooldown(10f).enchantable(1));
+	public static SilentRod SILENT_ROD = register("silent_rod", SilentRod:: new,
+		new SilentRod.Properties().durability(6).useCooldown(10f).enchantable(1));
 
 	public static Eclipse ECLIPSE = register("eclipse", Eclipse:: new,
 		new Eclipse.Properties().durability(10).useCooldown(9f).enchantable(1));
@@ -195,7 +199,12 @@ public class BFItems {
 			output.accept(MOON_FESTAL);
 			output.accept(GREAT_FESTAL);
 			output.accept(REVELATION_FESTAL);
+			output.accept(STILLNESS_ROD);
+			output.accept(SILENT_ROD);
+			output.accept(HEXING_ROD);
+
 			output.accept(LEVIN_SWORD);
+
 
 			output.accept(BRAVE_LANCE);
 			output.accept(GUARD_NAGINATA);

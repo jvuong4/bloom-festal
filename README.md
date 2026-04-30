@@ -1,5 +1,5 @@
-<!--suppress HtmlDeprecatedTag, XmlDeprecatedElement -->
-<center><img alt="mod preview" src="https://upload.wikimedia.org/wikipedia/commons/7/70/Example.png"/></center>
+![Made for Modfest 26](https://badger-api-staging.worldwidepixel.ca/cozy?gradientStart=a41c5f&gradientEnd=580c36&lineOne=Made%20for&lineTwo=ModFest%2026&colourOne=FFFFFF&colourTwo=fa96c8&iconUrl=https://raw.githubusercontent.com/ModFest/art/5959f93d710deccb28fa8f3d805206bf0ad27a13/icon/svg/26/transparent.svg)
+
 
 <center>
 A short quick summary of this mod

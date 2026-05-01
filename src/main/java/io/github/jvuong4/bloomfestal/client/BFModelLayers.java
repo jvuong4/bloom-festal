@@ -25,6 +25,7 @@ public class BFModelLayers {
 	public static void init() {
 		EntityRenderers.register(BFEntities.HEAL_ORB, HealOrbRenderer::new);
 		EntityRenderers.register(BFEntities.HARM_ORB, HarmOrbRenderer::new);
+		EntityRenderers.register(BFEntities.REWARP_ORB, RewarpOrbRenderer::new);
 		EntityRenderers.register(BFEntities.REVELATION_ORB, RevelationOrbRenderer::new);
 		EntityRenderers.register(BFEntities.SILENCE_ORB, SilenceOrbRenderer::new);
 		//EntityRenderers.register(BFEntities.STILLNESS_ORB, StillnessOrbRenderer::new);

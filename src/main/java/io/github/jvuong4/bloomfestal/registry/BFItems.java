@@ -151,6 +151,9 @@ public class BFItems {
 	public static GreatFestal GREAT_FESTAL = register("great_festal", GreatFestal:: new,
 		new GreatFestal.Properties().durability(4).useCooldown(4f).enchantable(1));
 
+	public static RewarpFestal REWARP_FESTAL = register("rewarp_festal", RewarpFestal:: new,
+		new RewarpFestal.Properties().durability(10).useCooldown(2f).enchantable(1));
+
 	public static RevelationFestal REVELATION_FESTAL = register("revelation_festal", RevelationFestal:: new,
 		new RevelationFestal.Properties().durability(40).useCooldown(1f).enchantable(1));
 	public static HexingRod HEXING_ROD = register("hexing_rod", HexingRod:: new,
@@ -205,6 +208,7 @@ public class BFItems {
 			output.accept(GREAT_FESTAL);
 			output.accept(PAIN_FESTAL);
 			output.accept(DIRGE_FESTAL);
+			output.accept(REWARP_FESTAL);
 			output.accept(REVELATION_FESTAL);
 			//output.accept(STILLNESS_ROD);
 			output.accept(SILENT_ROD);

@@ -27,6 +27,11 @@ public class BFEntities {
 		EntityType.Builder.<HarmOrb>of(HarmOrb::new, MobCategory.MISC)
 			.noLootTable().sized(0.5F, 0.5F).clientTrackingRange(4).updateInterval(10)
 	);
+	public static final EntityType<RewarpOrb> REWARP_ORB = register(
+		"rewarp_orb",
+		EntityType.Builder.<RewarpOrb>of(RewarpOrb::new, MobCategory.MISC)
+			.noLootTable().sized(0.5F, 0.5F).clientTrackingRange(4).updateInterval(10)
+	);
 	public static final EntityType<EclipseOrb> ECLIPSE_ORB = register(
 		"eclipse_orb",
 		EntityType.Builder.<EclipseOrb>of(EclipseOrb::new, MobCategory.MISC)

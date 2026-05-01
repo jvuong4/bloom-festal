@@ -32,6 +32,11 @@ public class BFEntities {
 		EntityType.Builder.<EclipseOrb>of(EclipseOrb::new, MobCategory.MISC)
 			.noLootTable().sized(0.5F, 0.5F).clientTrackingRange(4).updateInterval(10)
 	);
+	public static final EntityType<NosferatuOrb> NOSFERATU_ORB = register(
+		"nosferatu_orb",
+		EntityType.Builder.<NosferatuOrb>of(NosferatuOrb::new, MobCategory.MISC)
+			.noLootTable().sized(0.5F, 0.5F).clientTrackingRange(4).updateInterval(10)
+	);
 	public static final EntityType<ThoronOrb> THORON_ORB = register(
 		"thoron_orb",
 		EntityType.Builder.<ThoronOrb>of(ThoronOrb::new, MobCategory.MISC)

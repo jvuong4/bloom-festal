@@ -59,7 +59,7 @@ public class GreatHarmingFestal extends Item {
 			player.getX(),
 			player.getY(),
 			player.getZ(),
-			BFSounds.HEAL,
+			SoundEvents.TRIDENT_THUNDER.value(),
 			SoundSource.NEUTRAL,
 			0.5F,
 			1F
@@ -108,7 +108,7 @@ public class GreatHarmingFestal extends Item {
 
 
 
-			double end = 24.0;
+			double end = 32.0;
 			double pivot = player.getRandom().nextDouble();
 			for(double i=0; i<end; i++)
 			{
@@ -128,7 +128,7 @@ public class GreatHarmingFestal extends Item {
 					player.getX() + Math.cos((i+pivot)/end * 2.0 * Math.PI) * 4.0,
 					player.getY() + 1,
 					player.getZ() + Math.sin((i+pivot)/end * 2.0 * Math.PI) * 4.0,
-					0.0, 0.5, 0.0);
+					0.0, 0.5-(i%2 * 0.5), 0.0);
 			}
 		}
 		MobEffectInstance instance = new MobEffectInstance(BFEffects.SILENCE,  20, 0, false, true, true);

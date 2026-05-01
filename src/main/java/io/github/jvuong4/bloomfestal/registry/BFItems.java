@@ -165,6 +165,8 @@ public class BFItems {
 
 	public static Eclipse ECLIPSE = register("eclipse", Eclipse:: new,
 		new Eclipse.Properties().durability(10).useCooldown(9f).enchantable(1));
+	public static Nosferatu NOSFERATU = register("nosferatu", Nosferatu:: new,
+		new Nosferatu.Properties().durability(50).useCooldown(3f).enchantable(1));
 
 	public static Thoron THORON = register("thoron", Thoron:: new,
 		new Thoron.Properties().durability(50).useCooldown(4f).enchantable(1));
@@ -218,6 +220,7 @@ public class BFItems {
 			output.accept(BOLGANONE);
 			output.accept(REXCALIBUR);
 			output.accept(ECLIPSE);
+			output.accept(NOSFERATU);
 		})
 		.build();
 

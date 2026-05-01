@@ -30,6 +30,7 @@ public class BFModelLayers {
 		//EntityRenderers.register(BFEntities.STILLNESS_ORB, StillnessOrbRenderer::new);
 		EntityRenderers.register(BFEntities.HEXING_ORB, HexingOrbRenderer::new);
 		EntityRenderers.register(BFEntities.ECLIPSE_ORB, EclipseOrbRenderer::new);
+		EntityRenderers.register(BFEntities.NOSFERATU_ORB, NosferatuOrbRenderer::new);
 		EntityRenderers.register(BFEntities.THORON_ORB, ThoronOrbRenderer::new);
 		EntityRenderers.register(BFEntities.REXCALIBUR_ORB, RexcaliburOrbRenderer::new);
 		EntityRenderers.register(BFEntities.BOLGANONE_ORB, BolganoneOrbRenderer::new);

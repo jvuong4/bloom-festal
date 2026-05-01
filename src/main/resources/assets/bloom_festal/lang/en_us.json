@@ -22,6 +22,7 @@
 	"item.bloom_festal.guard_naginata": "Vanguard Naginata",
 
 	"item.bloom_festal.eclipse": "Equinox",
+	"item.bloom_festal.nosferatu": "Carmilla",
 	"item.bloom_festal.thoron": "Actinon",
 	"item.bloom_festal.rexcalibur": "Tempest",
 	"item.bloom_festal.bolganone": "Caldera",
@@ -46,7 +47,8 @@
 	"lore.item.bloom_festal.brave_lance": "A spear that can be used for particularly swift jabs or can be held out to deal damage while charging.",
 	"lore.item.bloom_festal.guard_naginata": "A slow spear that protects the wielder and can be used to jab or can be held out to deal damage while charging.",
 
-	"lore.item.bloom_festal.eclipse": "A forbidden tome. Casts slow-moving dark magic that is untouchable for 2 seconds before activating. On contact, sets the target's hp to 1. Lethal if already 1 hp.",
+	"lore.item.bloom_festal.eclipse": "A forbidden tome. Casts very slow-moving dark magic that is untouchable for 2 seconds before activating. On contact, sets the target's hp to 1. Lethal if already 1 hp.",
+	"lore.item.bloom_festal.nosferatu": "A dark tome. Casts slow-moving dark magic that deals 8 magic damage. If damage is dealt, recovers 4 hp.",
 	"lore.item.bloom_festal.thoron": "A magical tome. Casts quick-moving thunder magic that deals 14 magic damage.",
 	"lore.item.bloom_festal.rexcalibur": "A magical tome. Casts quick-moving wind magic that deals 6 magic damage and heavy knockback. Effective against airborne enemies (3x damage).",
 	"lore.item.bloom_festal.bolganone": "A magical tome. Casts fire magic that deals 6 magic damage and heavy knockback. Effective against airborne enemies (3x damage).",

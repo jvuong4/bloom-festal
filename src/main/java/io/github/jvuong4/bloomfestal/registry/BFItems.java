@@ -158,6 +158,11 @@ public class BFItems {
 	public static SilentRod SILENT_ROD = register("silent_rod", SilentRod:: new,
 		new SilentRod.Properties().durability(6).useCooldown(3f).enchantable(1));
 
+	public static HarmingStaff PAIN_FESTAL = register("pain_festal", HarmingStaff:: new,
+		new HarmingStaff.Properties().durability(40).useCooldown(1.6f).enchantable(1));
+	public static GreatHarmingFestal DIRGE_FESTAL = register("dirge_festal", GreatHarmingFestal:: new,
+		new GreatHarmingFestal.Properties().durability(4).useCooldown(4f).enchantable(1));
+
 	public static Eclipse ECLIPSE = register("eclipse", Eclipse:: new,
 		new Eclipse.Properties().durability(10).useCooldown(9f).enchantable(1));
 
@@ -196,6 +201,8 @@ public class BFItems {
 			output.accept(WANE_FESTAL);
 			output.accept(MOON_FESTAL);
 			output.accept(GREAT_FESTAL);
+			output.accept(PAIN_FESTAL);
+			output.accept(DIRGE_FESTAL);
 			output.accept(REVELATION_FESTAL);
 			//output.accept(STILLNESS_ROD);
 			output.accept(SILENT_ROD);

@@ -22,6 +22,11 @@ public class BFEntities {
 		EntityType.Builder.<HealOrb>of(HealOrb::new, MobCategory.MISC)
 			.noLootTable().sized(0.5F, 0.5F).clientTrackingRange(4).updateInterval(10)
 	);
+	public static final EntityType<HarmOrb> HARM_ORB = register(
+		"harm_orb",
+		EntityType.Builder.<HarmOrb>of(HarmOrb::new, MobCategory.MISC)
+			.noLootTable().sized(0.5F, 0.5F).clientTrackingRange(4).updateInterval(10)
+	);
 	public static final EntityType<EclipseOrb> ECLIPSE_ORB = register(
 		"eclipse_orb",
 		EntityType.Builder.<EclipseOrb>of(EclipseOrb::new, MobCategory.MISC)

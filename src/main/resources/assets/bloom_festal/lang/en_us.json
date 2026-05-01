@@ -12,6 +12,11 @@
 	"item.bloom_festal.silent_rod": "Silent Rod",
 	"item.bloom_festal.stillness_rod": "Stillness Rod",
 
+	"item.bloom_festal.rewarp_festal": "Rewarp Staff",
+
+	"item.bloom_festal.pain_festal": "Pain Festal",
+	"item.bloom_festal.dirge_festal": "Dirge Festal",
+
 	"item.bloom_festal.levin_sword": "Actinon Sword",
 	"item.bloom_festal.brave_lance": "Valor Lance",
 	"item.bloom_festal.guard_naginata": "Vanguard Naginata",
@@ -26,6 +31,11 @@
 	"lore.item.bloom_festal.wane_festal": "A staff to heal those beyond the horizon. Recovers 8 hp to its target, and has increased range.",
 	"lore.item.bloom_festal.moon_festal": "A revitalizing staff to ward misfortune. Recovers 24 hp to its target.",
 	"lore.item.bloom_festal.great_festal": "A bountiful staff that heals all within range for 8 hp.",
+
+	"lore.item.bloom_festal.rewarp_festal": "A mysterious staff that teleports the user and nearby players to a designated area.",
+
+	"lore.item.bloom_festal.pain_festal": "A humble harming staff. Recovers 6 hp to its target. Heals the undead.",
+	"lore.item.bloom_festal.dirge_festal": "A mournful staff that harms all within range for 8 hp. Heals the undead.",
 
 	"lore.item.bloom_festal.revelation_festal": "An rod that swaps the effects of healing and harming.",
 	"lore.item.bloom_festal.hexing_rod": "A rod that seals away an opponent's strength. Halves the Maximum Health of its target.",

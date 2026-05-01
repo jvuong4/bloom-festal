@@ -21,5 +21,6 @@ public class BloomFestal implements ModInitializer {
 		BFSounds.init();
 		BFDamageTypes.init();
 		BFEffects.init();
+		BFParticles.init();
 	}
 }

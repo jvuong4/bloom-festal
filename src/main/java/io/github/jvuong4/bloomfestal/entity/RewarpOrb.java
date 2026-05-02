@@ -138,8 +138,8 @@ public class RewarpOrb extends Fireball {
 							}
 
 							//teleport all Players within 4 spaces of owner
-							for (ServerPlayer target : this.level().getEntitiesOfClass(ServerPlayer.class, this.getBoundingBox().inflate(teleportRadius))) {
-								if (!(this.distanceToSqr(target) > teleportRadius * teleportRadius)) {
+							for (ServerPlayer target : this.level().getEntitiesOfClass(ServerPlayer.class, owner.getBoundingBox().inflate(teleportRadius))) {
+								if (!(owner.distanceToSqr(target) > teleportRadius * teleportRadius)) {
 									if(!(target.getUUID() == owner.getUUID()))
 									{
 										boolean canSee = false;
@@ -180,8 +180,8 @@ public class RewarpOrb extends Fireball {
 						}
 					} else {
 						//teleport all Players within 4 spaces of owner
-						for (ServerPlayer target : this.level().getEntitiesOfClass(ServerPlayer.class, this.getBoundingBox().inflate(teleportRadius))) {
-							if (!(this.distanceToSqr(target) > teleportRadius * teleportRadius)) {
+						for (ServerPlayer target : this.level().getEntitiesOfClass(ServerPlayer.class, owner.getBoundingBox().inflate(teleportRadius))) {
+							if (!(owner.distanceToSqr(target) > teleportRadius * teleportRadius)) {
 								if(!(target.getUUID() == owner.getUUID()))
 								{
 									boolean canSee = false;

@@ -180,6 +180,8 @@ public class BFItems {
 		new Rexcalibur.Properties().durability(50).useCooldown(3f).enchantable(1));
 	public static Bolganone BOLGANONE = register("bolganone", Bolganone:: new,
 		new Bolganone.Properties().durability(50).useCooldown(3.5f).enchantable(1));
+	public static Whirlpool WHIRLPOOL = register("whirlpool", Whirlpool:: new,
+		new Whirlpool.Properties().durability(50).useCooldown(2f).enchantable(1));
 
 	public static <T extends Item> T register(String name, Function<Item.Properties, T> itemFactory, Item.Properties settings) {
 		// Create the item key.
@@ -222,7 +224,10 @@ public class BFItems {
 
 			output.accept(THORON);
 			output.accept(BOLGANONE);
+			output.accept(WHIRLPOOL);
 			output.accept(REXCALIBUR);
+
+
 			output.accept(ECLIPSE);
 			output.accept(NOSFERATU);
 		})

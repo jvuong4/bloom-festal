@@ -173,7 +173,7 @@ public class RewarpOrb extends Fireball {
 							if (newOwner != null) {
 								newOwner.resetFallDistance();
 								newOwner.resetCurrentImpulseContext();
-								newOwner.hurtServer(player.level(), this.damageSources().enderPearl(), 5.0F);
+								//newOwner.hurtServer(player.level(), this.damageSources().enderPearl(), 5.0F);
 							}
 
 							this.playSound(level, teleportPos);

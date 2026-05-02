@@ -35,6 +35,7 @@ public class BFModelLayers {
 		EntityRenderers.register(BFEntities.THORON_ORB, ThoronOrbRenderer::new);
 		EntityRenderers.register(BFEntities.REXCALIBUR_ORB, RexcaliburOrbRenderer::new);
 		EntityRenderers.register(BFEntities.BOLGANONE_ORB, BolganoneOrbRenderer::new);
+		EntityRenderers.register(BFEntities.WHIRLPOOL_ORB, WhirlpoolOrbRenderer::new);
 
 		//EntityRenderers.register(BFEntities.THROWN_KODACHI, ThrownItemRenderer::new);
 

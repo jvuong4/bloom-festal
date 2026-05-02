@@ -26,6 +26,7 @@
 	"item.bloom_festal.thoron": "Actinon",
 	"item.bloom_festal.rexcalibur": "Tempest",
 	"item.bloom_festal.bolganone": "Caldera",
+	"item.bloom_festal.whirlpool": "Deluge",
 
 	"lore.item.bloom_festal.bloom_festal": "A humble healing staff. Recovers 6 hp to its target.",
 	"lore.item.bloom_festal.sun_festal": "A bright staff to embrace a brand new day. Recovers 12 hp to its target.",
@@ -51,7 +52,8 @@
 	"lore.item.bloom_festal.nosferatu": "A dark tome. Casts slow-moving dark magic that deals 8 magic damage. If damage is dealt, recovers 4 hp.",
 	"lore.item.bloom_festal.thoron": "A magical tome. Casts quick-moving thunder magic that deals 14 magic damage.",
 	"lore.item.bloom_festal.rexcalibur": "A magical tome. Casts quick-moving wind magic that deals 6 magic damage and heavy knockback. Effective against airborne enemies (3x damage).",
-	"lore.item.bloom_festal.bolganone": "A magical tome. Casts fire magic that deals 6 magic damage and heavy knockback. Effective against airborne enemies (3x damage).",
+	"lore.item.bloom_festal.bolganone": "A magical tome. Casts fire magic that ",
+	"lore.item.bloom_festal.whirlpool": "A magical tome. Casts water magic that deals 4 magic damage (2 damage if immune to drowning). Effective against water-sensitive and burning enemies (4x damage).",
 
 	"subtitles.entity.heal_orb.heal": "Healing",
 

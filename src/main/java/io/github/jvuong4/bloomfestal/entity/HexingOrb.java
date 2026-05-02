@@ -12,6 +12,7 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.hurtingprojectile.Fireball;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
@@ -70,8 +71,11 @@ public class HexingOrb extends Fireball {
 			Entity owner = this.getOwner();
 			if(var7 instanceof LivingEntity mob)
 			{
-				MobEffectInstance instance = new MobEffectInstance(BFEffects.HEXED,  6000, 0, false, true, true);
-				mob.addEffect(instance, owner);
+				if(owner instanceof Player playerOwner && mob instanceof Player playerTarget)
+					if(playerOwner.canHarmPlayer(playerTarget)) {
+						MobEffectInstance instance = new MobEffectInstance(BFEffects.HEXED, 6000, 0, false, true, true);
+						mob.addEffect(instance, owner);
+					}
 				playSound(SoundEvents.TRIDENT_THUNDER.value(),0.3f,0.4F / (level().getRandom().nextFloat() * 0.4F + 0.8F));
 			}
 		}

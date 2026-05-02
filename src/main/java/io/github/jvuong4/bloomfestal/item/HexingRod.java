@@ -58,7 +58,7 @@ public class HexingRod extends Item {
 			entity.setPos(player.getX() + viewVector.x, player.getY(0.5) + 0.5, entity.getZ() + viewVector.z);
 			Projectile.spawnProjectile(entity, serverLevel, itemStack);
 		}
-		MobEffectInstance instance = new MobEffectInstance(BFEffects.SILENCE,  20, 0, false, true, true);
+		MobEffectInstance instance = new MobEffectInstance(BFEffects.SILENCE,  80, 0, false, true, true);
 		player.addEffect(instance);
 		player.awardStat(Stats.ITEM_USED.get(this));
 		itemStack.causeUseVibration(player, GameEvent.ITEM_INTERACT_START);

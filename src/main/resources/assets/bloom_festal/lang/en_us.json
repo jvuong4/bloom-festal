@@ -28,15 +28,15 @@
 	"item.bloom_festal.bolganone": "Caldera",
 	"item.bloom_festal.whirlpool": "Deluge",
 
-	"lore.bloom_festal.bloom_festal": "A humble healing staff. Recovers 6 hp to its target.",
-	"lore.bloom_festal.sun_festal": "A bright staff to embrace a brand new day. Recovers 12 hp to its target.",
-	"lore.bloom_festal.wane_festal": "A staff to heal those beyond the horizon. Recovers 8 hp to its target, and has increased range.",
-	"lore.bloom_festal.moon_festal": "A revitalizing staff to ward misfortune. Recovers 24 hp to its target.",
+	"lore.bloom_festal.bloom_festal": "A humble healing staff. Recovers 2 hp to its target.",
+	"lore.bloom_festal.sun_festal": "A bright staff to embrace a brand new day. Recovers 6 hp to its target.",
+	"lore.bloom_festal.wane_festal": "A staff to heal those beyond the horizon. Recovers 5 hp to its target, and has increased range.",
+	"lore.bloom_festal.moon_festal": "A revitalizing staff to ward misfortune. Recovers 14 hp to its target.",
 	"lore.bloom_festal.great_festal": "A bountiful staff that heals all within range for 8 hp.",
 
 	"lore.bloom_festal.rewarp_festal": "A mysterious staff that teleports the user and nearby players to a designated area.",
 
-	"lore.bloom_festal.pain_festal": "A humble harming staff. Recovers 6 hp to its target. Heals the undead.",
+	"lore.bloom_festal.pain_festal": "A humble harming staff. Deals 2 magic damage to its target. Heals the undead.",
 	"lore.bloom_festal.dirge_festal": "A mournful staff that harms all within range for 8 hp. Heals the undead.",
 
 	"lore.bloom_festal.revelation_festal": "An rod that swaps the effects of healing and harming.",
@@ -51,9 +51,9 @@
 	"lore.bloom_festal.eclipse": "A forbidden tome. Casts very slow-moving dark magic that is untouchable for 2 seconds before activating. On contact, sets the target's hp to 1. Lethal if already 1 hp.",
 	"lore.bloom_festal.nosferatu": "A dark tome. Casts slow-moving dark magic that deals 8 magic damage. If damage is dealt, recovers 4 hp.",
 	"lore.bloom_festal.thoron": "A magical tome. Casts quick-moving thunder magic that deals 14 magic damage.",
-	"lore.bloom_festal.rexcalibur": "A magical tome. Casts quick-moving wind magic that deals 6 magic damage and heavy knockback. Effective against airborne enemies (3x damage).",
+	"lore.bloom_festal.rexcalibur": "A magical tome. Casts quick-moving wind magic that deals 5 magic damage and heavy knockback. Effective against airborne enemies (3x damage).",
 	"lore.bloom_festal.bolganone": "A magical tome. Casts fire magic that deals 8 fireball damage and sets enemies hit on fire.",
-	"lore.bloom_festal.whirlpool": "A magical tome. Casts water magic that deals 4 magic damage (2 damage if immune to drowning). Effective against water-sensitive and burning enemies (4x damage).",
+	"lore.bloom_festal.whirlpool": "A magical tome. Casts water magic that deals 4 magic damage (2 damage if immune to drowning). Effective against water-sensitive and burning enemies (3x damage).",
 
 	"subtitles.entity.heal_orb.heal": "Healing",
 

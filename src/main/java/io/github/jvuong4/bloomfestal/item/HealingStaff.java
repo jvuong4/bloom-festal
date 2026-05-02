@@ -18,7 +18,7 @@ import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.Vec3;
 
 public class HealingStaff extends Item {
-	protected float healingPotency = 6.0f;
+	protected float healingPotency = 2.0f;
 	protected int range = 6;
 
 	public HealingStaff(final net.minecraft.world.item.Item.Properties properties) {

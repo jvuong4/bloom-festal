@@ -137,39 +137,39 @@ public class BFItems {
 		.component(DataComponents.WEAPON, new Weapon(1)));
 
 	public static HealingStaff BLOOM_FESTAL = register("bloom_festal", HealingStaff:: new,
-		new HealingStaff.Properties().durability(40).useCooldown(0.8f).enchantable(1));
+		new HealingStaff.Properties().durability(40).useCooldown(4f).enchantable(1));
 
 	public static SunFestal SUN_FESTAL = register("sun_festal", SunFestal:: new,
-		new SunFestal.Properties().durability(30).useCooldown(1.2f).enchantable(1));
+		new SunFestal.Properties().durability(30).useCooldown(6f).enchantable(1));
 
 	public static WaneFestal WANE_FESTAL = register("wane_festal", WaneFestal:: new,
-		new WaneFestal.Properties().durability(10).useCooldown(2f).enchantable(1));
+		new WaneFestal.Properties().durability(10).useCooldown(10f).enchantable(1));
 
 	public static MoonFestal MOON_FESTAL = register("moon_festal", MoonFestal:: new,
-		new MoonFestal.Properties().durability(10).useCooldown(2f).enchantable(1));
+		new MoonFestal.Properties().durability(10).useCooldown(10f).enchantable(1));
 
 	public static GreatFestal GREAT_FESTAL = register("great_festal", GreatFestal:: new,
-		new GreatFestal.Properties().durability(4).useCooldown(4f).enchantable(1));
+		new GreatFestal.Properties().durability(4).useCooldown(60f).enchantable(1));
 
 	public static RewarpFestal REWARP_FESTAL = register("rewarp_festal", RewarpFestal:: new,
 		new RewarpFestal.Properties().durability(10).useCooldown(2f).enchantable(1));
 
 	public static RevelationFestal REVELATION_FESTAL = register("revelation_festal", RevelationFestal:: new,
-		new RevelationFestal.Properties().durability(40).useCooldown(1f).enchantable(1));
+		new RevelationFestal.Properties().durability(40).useCooldown(8f).enchantable(1));
 	public static HexingRod HEXING_ROD = register("hexing_rod", HexingRod:: new,
-		new HexingRod.Properties().durability(6).useCooldown(10f).enchantable(1));
+		new HexingRod.Properties().durability(6).useCooldown(60f).enchantable(1));
 	public static SilentRod SILENT_ROD = register("silent_rod", SilentRod:: new,
-		new SilentRod.Properties().durability(6).useCooldown(3f).enchantable(1));
+		new SilentRod.Properties().durability(6).useCooldown(20f).enchantable(1));
 
 	public static HarmingStaff PAIN_FESTAL = register("pain_festal", HarmingStaff:: new,
-		new HarmingStaff.Properties().durability(40).useCooldown(1.6f).enchantable(1));
+		new HarmingStaff.Properties().durability(40).useCooldown(2f).enchantable(1));
 	public static GreatHarmingFestal DIRGE_FESTAL = register("dirge_festal", GreatHarmingFestal:: new,
-		new GreatHarmingFestal.Properties().durability(4).useCooldown(4f).enchantable(1));
+		new GreatHarmingFestal.Properties().durability(4).useCooldown(60f).enchantable(1));
 
 	public static Eclipse ECLIPSE = register("eclipse", Eclipse:: new,
-		new Eclipse.Properties().durability(10).useCooldown(9f).enchantable(1));
+		new Eclipse.Properties().durability(10).useCooldown(8f).enchantable(1));
 	public static Nosferatu NOSFERATU = register("nosferatu", Nosferatu:: new,
-		new Nosferatu.Properties().durability(50).useCooldown(3f).enchantable(1));
+		new Nosferatu.Properties().durability(50).useCooldown(4f).enchantable(1));
 
 	public static Thoron THORON = register("thoron", Thoron:: new,
 		new Thoron.Properties().durability(50).useCooldown(4f).enchantable(1));

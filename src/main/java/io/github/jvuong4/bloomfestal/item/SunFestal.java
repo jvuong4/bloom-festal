@@ -16,7 +16,7 @@ import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.Vec3;
 
 public class SunFestal extends HealingStaff {
-	protected float healingPotency = 12.0f;
+	protected float healingPotency = 6.0f;
 	protected int range = 6;
 
 	public SunFestal(final Properties properties) {

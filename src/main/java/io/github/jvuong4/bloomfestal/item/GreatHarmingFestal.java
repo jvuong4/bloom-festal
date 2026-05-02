@@ -131,7 +131,7 @@ public class GreatHarmingFestal extends Item {
 					0.0, 0.5-(i%2 * 0.5), 0.0);
 			}
 		}
-		MobEffectInstance instance = new MobEffectInstance(BFEffects.SILENCE,  20, 0, false, true, true);
+		MobEffectInstance instance = new MobEffectInstance(BFEffects.SILENCE,  80, 0, false, true, true);
 		player.addEffect(instance);
 		player.awardStat(Stats.ITEM_USED.get(this));
 		itemStack.causeUseVibration(player, GameEvent.ITEM_INTERACT_START);

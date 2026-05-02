@@ -16,6 +16,7 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.ExplosionDamageCalculator;
 import net.minecraft.world.level.Level;
@@ -126,8 +127,11 @@ public class BolganoneOrb extends ExplodingOrb{
 					int remainingFireTicks = target.getRemainingFireTicks();
 					float damage = potency * (float)Math.sqrt((explosionRadius - this.distanceTo(target)) / explosionRadius);
 					float burnTicks = 5.0F * (float)Math.sqrt((explosionRadius - this.distanceTo(target)) / explosionRadius);
+
 					if(!target.fireImmune())
-						target.igniteForSeconds(burnTicks);
+						if(this.getOwner() instanceof Player playerOwner && target instanceof Player playerTarget)
+							if(playerOwner.canHarmPlayer(playerTarget))
+								target.igniteForSeconds(burnTicks);
 					if(!target.hurtServer(level, this.damageSources().fireball(this, this.getOwner()), damage));
 					{
 						//BloomFestal.LOGGER.info("[Bloom Festal] undid burning on entity");

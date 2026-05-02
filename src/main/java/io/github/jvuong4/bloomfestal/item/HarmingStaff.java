@@ -19,7 +19,7 @@ import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.Vec3;
 
 public class HarmingStaff extends Item {
-	protected float harmingPotency = 6.0f;
+	protected float harmingPotency = 2.0f;
 	protected int range = 6;
 
 	public HarmingStaff(final Properties properties) {

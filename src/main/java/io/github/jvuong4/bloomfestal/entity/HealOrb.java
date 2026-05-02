@@ -46,7 +46,7 @@ public class HealOrb extends Fireball {
 	);
 
 	private int range = 6;
-	private float potency = 4.0F;
+	private float potency = 2.0F;
 	private int age = 0;
 
 

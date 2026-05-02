@@ -47,8 +47,8 @@ public class RexcaliburOrb extends ExplodingOrb{
 	{
 		accelerationPower = 1.0;
 		range = 8;
-		potency = 6.0F;
-		explosionRadius = 7.0F;
+		potency = 5.0F;
+		explosionRadius = 6.0F;
 		particleSpawnChance = 2.0F;
 		explosionSound = SoundEvents.BREEZE_WIND_CHARGE_BURST.value();
 	}

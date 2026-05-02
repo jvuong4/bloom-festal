@@ -123,7 +123,7 @@ public class WhirlpoolOrb extends ExplodingOrb{
 						if (damage > 1 && isWaterResistant(target))
 							damage = 2f;
 						if (target.isOnFire() || target.isSensitiveToWater()) {
-							damage *= 4;
+							damage *= 3;
 						}
 						DamageSource source = this.damageSources().indirectMagic(this, this.getOwner());
 						if (target.hurtServer(level, source, damage)) {

@@ -124,14 +124,19 @@ public class BolganoneOrb extends ExplodingOrb{
 					}
 				}
 				if (canSee) {
-					int remainingFireTicks = target.getRemainingFireTicks();
 					float damage = potency * (float)Math.sqrt((explosionRadius - this.distanceTo(target)) / explosionRadius);
 					float burnTicks = 5.0F * (float)Math.sqrt((explosionRadius - this.distanceTo(target)) / explosionRadius);
 
-					if(!target.fireImmune())
-						if(this.getOwner() instanceof Player playerOwner && target instanceof Player playerTarget)
-							if(playerOwner.canHarmPlayer(playerTarget))
+					if(!target.fireImmune()) {
+						if (this.getOwner() instanceof Player playerOwner && target instanceof Player playerTarget) {
+							if (playerOwner.canHarmPlayer(playerTarget)) {
 								target.igniteForSeconds(burnTicks);
+							}
+						}
+						else {
+							target.igniteForSeconds(burnTicks);
+						}
+					}
 					if(!target.hurtServer(level, this.damageSources().fireball(this, this.getOwner()), damage));
 					{
 						//BloomFestal.LOGGER.info("[Bloom Festal] undid burning on entity");

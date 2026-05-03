@@ -53,7 +53,7 @@
 	"lore.bloom_festal.thoron": "A magical tome. Casts quick-moving thunder magic that deals 14 magic damage.",
 	"lore.bloom_festal.rexcalibur": "A magical tome. Casts quick-moving wind magic that deals 5 magic damage and heavy knockback. Effective against airborne enemies (3x damage).",
 	"lore.bloom_festal.bolganone": "A magical tome. Casts fire magic that deals 8 fireball damage and sets enemies hit on fire.",
-	"lore.bloom_festal.whirlpool": "A magical tome. Casts water magic that deals 4 magic damage (2 damage if immune to drowning). Effective against water-sensitive and burning enemies (3x damage).",
+	"lore.bloom_festal.whirlpool": "A magical tome. Casts water magic that deals 4 magic damage. Damage is halved against enemies that cannot drown. 4x damage against water-sensitive or burning enemies.",
 
 	"subtitles.entity.heal_orb.heal": "Healing",
 

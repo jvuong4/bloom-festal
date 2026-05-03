@@ -73,6 +73,11 @@ public class SilenceOrb extends Fireball {
 						MobEffectInstance instance = new MobEffectInstance(BFEffects.SILENCE,  200, 0, false, true, true);
 						mob.addEffect(instance, owner);
 					}
+				else
+					{
+						MobEffectInstance instance = new MobEffectInstance(BFEffects.SILENCE,  200, 0, false, true, true);
+						mob.addEffect(instance, owner);
+					}
 
 				playSound(SoundEvents.TRIDENT_THUNDER.value(),0.3f,0.4F / (level().getRandom().nextFloat() * 0.4F + 0.8F));
 			}

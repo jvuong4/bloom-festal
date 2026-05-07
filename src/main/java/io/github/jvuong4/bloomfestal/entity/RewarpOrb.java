@@ -171,10 +171,10 @@ public class RewarpOrb extends Fireball {
 								}
 							}
 
-							//Attempt Dual Stance Compat
+							//TODO:: Attempt Dual Stance Compat
 							if(FabricLoader.getInstance().isModLoaded("dual-stance"))
 							{
-								if(DualStanceCompat.)
+								DualStanceCompat.teleportLinkedPlayer()
 							}
 
 							ServerPlayer newOwner = player.teleport(new TeleportTransition(level, teleportPos, Vec3.ZERO, 0.0F, 0.0F, Relative.union(new Set[]{Relative.ROTATION, Relative.DELTA}), TeleportTransition.DO_NOTHING));
@@ -219,10 +219,10 @@ public class RewarpOrb extends Fireball {
 							}
 						}
 
-						//Attempt Dual Stance Compat
+						//TODO:: Attempt Dual Stance Compat
 						if(FabricLoader.getInstance().isModLoaded("dual-stance"))
 						{
-
+							DualStanceCompat.teleportLinkedPlayer()
 						}
 
 						Entity newOwner = owner.teleport(new TeleportTransition(level, teleportPos, owner.getDeltaMovement(), owner.getYRot(), owner.getXRot(), TeleportTransition.DO_NOTHING));

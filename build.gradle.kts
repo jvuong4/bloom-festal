@@ -1,3 +1,5 @@
+import okhttp3.HttpUrl.Companion.toHttpUrl
+
 plugins {
 	alias(libs.plugins.loom)
 	alias(libs.plugins.mod.publish)
@@ -10,6 +12,24 @@ val slug: String by project
 val compatibleVersions: String by project
 
 version = "$modVersion+$branchName"
+
+repositories {
+	// ...
+	//maven {
+	//	url = "https://api.modrinth.com/maven"
+	//}
+	exclusiveContent {
+		forRepository {
+			maven {
+				name = "Dual Stance"
+				url = uri("github.com/mintynoura/dual-stance/tree/main")
+			}
+		}
+		filter {
+			includeGroup("io.github.mintynoura.dualstance")
+		}
+	}
+}
 
 dependencies {
 	minecraft(libs.minecraft)

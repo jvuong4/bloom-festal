@@ -1,5 +1,6 @@
 package io.github.jvuong4.bloomfestal;
 
+import io.github.jvuong4.bloomfestal.compat.BFCompat;
 import io.github.jvuong4.bloomfestal.registry.*;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.core.registries.Registries;
@@ -22,5 +23,6 @@ public class BloomFestal implements ModInitializer {
 		BFDamageTypes.init();
 		BFEffects.init();
 		BFParticles.init();
+		BFCompat.init();
 	}
 }

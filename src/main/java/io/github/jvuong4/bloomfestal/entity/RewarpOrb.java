@@ -1,7 +1,9 @@
 package io.github.jvuong4.bloomfestal.entity;
 
+import io.github.jvuong4.bloomfestal.compat.DualStanceCompat;
 import io.github.jvuong4.bloomfestal.registry.BFEntities;
 import io.github.jvuong4.bloomfestal.registry.BFSounds;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -169,6 +171,12 @@ public class RewarpOrb extends Fireball {
 								}
 							}
 
+							//Attempt Dual Stance Compat
+							if(FabricLoader.getInstance().isModLoaded("dual-stance"))
+							{
+								if(DualStanceCompat.)
+							}
+
 							ServerPlayer newOwner = player.teleport(new TeleportTransition(level, teleportPos, Vec3.ZERO, 0.0F, 0.0F, Relative.union(new Set[]{Relative.ROTATION, Relative.DELTA}), TeleportTransition.DO_NOTHING));
 							if (newOwner != null) {
 								newOwner.resetFallDistance();
@@ -209,6 +217,12 @@ public class RewarpOrb extends Fireball {
 									}
 								}
 							}
+						}
+
+						//Attempt Dual Stance Compat
+						if(FabricLoader.getInstance().isModLoaded("dual-stance"))
+						{
+
 						}
 
 						Entity newOwner = owner.teleport(new TeleportTransition(level, teleportPos, owner.getDeltaMovement(), owner.getYRot(), owner.getXRot(), TeleportTransition.DO_NOTHING));

@@ -18,6 +18,8 @@ repositories {
 	//maven {
 	//	url = "https://api.modrinth.com/maven"
 	//}
+
+
 	exclusiveContent {
 		forRepository {
 			maven {
@@ -29,11 +31,28 @@ repositories {
 			includeGroup("io.github.mintynoura.dualstance")
 		}
 	}
+
+	exclusiveContent {
+		forRepository {
+			maven {
+				name = "Modrinth"
+				url = uri("https://api.modrinth.com/maven")
+			}
+		}
+		filter {
+			includeGroup("maven.modrinth")
+		}
+	}
+
+	//mixin squared
+	maven { url = uri("https://maven.bawnorton.com/releases") }
 }
 
 dependencies {
 	minecraft(libs.minecraft)
 	api(libs.bundles.fabric)
+	//Dual Stance
+	compileOnly("maven.modrinth:z6Esg6rK:dceSO2Rx")
 }
 
 java {

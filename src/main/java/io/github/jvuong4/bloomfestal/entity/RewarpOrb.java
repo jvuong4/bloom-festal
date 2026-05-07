@@ -172,7 +172,7 @@ public class RewarpOrb extends Fireball {
 							}
 
 							//TODO:: Attempt Dual Stance Compat
-							if(FabricLoader.getInstance().isModLoaded("dual-stance"))
+							if(FabricLoader.getInstance().isModLoaded("dual_stance"))
 							{
 								DualStanceCompat.teleportLinkedPlayer()
 							}
@@ -220,7 +220,7 @@ public class RewarpOrb extends Fireball {
 						}
 
 						//TODO:: Attempt Dual Stance Compat
-						if(FabricLoader.getInstance().isModLoaded("dual-stance"))
+						if(FabricLoader.getInstance().isModLoaded("dual_stance"))
 						{
 							DualStanceCompat.teleportLinkedPlayer()
 						}

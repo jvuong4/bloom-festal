@@ -44,6 +44,6 @@ public interface BFCompat {
 
 	static void init() {
 		BloomFestal.LOGGER.debug("[Bloom Festal] Loading compatibilities");
-		tryInit("DualStanceCompat", "dual-stance");
+		tryInit("DualStanceCompat", "dual_stance");
 	}
 }

@@ -40,6 +40,7 @@ public class ThoronOrb extends ExplodingOrb{
 		explosionRadius = 5.0F;
 		particleSpawnChance = 2.0F;
 		explosionSound = BFSounds.THUNDER;
+		damageParticle = ParticleTypes.ELECTRIC_SPARK;
 	}
 
 	@Override

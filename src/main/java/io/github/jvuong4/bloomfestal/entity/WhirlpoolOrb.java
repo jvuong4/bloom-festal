@@ -56,6 +56,7 @@ public class WhirlpoolOrb extends ExplodingOrb{
 		explosionRadius = 5.0F;
 		particleSpawnChance = 2.0F;
 		explosionSound = SoundEvents.AMBIENT_UNDERWATER_ENTER;
+		damageParticle = BFParticles.BUBBLE_PARTICLE;
 	}
 
 	@Override
@@ -128,6 +129,7 @@ public class WhirlpoolOrb extends ExplodingOrb{
 						DamageSource source = this.damageSources().indirectMagic(this, this.getOwner());
 						if (target.hurtServer(level, source, damage)) {
 							EnchantmentHelper.doPostAttackEffects(level, target, source);
+							spawnDamageParticles(target, damageParticle, level);
 						}
 
 						if (target.isOnFire()) {

@@ -2,6 +2,7 @@ package io.github.jvuong4.bloomfestal.item;
 
 import io.github.jvuong4.bloomfestal.entity.RewarpOrb;
 import io.github.jvuong4.bloomfestal.registry.BFEffects;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -26,16 +27,7 @@ public class RewarpFestal extends Item {
 	public InteractionResult use(final Level level, final Player player, final InteractionHand hand) {
 		if(player.hasEffect(BFEffects.SILENCE))
 		{
-			level.playSound(
-				null,
-				player.getX(),
-				player.getY(),
-				player.getZ(),
-				SoundEvents.SHIELD_BLOCK,
-				SoundSource.NEUTRAL,
-				0.5F,
-				0.4F / (level.getRandom().nextFloat() * 0.4F + 0.8F)
-			);
+			level.playLocalSound(player,SoundEvents.SHIELD_BLOCK.value(),SoundSource.NEUTRAL, 0.5F, 0.4F / (level.getRandom().nextFloat() * 0.4F + 0.8F));
 			return InteractionResult.FAIL;
 		}
 		ItemStack itemStack = player.getItemInHand(hand);
@@ -56,6 +48,39 @@ public class RewarpFestal extends Item {
 			RewarpOrb entity = new RewarpOrb(level, player, (direction.normalize()).scale(d));
 			entity.setPos(player.getX() + viewVector.x, player.getY(0.5) + 0.5, entity.getZ() + viewVector.z);
 			Projectile.spawnProjectile(entity, serverLevel, itemStack);
+
+
+			double end = 81.0;
+			double pivot = player.getRandom().nextDouble();
+			double range = 4;
+			for(double i=0; i<end; i++)
+			{
+				serverLevel.sendParticles(i%3==0 ? ParticleTypes.PORTAL : i%3==1 ? ParticleTypes.REVERSE_PORTAL : ParticleTypes.WITCH,
+					player.getX() + Math.cos((i+pivot)/end * 2.0 * Math.PI) * range,
+					player.getY() + 0.5,
+					player.getZ() + Math.sin((i+pivot)/end * 2.0 * Math.PI) * range,
+					1, 0.0, 0.5, 0.0, 0.0);
+			}
+			end = 16.0;
+			pivot = player.getRandom().nextDouble();
+			for(double i=0; i<end; i++)
+			{
+				serverLevel.sendParticles(i%2>0 ? ParticleTypes.PORTAL : ParticleTypes.REVERSE_PORTAL,
+					player.getX() + Math.cos((i+pivot)/end * 2.0 * Math.PI) * range/2.0,
+					player.getY() + 1,
+					player.getZ() + Math.sin((i+pivot)/end * 2.0 * Math.PI) * range/2.0,
+					1, 0.0, 0.5, 0.0, 0.0);
+			}
+			end = 8.0;
+			pivot = player.getRandom().nextDouble();
+			for(double i=0; i<end; i++)
+			{
+				serverLevel.sendParticles(i%2>0 ? ParticleTypes.PORTAL : ParticleTypes.REVERSE_PORTAL,
+					player.getX() + Math.cos((i+pivot)/end * 2.0 * Math.PI) * range/4.0,
+					player.getY() + 1,
+					player.getZ() + Math.sin((i+pivot)/end * 2.0 * Math.PI) * range/4.0,
+					1, 0.0, 0.5, 0.0, 0.0);
+			}
 		}
 		MobEffectInstance instance = new MobEffectInstance(BFEffects.SILENCE,  20, 0, false, true, true);
 		player.addEffect(instance);

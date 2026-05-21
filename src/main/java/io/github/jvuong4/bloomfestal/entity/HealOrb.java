@@ -114,37 +114,23 @@ public class HealOrb extends Fireball {
 					if (!var7.hurtServer(serverLevel, damageSource, potency)) {
 					} else {
 						EnchantmentHelper.doPostAttackEffects(serverLevel, var7, damageSource);
+						for(int count = 0; count < 3; count++) {
+							serverLevel.sendParticles(ParticleTypes.SOUL_FIRE_FLAME,
+								mob.getRandomX(1.0), mob.getY(0.5), mob.getRandomZ(1.0), 1, 0.02, 0.02, 0.02, 0.0);
+						}
 					}
 				}
 				else
 				{
-					if(mob.getMaxHealth() > mob.getHealth())
-						mob.playSound(BFSounds.HEAL,2f,1F);
+						mob.playSound(BFSounds.HEAL, 2f, 1F);
+						MobEffectInstance instance = new MobEffectInstance(MobEffects.GLOWING,  10, 0, false, false, false);
+						mob.addEffect(instance,owner);
+						for(int count = 0; count < 3; count++) {
+							serverLevel.sendParticles(ParticleTypes.HEART,
+								mob.getRandomX(1.0), mob.getY(0.5), mob.getRandomZ(1.0), 1, 0.02, 0.02, 0.02, 0.0);
+						}
+
 					mob.heal(potency);
-					MobEffectInstance instance = new MobEffectInstance(MobEffects.GLOWING,  10, 0, false, false, false);
-					mob.addEffect(instance,owner);
-				}
-			}
-		}
-		else
-		{
-			Entity mob = hitResult.getEntity();
-			if(mob instanceof LivingEntity livingEntity) {
-				if(!livingEntity.isInvertedHealAndHarm()) {
-					for (int i = 0; i < 3; i++) {
-						double xa = this.random.nextGaussian() * 0.02;
-						double ya = this.random.nextGaussian() * 0.02;
-						double za = this.random.nextGaussian() * 0.02;
-						this.level().addParticle(ParticleTypes.HEART, mob.getRandomX(1.0), mob.getRandomY() + 0.5, mob.getRandomZ(1.0), xa, ya, za);
-					}
-				}
-				else {
-					for(int i = 0; i < 3; i++) {
-						double xa = this.random.nextGaussian() * 0.02;
-						double ya = this.random.nextGaussian() * 0.02;
-						double za = this.random.nextGaussian() * 0.02;
-						this.level().addParticle(ParticleTypes.SOUL_FIRE_FLAME, mob.getRandomX(1.0), mob.getRandomY() + 0.5, mob.getRandomZ(1.0), xa, ya, za);
-					}
 				}
 			}
 		}

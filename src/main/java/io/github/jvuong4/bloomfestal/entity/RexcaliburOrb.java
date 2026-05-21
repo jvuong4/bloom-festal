@@ -51,6 +51,7 @@ public class RexcaliburOrb extends ExplodingOrb{
 		explosionRadius = 6.0F;
 		particleSpawnChance = 2.0F;
 		explosionSound = SoundEvents.BREEZE_WIND_CHARGE_BURST.value();
+		damageParticle = ParticleTypes.GUST_EMITTER_SMALL;
 	}
 
 	@Override
@@ -121,7 +122,7 @@ public class RexcaliburOrb extends ExplodingOrb{
 							//double damage against airborne enemies!
 							damage *= 3;
 						target.hurtServer(level, this.damageSources().indirectMagic(this, this.getOwner()), damage);
-
+						spawnDamageParticles(target, damageParticle, level);
 					}
 				}
 

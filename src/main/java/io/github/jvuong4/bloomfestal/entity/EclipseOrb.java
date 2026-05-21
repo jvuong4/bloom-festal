@@ -110,6 +110,10 @@ public class EclipseOrb extends Fireball {
 					if (var7.hurtServer(serverLevel, damageSource, Math.max(mob.getHealth() - 1.0F, minDamage)))
 					{
 						EnchantmentHelper.doPostAttackEffects(serverLevel, var7, damageSource);
+						for(int count = 0; count < 3; count++) {
+							serverLevel.sendParticles(ParticleTypes.TRIAL_OMEN,
+								mob.getRandomX(1.0), mob.getY(0.5), mob.getRandomZ(1.0), 1, 0.02, 0.02, 0.02, 0.0);
+						}
 					}
 				}
 			}

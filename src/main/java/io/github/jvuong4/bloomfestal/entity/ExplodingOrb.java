@@ -40,6 +40,7 @@ abstract public class ExplodingOrb extends Fireball {
 	protected float explosionRadius = 5.0F;
 	protected float particleSpawnChance = 0.5F;
 	protected SoundEvent explosionSound = null;
+	protected SimpleParticleType damageParticle = ParticleTypes.ENCHANTED_HIT;
 
 
 	private int age = 0;
@@ -171,9 +172,18 @@ abstract public class ExplodingOrb extends Fireball {
 					//remove rapid decay for consistent damage
 					float damage = potency * (float)Math.sqrt((explosionRadius - this.distanceTo(target)) / explosionRadius);
 					target.hurtServer(level, this.damageSources().indirectMagic(this, this.getOwner()), damage);
+					spawnDamageParticles(target, damageParticle, level);
 
 				}
 			}
+		}
+	}
+
+	public <T extends ParticleOptions> void spawnDamageParticles(Entity entity, T particle, ServerLevel serverLevel)
+	{
+		for(int count = 0; count < 3; count++) {
+			serverLevel.sendParticles(particle,
+				entity.getRandomX(1.0), entity.getY(0.5), entity.getRandomZ(1.0), 1, 0.02, 0.02, 0.02, 0.0);
 		}
 	}
 

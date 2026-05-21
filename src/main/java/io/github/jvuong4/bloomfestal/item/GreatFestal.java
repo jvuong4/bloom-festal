@@ -41,12 +41,6 @@ import static net.minecraft.world.level.block.entity.BeaconBlockEntity.playSound
 
 public class GreatFestal extends Item {
 	protected static double range = 16;
-
-	private static final TargetingConditions TARGETING_CONDITIONS = TargetingConditions.forNonCombat()
-		.ignoreInvisibilityTesting()
-		.ignoreLineOfSight()
-		.range(range);
-
 	protected float healingPotency = 8.0f;
 
 
@@ -58,16 +52,7 @@ public class GreatFestal extends Item {
 	public InteractionResult use(final Level level, final Player player, final InteractionHand hand) {
 		if(player.hasEffect(BFEffects.SILENCE))
 		{
-			level.playSound(
-				null,
-				player.getX(),
-				player.getY(),
-				player.getZ(),
-				SoundEvents.SHIELD_BLOCK,
-				SoundSource.NEUTRAL,
-				0.5F,
-				0.4F / (level.getRandom().nextFloat() * 0.4F + 0.8F)
-			);
+			level.playLocalSound(player,SoundEvents.SHIELD_BLOCK.value(),SoundSource.NEUTRAL, 0.5F, 0.4F / (level.getRandom().nextFloat() * 0.4F + 0.8F));
 			return InteractionResult.FAIL;
 		}
 		ItemStack itemStack = player.getItemInHand(hand);
@@ -90,60 +75,50 @@ public class GreatFestal extends Item {
 						if (!entity.hurtServer(serverLevel, damageSource, healingPotency)) {
 						} else {
 							EnchantmentHelper.doPostAttackEffects(serverLevel, entity, damageSource);
+							for(int count = 0; count < 3; count++) {
+								serverLevel.sendParticles(ParticleTypes.SOUL_FIRE_FLAME,
+									entity.getRandomX(1.0), entity.getY(0.5), entity.getRandomZ(1.0), 1, 0.02, 0.02, 0.02, 0.0);
+							}
 						}
 					}
 					else {
 						entity.heal(healingPotency);
-					}
-				}
-			}
-		}
-		else
-		{
-			for (LivingEntity entity : level.getEntitiesOfClass(LivingEntity.class, player.getBoundingBox().inflate(range)))
-			{
-				if(entity.distanceToSqr(player) < range * range) {
-					if (entity.isInvertedHealAndHarm()) {
-						for(int i = 0; i < 3; i++)
-						{
-							double xa = level.getRandom().nextGaussian() * 0.02;
-							double ya = level.getRandom().nextGaussian() * 0.02;
-							double za = level.getRandom().nextGaussian() * 0.02;
-							entity.level().addParticle(ParticleTypes.SOUL_FIRE_FLAME, entity.getRandomX(1.0), entity.getRandomY() + 0.5, entity.getRandomZ(1.0), xa, ya, za);
-						}
-					} else {
-						for(int i = 0; i < 3; i++)
-						{
-							double xa = level.getRandom().nextGaussian() * 0.02;
-							double ya = level.getRandom().nextGaussian() * 0.02;
-							double za = level.getRandom().nextGaussian() * 0.02;
-							entity.level().addParticle(ParticleTypes.HEART, entity.getRandomX(1.0), entity.getRandomY() + 0.5, entity.getRandomZ(1.0), xa, ya, za);
+						for(int count = 0; count < 3; count++) {
+							serverLevel.sendParticles(ParticleTypes.HEART,
+								entity.getRandomX(1.0), entity.getY(0.5), entity.getRandomZ(1.0), 1, 0.02, 0.02, 0.02, 0.0);
 						}
 					}
 				}
 			}
-
-
-
-			double end = 48.0;
+			double end = 64.0;
 			double pivot = player.getRandom().nextDouble();
 			for(double i=0; i<end; i++)
 			{
-				level.addParticle(ParticleTypes.CHERRY_LEAVES,
-					player.getX() + Math.cos((i+pivot)/end * 2.0 * Math.PI) * 16.0,
+				serverLevel.sendParticles(i%4>0 ? ParticleTypes.CHERRY_LEAVES : ParticleTypes.FIREWORK,
+					player.getX() + Math.cos((i+pivot)/end * 2.0 * Math.PI) * range,
 					player.getY() + 0.5,
-					player.getZ() + Math.sin((i+pivot)/end * 2.0 * Math.PI) * 16.0,
-					0.0, 0.5, 0.0);
+					player.getZ() + Math.sin((i+pivot)/end * 2.0 * Math.PI) * range,
+					1, 0.0, 0.5, 0.0, 0.0);
 			}
-			end = 8.0;
+			end = 16.0;
 			pivot = player.getRandom().nextDouble();
 			for(double i=0; i<end; i++)
 			{
-				level.addParticle(ParticleTypes.CHERRY_LEAVES,
-					player.getX() + Math.cos((i+pivot)/end * 2.0 * Math.PI) * 8.0,
+				serverLevel.sendParticles(i%3>0 ? ParticleTypes.CHERRY_LEAVES : ParticleTypes.FIREWORK,
+					player.getX() + Math.cos((i+pivot)/end * 2.0 * Math.PI) * range/2.0,
 					player.getY() + 1,
-					player.getZ() + Math.sin((i+pivot)/end * 2.0 * Math.PI) * 8.0,
-					0.0, 0.5, 0.0);
+					player.getZ() + Math.sin((i+pivot)/end * 2.0 * Math.PI) * range/2.0,
+					1, 0.0, 0.5, 0.0, 0.0);
+			}
+			end = 6.0;
+			pivot = player.getRandom().nextDouble();
+			for(double i=0; i<end; i++)
+			{
+				serverLevel.sendParticles(i%2>0 ? ParticleTypes.CHERRY_LEAVES : ParticleTypes.FIREWORK,
+					player.getX() + Math.cos((i+pivot)/end * 2.0 * Math.PI) * range/4.0,
+					player.getY() + 1,
+					player.getZ() + Math.sin((i+pivot)/end * 2.0 * Math.PI) * range/4.0,
+					1, 0.0, 0.5, 0.0, 0.0);
 			}
 		}
 		MobEffectInstance instance = new MobEffectInstance(BFEffects.SILENCE,  80, 0, false, true, true);

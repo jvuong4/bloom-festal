@@ -90,6 +90,10 @@ public class NosferatuOrb extends Fireball {
 					EnchantmentHelper.doPostAttackEffects(serverLevel, var7, damageSource);
 					if(owner instanceof LivingEntity livingOwner)
 						livingOwner.heal(4f);
+					for(int count = 0; count < 3; count++) {
+						serverLevel.sendParticles(ParticleTypes.TRIAL_OMEN,
+							mob.getRandomX(1.0), mob.getY(0.5), mob.getRandomZ(1.0), 1, 0.02, 0.02, 0.02, 0.0);
+					}
 				}
 			}
 		}

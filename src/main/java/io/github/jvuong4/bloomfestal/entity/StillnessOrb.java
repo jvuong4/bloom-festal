@@ -78,17 +78,9 @@ public class StillnessOrb extends Fireball {
 					}
 
 				playSound(SoundEvents.TRIDENT_THUNDER.value(),0.3f,0.4F / (level().getRandom().nextFloat() * 0.4F + 0.8F));
-			}
-		}
-		else
-		{
-			Entity mob = hitResult.getEntity();
-			if(mob instanceof LivingEntity livingEntity) {
-				for(int i = 0; i < 3; i++) {
-					double xa = this.random.nextGaussian() * 0.02;
-					double ya = this.random.nextGaussian() * 0.02;
-					double za = this.random.nextGaussian() * 0.02;
-					this.level().addParticle(ParticleTypes.SNOWFLAKE, mob.getRandomX(1.0), mob.getRandomY() + 0.5, mob.getRandomZ(1.0), xa, ya, za);
+				for(int count = 0; count < 3; count++) {
+					serverLevel.sendParticles(ParticleTypes.SNOWFLAKE,
+						mob.getRandomX(1.0), mob.getY(0.5), mob.getRandomZ(1.0), 1, 0.02, 0.02, 0.02, 0.0);
 				}
 			}
 		}

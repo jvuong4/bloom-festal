@@ -30,7 +30,6 @@ import java.util.Optional;
 import java.util.function.Function;
 
 public class BolganoneOrb extends ExplodingOrb{
-
 	public BolganoneOrb(final EntityType<? extends BolganoneOrb> type, final Level level) {
 		super(type, level);
 		initVals();
@@ -54,6 +53,7 @@ public class BolganoneOrb extends ExplodingOrb{
 		explosionRadius = 3.0F;
 		particleSpawnChance = 2.0F;
 		explosionSound = SoundEvents.FIRECHARGE_USE;
+		damageParticle = ParticleTypes.FLAME;
 	}
 
 	@Override
@@ -137,10 +137,15 @@ public class BolganoneOrb extends ExplodingOrb{
 							target.igniteForSeconds(burnTicks);
 						}
 					}
-					if(!target.hurtServer(level, this.damageSources().fireball(this, this.getOwner()), damage));
+					if(!target.hurtServer(level, this.damageSources().fireball(this, this.getOwner()), damage))
 					{
 						//BloomFestal.LOGGER.info("[Bloom Festal] undid burning on entity");
 						//target.setRemainingFireTicks(remainingFireTicks);
+					}
+					else
+					{
+						spawnDamageParticles(target, damageParticle, level);
+						spawnDamageParticles(target, ParticleTypes.LAVA, level);
 					}
 
 				}

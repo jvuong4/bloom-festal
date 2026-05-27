@@ -1,0 +1,29 @@
+package io.github.jvuong4.bloomfestal.compat.StreetArt.itemColors;
+
+import io.github.jvuong4.bloomfestal.compat.StreetArt.DyeblastItem;
+import io.github.jvuong4.bloomfestal.compat.StreetArt.DyeblastOrb;
+import io.github.jvuong4.bloomfestal.compat.StreetArt.orbColors.RedDyeblastOrb;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.Projectile;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.phys.Vec3;
+
+public class RedDyeblastItem extends DyeblastItem {
+	public RedDyeblastItem(final net.minecraft.world.item.Item.Properties properties) {
+		super(properties);
+	}
+
+	@Override
+	public void summonDyeblast(ServerLevel serverLevel, Player player, InteractionHand hand, ItemStack itemStack)
+	{
+		double d = 20.0;
+		Vec3 viewVector = player.getViewVector(1.0F);
+		Vec3 direction = new Vec3(viewVector.x, viewVector.y, viewVector.z);
+		RedDyeblastOrb entity = new RedDyeblastOrb(serverLevel, player, (direction.normalize()).scale(d));
+		entity.setPos(player.getX() + viewVector.x, player.getY(0.5) + 0.5, entity.getZ() + viewVector.z);
+		Projectile.spawnProjectile(entity, serverLevel, itemStack);
+	}
+
+}

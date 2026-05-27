@@ -29,7 +29,7 @@ import net.minecraft.world.phys.Vec3;
 import static com.streetart.AllEntityTypes.PAINT_BALLOON;
 import static com.streetart.AllItems.PAINT_BALLOONS;
 
-public class DyeblastOrb extends ExplodingOrb {
+public abstract class DyeblastOrb extends ExplodingOrb {
 
 	public ParticleOptions damageParticle;
 	public ColorComponent defaultComponent = ColorComponent.CLEAR;
@@ -39,13 +39,13 @@ public class DyeblastOrb extends ExplodingOrb {
 		initVals();
 	}
 
-	public DyeblastOrb(final Level level, final LivingEntity mob, final Vec3 direction) {
-		super(StreetArtEntities.DYEBLAST_ORB, level, mob, direction);
+	public DyeblastOrb(final EntityType<? extends DyeblastOrb> type, final Level level, final LivingEntity mob, final Vec3 direction) {
+		super(type, level, mob, direction);
 		initVals();
 	}
 
-	public DyeblastOrb(final Level level, final double x, final double y, final double z, final Vec3 direction) {
-		super(StreetArtEntities.DYEBLAST_ORB, level, x, y, z, direction);
+	public DyeblastOrb(final EntityType<? extends DyeblastOrb> type, final Level level, final double x, final double y, final double z, final Vec3 direction) {
+		super(type, level, x, y, z, direction);
 		initVals();
 	}
 
@@ -62,7 +62,7 @@ public class DyeblastOrb extends ExplodingOrb {
 		try
 		{
 			final ItemStack item = this.getItem();
-			ColorComponent component = ColorComponent.getOrDefaultComponent(item, ColorComponent.CLEAR);
+			ColorComponent component = ColorComponent.getOrDefaultComponent(item, defaultComponent);
 			color = component.getOrDefaultOpaque(item, defaultComponent.argb);
 		}
 		catch(Exception e)

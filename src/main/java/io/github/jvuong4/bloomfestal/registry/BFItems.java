@@ -25,6 +25,8 @@ import net.minecraft.world.item.component.*;
 import java.util.Optional;
 import java.util.function.Function;
 
+import static io.github.jvuong4.bloomfestal.compat.StreetArt.StreetArtItems.*;
+
 public class BFItems {
 	/* //scrapped for now
 	public static Item LEVIN_SWORD = register("levin_sword", Item::new,
@@ -238,8 +240,27 @@ public class BFItems {
 			if(FabricLoader.getInstance().isModLoaded("street_art"))
 			{
 				//add dyeblast tomes!
+				/*
 				for(DyeblastItem dyeblast : StreetArtItems.DYEBLASTS.values())
 					output.accept(dyeblast);
+
+				 */
+				output.accept(WHITE_DYEBLAST);
+				output.accept(ORANGE_DYEBLAST);
+				output.accept(MAGENTA_DYEBLAST);
+				output.accept(LIGHT_BLUE_DYEBLAST);
+				output.accept(YELLOW_DYEBLAST);
+				output.accept(LIME_DYEBLAST);
+				output.accept(PINK_DYEBLAST);
+				output.accept(GRAY_DYEBLAST);
+				output.accept(LIGHT_GRAY_DYEBLAST);
+				output.accept(CYAN_DYEBLAST);
+				output.accept(PURPLE_DYEBLAST);
+				output.accept(BLUE_DYEBLAST);
+				output.accept(BROWN_DYEBLAST);
+				output.accept(GREEN_DYEBLAST);
+				output.accept(RED_DYEBLAST);
+				output.accept(BLACK_DYEBLAST);
 			}
 		})
 		.build();

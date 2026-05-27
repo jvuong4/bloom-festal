@@ -42,16 +42,16 @@ public class DyeblastItem extends Item {
 			0.4F / (level.getRandom().nextFloat() * 0.4F + 0.8F)
 		);
 		if (level instanceof ServerLevel serverLevel) {
-			double d = 20.0;
-			Vec3 viewVector = player.getViewVector(1.0F);
-			Vec3 direction = new Vec3(viewVector.x, viewVector.y, viewVector.z);
-			DyeblastOrb entity = new DyeblastOrb(level, player, (direction.normalize()).scale(d));
-			entity.setPos(player.getX() + viewVector.x, player.getY(0.5) + 0.5, entity.getZ() + viewVector.z);
-			Projectile.spawnProjectile(entity, serverLevel, itemStack);
+			summonDyeblast(serverLevel, player, hand, itemStack);
 		}
 		player.awardStat(Stats.ITEM_USED.get(this));
 		itemStack.causeUseVibration(player, GameEvent.ITEM_INTERACT_START);
 		itemStack.hurtAndBreak(1, player, hand.asEquipmentSlot());
 		return InteractionResult.SUCCESS;
 	}
+
+	public void summonDyeblast(ServerLevel serverLevel, Player player, InteractionHand hand, ItemStack itemStack)
+	{
+	}
+
 }

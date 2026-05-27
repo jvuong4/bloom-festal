@@ -1,8 +1,12 @@
 package io.github.jvuong4.bloomfestal.registry;
 
 import io.github.jvuong4.bloomfestal.BloomFestal;
+import io.github.jvuong4.bloomfestal.compat.DualStanceCompat;
+import io.github.jvuong4.bloomfestal.compat.StreetArt.DyeblastItem;
+import io.github.jvuong4.bloomfestal.compat.StreetArt.StreetArtItems;
 import io.github.jvuong4.bloomfestal.item.*;
 import net.fabricmc.fabric.api.creativetab.v1.FabricCreativeModeTab;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.core.Registry;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -230,6 +234,13 @@ public class BFItems {
 
 			output.accept(ECLIPSE);
 			output.accept(NOSFERATU);
+
+			if(FabricLoader.getInstance().isModLoaded("street_art"))
+			{
+				//add dyeblast tomes!
+				for(DyeblastItem dyeblast : StreetArtItems.DYEBLASTS.values())
+					output.accept(dyeblast);
+			}
 		})
 		.build();
 

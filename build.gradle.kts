@@ -35,6 +35,18 @@ repositories {
 	exclusiveContent {
 		forRepository {
 			maven {
+				name = "Street Art"
+				url = uri("github.com/BeeIsYou/street-art/tree/master")
+			}
+		}
+		filter {
+			includeGroup("com.streetart")
+		}
+	}
+
+	exclusiveContent {
+		forRepository {
+			maven {
 				name = "Modrinth"
 				url = uri("https://api.modrinth.com/maven")
 			}
@@ -53,6 +65,8 @@ dependencies {
 	api(libs.bundles.fabric)
 	//Dual Stance
 	compileOnly("maven.modrinth:z6Esg6rK:dceSO2Rx")
+	//Street Art
+	compileOnly("maven.modrinth:n0uMUjJI:Z9TbNcdm")
 }
 
 java {

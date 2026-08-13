@@ -3,7 +3,12 @@ package io.github.jvuong4.bloomfestal.registry;
 import io.github.jvuong4.bloomfestal.BloomFestal;
 import io.github.jvuong4.bloomfestal.entity.*;
 import io.github.jvuong4.bloomfestal.entity.LightningBolt.VisualLightning;
-import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
+import io.github.jvuong4.bloomfestal.entity.MagicalOrbs.EclipseOrb;
+import io.github.jvuong4.bloomfestal.entity.MagicalOrbs.ExplodingOrbs.*;
+import io.github.jvuong4.bloomfestal.entity.MagicalOrbs.RewarpOrb;
+import io.github.jvuong4.bloomfestal.entity.MagicalOrbs.StatusEffectOrbs.HexingOrb;
+import io.github.jvuong4.bloomfestal.entity.MagicalOrbs.StatusEffectOrbs.RevelationOrb;
+import io.github.jvuong4.bloomfestal.entity.MagicalOrbs.StatusEffectOrbs.SilenceOrb;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
@@ -12,7 +17,6 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
-import net.minecraft.world.entity.projectile.hurtingprojectile.SmallFireball;
 
 public class BFEntities {
 	//who up pondering they orb?

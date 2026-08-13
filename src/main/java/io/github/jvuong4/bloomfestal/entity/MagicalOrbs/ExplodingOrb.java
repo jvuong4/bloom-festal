@@ -1,6 +1,6 @@
-package io.github.jvuong4.bloomfestal.entity;
+package io.github.jvuong4.bloomfestal.entity.MagicalOrbs;
 
-import io.github.jvuong4.bloomfestal.registry.BFEntities;
+import io.github.jvuong4.bloomfestal.entity.MagicalOrb;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.particles.SimpleParticleType;
@@ -14,9 +14,6 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.projectile.hurtingprojectile.Fireball;
-import net.minecraft.world.item.component.FireworkExplosion;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.ExplosionDamageCalculator;
 import net.minecraft.world.level.Level;
@@ -27,60 +24,43 @@ import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
 
-abstract public class ExplodingOrb extends Fireball {
+abstract public class ExplodingOrb extends MagicalOrb {
 	private static final ExplosionDamageCalculator DEFAULT_EXPLOSION_DAMAGE_CALCULATOR = new SimpleExplosionDamageCalculator(
 		false, false, Optional.of(0F), BuiltInRegistries.BLOCK.get(BlockTags.BLOCKS_WIND_CHARGE_EXPLOSIONS).map(Function.identity())
 	);
-	protected int range = 32;
 	protected float potency = 14.0F;
 	protected float explosionRadius = 5.0F;
-	protected float particleSpawnChance = 0.5F;
+
 	protected SoundEvent explosionSound = null;
 	protected SimpleParticleType damageParticle = ParticleTypes.ENCHANTED_HIT;
 
-
-	private int age = 0;
-
 	public ExplodingOrb(final EntityType<? extends ExplodingOrb> type, final Level level) {
 		super(type, level);
-		age = 0;
 		accelerationPower = 0.1;
 	}
 
+
 	public ExplodingOrb(final EntityType<? extends ExplodingOrb> type, final Level level, final LivingEntity mob, final Vec3 direction) {
-		super(type, mob, direction, level);
-		age = 0;
+		super(type, level, mob, direction);
 		accelerationPower = 0.1;
 	}
 
 	public ExplodingOrb(final EntityType<? extends ExplodingOrb> type, final Level level, final double x, final double y, final double z, final Vec3 direction) {
-		super(type, x, y, z, direction, level);
-		age = 0;
+		super(type,level, x, y, z, direction);
 		accelerationPower = 0.1;
 	}
 
 	@Override
-	protected void createParticleTrail() {
-		//less particles!!
-		if(this.level().getRandom().nextFloat() > particleSpawnChance)
-		{
-			return;
-		}
-		ParticleOptions trailParticle = this.getTrailParticle();
-		Vec3 position = this.position();
-		if (trailParticle != null) {
-			this.level().addParticle(trailParticle, position.x, position.y, position.z, 0.0, 0.0, 0.0);
-		}
+	public void setCharge(int val)
+	{
+		super.setCharge(val);
+		initVals();
 	}
 
-	@Override
-	protected boolean shouldBurn() {
-		return false;
-	}
+	abstract protected void initVals();
 
 	@Override
 	protected void onHitEntity(final EntityHitResult hitResult) {
@@ -88,13 +68,8 @@ abstract public class ExplodingOrb extends Fireball {
 		if (this.level() instanceof ServerLevel serverLevel) {
 			Entity var7 = hitResult.getEntity();
 			Entity owner = this.getOwner();
-			//no burning!
-			//int remainingFireTicks = var7.getRemainingFireTicks();
-			//var7.igniteForSeconds(5.0F);
-
 			if(var7 instanceof LivingEntity mob)
 			{
-				DamageSource damageSource = this.damageSources().indirectMagic(this, owner);
 				if(explosionSound != null)
 					playSound(explosionSound,0.5f,0.4F / (level().getRandom().nextFloat() * 0.4F + 0.8F));
 				explode(serverLevel);
@@ -104,14 +79,9 @@ abstract public class ExplodingOrb extends Fireball {
 	}
 
 	@Override
-	public void tick() {
-		super.tick();
-		age++;
-		if(age > range)
-		{
-			if (this.level() instanceof ServerLevel serverLevel) {
-				this.explode(serverLevel);
-			}
+	public void onLifeOver() {
+		if (this.level() instanceof ServerLevel serverLevel) {
+			this.explode(serverLevel);
 		}
 	}
 

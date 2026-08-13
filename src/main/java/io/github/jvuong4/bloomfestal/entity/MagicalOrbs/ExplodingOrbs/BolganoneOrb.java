@@ -1,35 +1,25 @@
-package io.github.jvuong4.bloomfestal.entity;
+package io.github.jvuong4.bloomfestal.entity.MagicalOrbs.ExplodingOrbs;
 
-import io.github.jvuong4.bloomfestal.BloomFestal;
-import io.github.jvuong4.bloomfestal.entity.LightningBolt.VisualLightning;
+import io.github.jvuong4.bloomfestal.entity.MagicalOrbs.ExplodingOrb;
 import io.github.jvuong4.bloomfestal.registry.BFEntities;
-import io.github.jvuong4.bloomfestal.registry.BFSounds;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.particles.SimpleParticleType;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.tags.BlockTags;
-import net.minecraft.util.random.WeightedList;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.ClipContext;
-import net.minecraft.world.level.ExplosionDamageCalculator;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.SimpleExplosionDamageCalculator;
-import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 
-import java.util.Optional;
-import java.util.function.Function;
+public class BolganoneOrb extends ExplodingOrb {
+	private float burnDuration = 5f;
 
-public class BolganoneOrb extends ExplodingOrb{
 	public BolganoneOrb(final EntityType<? extends BolganoneOrb> type, final Level level) {
 		super(type, level);
 		initVals();
@@ -45,12 +35,34 @@ public class BolganoneOrb extends ExplodingOrb{
 		initVals();
 	}
 
+	@Override
 	protected void initVals()
 	{
-		accelerationPower = 0.8;
-		range = 10;
-		potency = 8.0F;
-		explosionRadius = 3.0F;
+		switch(charge)
+		{
+			case 1:
+				accelerationPower = 0.8;
+				range = 10;
+				potency = 8F;
+				explosionRadius = 3.5F;
+				burnDuration = 8F;
+				break;
+			case 2:
+				accelerationPower = 0.8;
+				range = 15;
+				potency = 10F;
+				explosionRadius = 4.5F;
+				burnDuration = 20F;
+				break;
+			case 0:
+			default:
+				accelerationPower = 0.8;
+				range = 6;
+				potency = 4F;
+				explosionRadius = 3.0F;
+				burnDuration = 5F;
+				break;
+		}
 		particleSpawnChance = 2.0F;
 		explosionSound = SoundEvents.FIRECHARGE_USE;
 		damageParticle = ParticleTypes.FLAME;
@@ -66,9 +78,12 @@ public class BolganoneOrb extends ExplodingOrb{
 		ParticleOptions trailParticle = this.getTrailParticle();
 		Vec3 position = this.position();
 		if (trailParticle != null) {
-			this.level().addParticle(trailParticle, position.x, position.y, position.z, 0.0, 0.0, 0.0);
-			Vec3 prevDirection = this.getDeltaMovement().scale(-0.5);
-			this.level().addParticle(trailParticle, position.x + prevDirection.x, position.y + prevDirection.y, position.z + prevDirection.z, 0.0, 0.0, 0.0);
+			if(this.level() instanceof ServerLevel serverLevel)
+			{
+				serverLevel.sendParticles(trailParticle, position.x, position.y, position.z, 1, 0.0, 0.0, 0.00, 0.0);
+				Vec3 prevDirection = this.getDeltaMovement().scale(-0.5);
+				serverLevel.sendParticles(trailParticle, position.x + prevDirection.x, position.y + prevDirection.y, position.z + prevDirection.z, 1, 0.0, 0.0, 0.0, 0.0);
+			}
 		}
 	}
 	@Override
@@ -93,9 +108,6 @@ public class BolganoneOrb extends ExplodingOrb{
 		if (this.level() instanceof ServerLevel serverLevel) {
 			Entity var7 = hitResult.getEntity();
 			Entity owner = this.getOwner();
-			//YES burning!
-
-
 			if(var7 instanceof LivingEntity mob)
 			{
 				if(explosionSound != null)
@@ -125,7 +137,7 @@ public class BolganoneOrb extends ExplodingOrb{
 				}
 				if (canSee) {
 					float damage = potency * (float)Math.sqrt((explosionRadius - this.distanceTo(target)) / explosionRadius);
-					float burnTicks = 5.0F * (float)Math.sqrt((explosionRadius - this.distanceTo(target)) / explosionRadius);
+					float burnTicks = burnDuration * (float)Math.sqrt((explosionRadius - this.distanceTo(target)) / explosionRadius);
 
 					if(!target.fireImmune()) {
 						if (this.getOwner() instanceof Player playerOwner && target instanceof Player playerTarget) {
@@ -137,12 +149,7 @@ public class BolganoneOrb extends ExplodingOrb{
 							target.igniteForSeconds(burnTicks);
 						}
 					}
-					if(!target.hurtServer(level, this.damageSources().fireball(this, this.getOwner()), damage))
-					{
-						//BloomFestal.LOGGER.info("[Bloom Festal] undid burning on entity");
-						//target.setRemainingFireTicks(remainingFireTicks);
-					}
-					else
+					if(target.hurtServer(level, this.damageSources().fireball(this, this.getOwner()), damage))
 					{
 						spawnDamageParticles(target, damageParticle, level);
 						spawnDamageParticles(target, ParticleTypes.LAVA, level);

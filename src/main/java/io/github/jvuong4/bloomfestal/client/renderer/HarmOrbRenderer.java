@@ -2,7 +2,6 @@ package io.github.jvuong4.bloomfestal.client.renderer;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import io.github.jvuong4.bloomfestal.BloomFestal;
-import io.github.jvuong4.bloomfestal.entity.EclipseOrb;
 import io.github.jvuong4.bloomfestal.entity.HarmOrb;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;

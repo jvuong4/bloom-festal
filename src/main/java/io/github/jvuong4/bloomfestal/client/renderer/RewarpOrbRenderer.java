@@ -2,8 +2,7 @@ package io.github.jvuong4.bloomfestal.client.renderer;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import io.github.jvuong4.bloomfestal.BloomFestal;
-import io.github.jvuong4.bloomfestal.entity.NosferatuOrb;
-import io.github.jvuong4.bloomfestal.entity.RewarpOrb;
+import io.github.jvuong4.bloomfestal.entity.MagicalOrbs.RewarpOrb;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.model.geom.ModelLayers;

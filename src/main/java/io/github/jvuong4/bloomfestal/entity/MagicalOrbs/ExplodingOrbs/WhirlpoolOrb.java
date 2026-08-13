@@ -1,5 +1,6 @@
-package io.github.jvuong4.bloomfestal.entity;
+package io.github.jvuong4.bloomfestal.entity.MagicalOrbs.ExplodingOrbs;
 
+import io.github.jvuong4.bloomfestal.entity.MagicalOrbs.ExplodingOrb;
 import io.github.jvuong4.bloomfestal.registry.BFEntities;
 import io.github.jvuong4.bloomfestal.registry.BFParticles;
 import net.minecraft.core.particles.ParticleOptions;
@@ -11,7 +12,6 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectUtil;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.animal.axolotl.Axolotl;
@@ -20,15 +20,13 @@ import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.ExplosionDamageCalculator;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.SimpleExplosionDamageCalculator;
-import net.minecraft.world.level.portal.TeleportTransition;
-import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 
 import java.util.Optional;
 import java.util.function.Function;
 
-public class WhirlpoolOrb extends ExplodingOrb{
+public class WhirlpoolOrb extends ExplodingOrb {
 	private static final ExplosionDamageCalculator DEFAULT_EXPLOSION_DAMAGE_CALCULATOR = new SimpleExplosionDamageCalculator(
 		false, false, Optional.of(1F), BuiltInRegistries.BLOCK.get(BlockTags.BLOCKS_WIND_CHARGE_EXPLOSIONS).map(Function.identity())
 	);
@@ -48,12 +46,35 @@ public class WhirlpoolOrb extends ExplodingOrb{
 		initVals();
 	}
 
+	@Override
 	protected void initVals()
 	{
 		accelerationPower = 0.4;
 		range = 20;
 		potency = 4.0F;
 		explosionRadius = 5.0F;
+		switch(charge)
+		{
+			case 1:
+				accelerationPower = 0.4;
+				range = 10;
+				potency = 6F;
+				explosionRadius = 3.0F;
+				break;
+			case 2:
+				accelerationPower = 0.4;
+				range = 15;
+				potency = 8F;
+				explosionRadius = 4.0F;
+				break;
+			case 0:
+			default:
+				accelerationPower = 0.4;
+				range = 6;
+				potency = 3F;
+				explosionRadius = 1.0F;
+				break;
+		}
 		particleSpawnChance = 2.0F;
 		explosionSound = SoundEvents.AMBIENT_UNDERWATER_ENTER;
 		damageParticle = BFParticles.BUBBLE_PARTICLE;

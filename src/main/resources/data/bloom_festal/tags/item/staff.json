@@ -5,6 +5,12 @@
 		"bloom_festal:sun_festal",
 		"bloom_festal:wane_festal",
 		"bloom_festal:moon_festal",
-		"bloom_festal:great_festal"
+		"bloom_festal:great_festal",
+		"bloom_festal:rewarp_festal",
+		"bloom_festal:hexing_rod",
+		"bloom_festal:silent_rod",
+		"bloom_festal:revelation_festal",
+		"bloom_festal:pain_festal",
+		"bloom_festal:dirge_festal"
 	]
 }

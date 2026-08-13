@@ -1,6 +1,6 @@
-package io.github.jvuong4.bloomfestal.entity;
+package io.github.jvuong4.bloomfestal.entity.MagicalOrbs.ExplodingOrbs;
 
-import io.github.jvuong4.bloomfestal.entity.LightningBolt.VisualLightning;
+import io.github.jvuong4.bloomfestal.entity.MagicalOrbs.ExplodingOrb;
 import io.github.jvuong4.bloomfestal.registry.BFEntities;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
@@ -23,7 +23,7 @@ import net.minecraft.world.phys.Vec3;
 import java.util.Optional;
 import java.util.function.Function;
 
-public class RexcaliburOrb extends ExplodingOrb{
+public class RexcaliburOrb extends ExplodingOrb {
 	private static final ExplosionDamageCalculator DEFAULT_EXPLOSION_DAMAGE_CALCULATOR = new SimpleExplosionDamageCalculator(
 		false, false, Optional.of(2F), BuiltInRegistries.BLOCK.get(BlockTags.BLOCKS_WIND_CHARGE_EXPLOSIONS).map(Function.identity())
 	);
@@ -43,12 +43,31 @@ public class RexcaliburOrb extends ExplodingOrb{
 		initVals();
 	}
 
+	@Override
 	protected void initVals()
 	{
-		accelerationPower = 1.0;
-		range = 8;
-		potency = 5.0F;
-		explosionRadius = 6.0F;
+		switch(charge)
+		{
+			case 1:
+				accelerationPower = 1;
+				range = 8;
+				potency = 5F;
+				explosionRadius = 6.0F;
+				break;
+			case 2:
+				accelerationPower = 1;
+				range = 15;
+				potency = 7F;
+				explosionRadius = 10.0F;
+				break;
+			case 0:
+			default:
+				accelerationPower = 0.8;
+				range = 2;
+				potency = 2F;
+				explosionRadius = 4.0F;
+				break;
+		}
 		particleSpawnChance = 2.0F;
 		explosionSound = SoundEvents.BREEZE_WIND_CHARGE_BURST.value();
 		damageParticle = ParticleTypes.GUST_EMITTER_SMALL;
@@ -64,9 +83,12 @@ public class RexcaliburOrb extends ExplodingOrb{
 		ParticleOptions trailParticle = this.getTrailParticle();
 		Vec3 position = this.position();
 		if (trailParticle != null) {
-			this.level().addParticle(trailParticle, position.x, position.y, position.z, 0.0, 0.0, 0.0);
-			Vec3 prevDirection = this.getDeltaMovement().scale(-0.5);
-			this.level().addParticle(trailParticle, position.x + prevDirection.x, position.y + prevDirection.y, position.z + prevDirection.z, 0.0, 0.0, 0.0);
+			if(this.level() instanceof ServerLevel serverLevel)
+			{
+				serverLevel.sendParticles(trailParticle, position.x, position.y, position.z, 1, 0.0, 0.0, 0.00, 0.0);
+				Vec3 prevDirection = this.getDeltaMovement().scale(-0.5);
+				serverLevel.sendParticles(trailParticle, position.x + prevDirection.x, position.y + prevDirection.y, position.z + prevDirection.z, 1, 0.0, 0.0, 0.0, 0.0);
+			}
 		}
 	}
 	@Override

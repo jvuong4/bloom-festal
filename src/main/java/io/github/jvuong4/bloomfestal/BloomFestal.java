@@ -17,6 +17,7 @@ public class BloomFestal implements ModInitializer {
 	@Override
 	public void onInitialize() {
 		LOGGER.info("[Bloom Festal] you are the ocean's BLOOM waves");
+		BFDataComponents.init();
 		BFItems.init();
 		BFEntities.init();
 		BFSounds.init();

@@ -31,6 +31,7 @@ import org.jspecify.annotations.Nullable;
 import java.util.Collection;
 import java.util.List;
 
+//one day you may be real...
 public class KodachiEntity extends AbstractArrow {
 	private static final EntityDataAccessor<Byte> ID_LOYALTY;
 	private static final EntityDataAccessor<Boolean> ID_FOIL;

@@ -1,6 +1,5 @@
 package io.github.jvuong4.bloomfestal.item;
 
-import io.github.jvuong4.bloomfestal.entity.HexingOrb;
 import io.github.jvuong4.bloomfestal.entity.StillnessOrb;
 import io.github.jvuong4.bloomfestal.registry.BFEffects;
 import net.minecraft.server.level.ServerLevel;

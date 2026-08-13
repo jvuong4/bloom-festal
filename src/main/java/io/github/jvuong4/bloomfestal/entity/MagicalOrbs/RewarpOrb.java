@@ -1,29 +1,17 @@
-package io.github.jvuong4.bloomfestal.entity;
+package io.github.jvuong4.bloomfestal.entity.MagicalOrbs;
 
 import io.github.jvuong4.bloomfestal.compat.DualStanceCompat;
+import io.github.jvuong4.bloomfestal.entity.MagicalOrb;
 import io.github.jvuong4.bloomfestal.registry.BFEntities;
-import io.github.jvuong4.bloomfestal.registry.BFSounds;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.tags.BlockTags;
-import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.*;
-import net.minecraft.world.entity.monster.Endermite;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.projectile.hurtingprojectile.Fireball;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
-import net.minecraft.world.level.ClipContext;
-import net.minecraft.world.level.ExplosionDamageCalculator;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.SimpleExplosionDamageCalculator;
 import net.minecraft.world.level.portal.TeleportTransition;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
@@ -31,34 +19,67 @@ import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import org.jspecify.annotations.Nullable;
 
-import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
-import java.util.function.Function;
 
-public class RewarpOrb extends Fireball {
-	private float teleportRadius = 4f;
-	private int range = 7;
+public class RewarpOrb extends MagicalOrb {
 	private int age = 0;
+	private float teleportRadius = 4f;
 
 
 	public RewarpOrb(final EntityType<? extends RewarpOrb> type, final Level level) {
 		super(type, level);
-		age = 0;
-		accelerationPower = 1;
 	}
 
 
 	public RewarpOrb(final Level level, final LivingEntity mob, final Vec3 direction) {
-		super(BFEntities.REWARP_ORB, mob, direction, level);
-		age = 0;
-		accelerationPower = 1;
+		super(BFEntities.REWARP_ORB, level, mob, direction);
 	}
 
 	public RewarpOrb(final Level level, final double x, final double y, final double z, final Vec3 direction) {
-		super(BFEntities.REWARP_ORB, x, y, z, direction, level);
+		super(BFEntities.REWARP_ORB, level, x, y, z, direction);
+	}
+
+	@Override
+	public void setCharge(int val)
+	{
+		super.setCharge(val);
+		setStats();
+	}
+
+	public void setStats()
+	{
 		age = 0;
-		accelerationPower = 1;
+		switch(charge)
+		{
+			case 0:
+				particleSpawnChance = 0.25F;
+				teleportRadius = 0F;
+				accelerationPower = 0.8F;
+				range = 7;
+				break;
+			case 1:
+				particleSpawnChance = 0.5F;
+				teleportRadius = 4F;
+				accelerationPower = 0.9F;
+				range = 9;
+				break;
+			case 2:
+				particleSpawnChance = 1F;
+				teleportRadius = 5F;
+				accelerationPower = 1F;
+				range = 11;
+				break;
+			default:
+				charge = 0;
+				particleSpawnChance = 0.25F;
+				teleportRadius = 0F;
+				accelerationPower = 0.8F;
+				range = 7;
+				break;
+		}
+
+
 	}
 
 	@Override
@@ -67,7 +88,7 @@ public class RewarpOrb extends Fireball {
 		Vec3 position = this.position();
 		if (trailParticle != null) {
 			this.level().addParticle(trailParticle, position.x, position.y, position.z, 0.0, 0.0, 0.0);
-			if(this.level().getRandom().nextFloat() < 0.3F)
+			if(this.level().getRandom().nextFloat() < particleSpawnChance)
 			{
 				Vec3 prevDirection = this.getDeltaMovement().scale(-0.5);
 				this.level().addParticle(trailParticle, position.x + prevDirection.x, position.y + prevDirection.y, position.z + prevDirection.z, 0.0, 0.0, 0.0);
@@ -78,11 +99,6 @@ public class RewarpOrb extends Fireball {
 	@Override
 	protected ParticleOptions getTrailParticle() {
 		return ParticleTypes.PORTAL;
-	}
-
-	@Override
-	protected boolean shouldBurn() {
-		return false;
 	}
 
 	public @Nullable Entity getOwner() {
@@ -140,20 +156,11 @@ public class RewarpOrb extends Fireball {
 							}
 
 							//teleport all Players within 4 spaces of owner
+							if(teleportRadius > 0)
 							for (ServerPlayer target : this.level().getEntitiesOfClass(ServerPlayer.class, owner.getBoundingBox().inflate(teleportRadius))) {
 								if (!(owner.distanceToSqr(target) > teleportRadius * teleportRadius)) {
 									if(!(target.getUUID() == owner.getUUID()))
 									{
-										boolean canSee = false;
-										for (int testStep = 0; testStep < 2; testStep++) {
-											Vec3 to = new Vec3(target.getX(), target.getY(0.5 * testStep), target.getZ());
-											HitResult clip = this.level().clip(new ClipContext(teleportPos, to, ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, this));
-											if (clip.getType() == HitResult.Type.MISS) {
-												canSee = true;
-												break;
-											}
-										}
-										if (canSee) {
 											double xVariation = 2.0F * this.random.nextDouble() - (double)1.0F;
 											double zVariation = 2.0F * this.random.nextDouble() - (double)1.0F;
 
@@ -166,7 +173,6 @@ public class RewarpOrb extends Fireball {
 												LivingEntity livingEntity = (LivingEntity)newTarget;
 												livingEntity.resetCurrentImpulseContext();
 											}
-										}
 									}
 								}
 							}
@@ -188,20 +194,12 @@ public class RewarpOrb extends Fireball {
 						}
 					} else {
 						//teleport all Players within 4 spaces of owner
+						if(teleportRadius > 0)
 						for (ServerPlayer target : this.level().getEntitiesOfClass(ServerPlayer.class, owner.getBoundingBox().inflate(teleportRadius))) {
 							if (!(owner.distanceToSqr(target) > teleportRadius * teleportRadius)) {
 								if(!(target.getUUID() == owner.getUUID()))
 								{
-									boolean canSee = false;
-									for (int testStep = 0; testStep < 2; testStep++) {
-										Vec3 to = new Vec3(target.getX(), target.getY(0.5 * testStep), target.getZ());
-										HitResult clip = this.level().clip(new ClipContext(teleportPos, to, ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, this));
-										if (clip.getType() == HitResult.Type.MISS) {
-											canSee = true;
-											break;
-										}
-									}
-									if (canSee) {
+
 										double xVariation = 2.0F * this.random.nextDouble() - (double)1.0F;
 										double zVariation = 2.0F * this.random.nextDouble() - (double)1.0F;
 
@@ -214,7 +212,6 @@ public class RewarpOrb extends Fireball {
 											LivingEntity livingEntity = (LivingEntity)newTarget;
 											livingEntity.resetCurrentImpulseContext();
 										}
-									}
 								}
 							}
 						}
@@ -248,15 +245,12 @@ public class RewarpOrb extends Fireball {
 	}
 
 	@Override
-	public void tick() {
-		super.tick();
-		age++;
-		if(age > range)
-		{
-			rewarp();
-			this.discard();
-		}
+	public void onLifeOver()
+	{
+		rewarp();
+		this.discard();
 	}
+
 
 	@Override
 	protected void onHitBlock(final BlockHitResult hitResult) {

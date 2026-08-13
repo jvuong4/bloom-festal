@@ -2,8 +2,7 @@ package io.github.jvuong4.bloomfestal.client.renderer;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import io.github.jvuong4.bloomfestal.BloomFestal;
-import io.github.jvuong4.bloomfestal.entity.RexcaliburOrb;
-import io.github.jvuong4.bloomfestal.entity.ThoronOrb;
+import io.github.jvuong4.bloomfestal.entity.MagicalOrbs.ExplodingOrbs.RexcaliburOrb;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.model.geom.ModelLayers;

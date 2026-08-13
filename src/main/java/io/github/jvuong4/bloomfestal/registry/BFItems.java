@@ -2,6 +2,7 @@ package io.github.jvuong4.bloomfestal.registry;
 
 import io.github.jvuong4.bloomfestal.BloomFestal;
 import io.github.jvuong4.bloomfestal.item.*;
+import io.github.jvuong4.bloomfestal.item.ProjectileItems.*;
 import net.fabricmc.fabric.api.creativetab.v1.FabricCreativeModeTab;
 import net.minecraft.core.Registry;
 import net.minecraft.core.component.DataComponents;

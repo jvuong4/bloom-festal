@@ -1,14 +1,12 @@
 package io.github.jvuong4.bloomfestal.compat;
 
-import io.github.jvuong4.bloomfestal.entity.RewarpOrb;
-import net.minecraft.server.MinecraftServer;
+import io.github.jvuong4.bloomfestal.entity.MagicalOrbs.RewarpOrb;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import io.github.mintynoura.dualstance.registries.DualStanceComponents;
-import net.minecraft.world.level.entity.UUIDLookup;
 import net.minecraft.world.level.portal.TeleportTransition;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;

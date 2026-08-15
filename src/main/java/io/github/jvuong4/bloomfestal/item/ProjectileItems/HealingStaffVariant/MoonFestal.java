@@ -1,4 +1,6 @@
-package io.github.jvuong4.bloomfestal.item;
+package io.github.jvuong4.bloomfestal.item.ProjectileItems.HealingStaffVariant;
+
+import io.github.jvuong4.bloomfestal.item.ProjectileItems.HealingStaff;
 
 public class MoonFestal extends HealingStaff {
 	protected int healingPotency = 9;

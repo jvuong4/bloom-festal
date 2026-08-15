@@ -2,9 +2,7 @@ package io.github.jvuong4.bloomfestal.client.renderer;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import io.github.jvuong4.bloomfestal.BloomFestal;
-import io.github.jvuong4.bloomfestal.client.BFModelLayers;
-import io.github.jvuong4.bloomfestal.client.model.HealOrbModel;
-import io.github.jvuong4.bloomfestal.entity.HealOrb;
+import io.github.jvuong4.bloomfestal.entity.MagicalOrbs.HealthOrbs.HealOrb;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.model.geom.ModelLayers;
@@ -17,7 +15,6 @@ import net.minecraft.client.renderer.rendertype.RenderTypes;
 import net.minecraft.client.renderer.state.level.CameraRenderState;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.Identifier;
-import net.minecraft.world.entity.projectile.hurtingprojectile.windcharge.AbstractWindCharge;
 
 @Environment(EnvType.CLIENT)
 public class HealOrbRenderer extends EntityRenderer<HealOrb, EntityRenderState> {

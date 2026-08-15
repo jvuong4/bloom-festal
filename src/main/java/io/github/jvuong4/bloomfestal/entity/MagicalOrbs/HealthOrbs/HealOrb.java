@@ -1,62 +1,30 @@
-package io.github.jvuong4.bloomfestal.entity;
+package io.github.jvuong4.bloomfestal.entity.MagicalOrbs.HealthOrbs;
 
-import io.github.jvuong4.bloomfestal.BloomFestal;
-import io.github.jvuong4.bloomfestal.entity.MagicalOrbs.ExplodingOrb;
 import io.github.jvuong4.bloomfestal.entity.MagicalOrbs.HealthOrb;
 import io.github.jvuong4.bloomfestal.registry.BFEntities;
 import io.github.jvuong4.bloomfestal.registry.BFSounds;
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.Holder;
-import net.minecraft.core.particles.ParticleOptions;
-import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.network.syncher.SynchedEntityData;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.sounds.SoundEvent;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.tags.BlockTags;
-import net.minecraft.util.random.WeightedList;
-import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.projectile.Projectile;
-import net.minecraft.world.entity.projectile.hurtingprojectile.AbstractHurtingProjectile;
-import net.minecraft.world.entity.projectile.hurtingprojectile.Fireball;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
-import net.minecraft.world.item.enchantment.effects.SpawnParticlesEffect;
-import net.minecraft.world.level.ExplosionDamageCalculator;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.SimpleExplosionDamageCalculator;
-import net.minecraft.world.level.block.BaseFireBlock;
-import net.minecraft.world.level.gameevent.GameEvent;
-import net.minecraft.world.level.gamerules.GameRules;
-import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.phys.EntityHitResult;
-import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
-
-import java.util.Optional;
-import java.util.Random;
-import java.util.function.Function;
 
 public class HealOrb extends HealthOrb {
 	public HealOrb(final EntityType<? extends HealOrb> type, final Level level) {
 		super(type, level);
 		isHealing = true;
+		initVals();
 	}
 
 	public HealOrb(final Level level, final LivingEntity mob, final Vec3 direction) {
 		super(BFEntities.HEAL_ORB, level, mob, direction);
 		isHealing = true;
+		initVals();
 	}
 
 	public HealOrb(final Level level, final double x, final double y, final double z, final Vec3 direction) {
 		super(BFEntities.HEAL_ORB, level, x, y, z, direction);
 		isHealing = true;
+		initVals();
 	}
 
 	@Override

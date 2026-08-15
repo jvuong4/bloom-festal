@@ -5,6 +5,7 @@ import io.github.jvuong4.bloomfestal.entity.*;
 import io.github.jvuong4.bloomfestal.entity.LightningBolt.VisualLightning;
 import io.github.jvuong4.bloomfestal.entity.MagicalOrbs.EclipseOrb;
 import io.github.jvuong4.bloomfestal.entity.MagicalOrbs.ExplodingOrbs.*;
+import io.github.jvuong4.bloomfestal.entity.MagicalOrbs.HealthOrbs.HealOrb;
 import io.github.jvuong4.bloomfestal.entity.MagicalOrbs.RewarpOrb;
 import io.github.jvuong4.bloomfestal.entity.MagicalOrbs.StatusEffectOrbs.HexingOrb;
 import io.github.jvuong4.bloomfestal.entity.MagicalOrbs.StatusEffectOrbs.RevelationOrb;

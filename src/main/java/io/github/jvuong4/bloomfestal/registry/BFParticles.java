@@ -10,10 +10,11 @@ import net.minecraft.resources.Identifier;
 public class BFParticles {
 	public static final SimpleParticleType HARM_PETALS_PARTICLE = FabricParticleTypes.simple();
 	public static final SimpleParticleType BUBBLE_PARTICLE = FabricParticleTypes.simple();
+	public static final SimpleParticleType BLOSSOM_PARTICLE = FabricParticleTypes.simple();
 
 	public static void init() {
-
 		Registry.register(BuiltInRegistries.PARTICLE_TYPE, Identifier.fromNamespaceAndPath(BloomFestal.ID, "harm_petals"), HARM_PETALS_PARTICLE);
 		Registry.register(BuiltInRegistries.PARTICLE_TYPE, Identifier.fromNamespaceAndPath(BloomFestal.ID, "whirlpool_bubbles"), BUBBLE_PARTICLE);
+		Registry.register(BuiltInRegistries.PARTICLE_TYPE, Identifier.fromNamespaceAndPath(BloomFestal.ID, "blossom"), BLOSSOM_PARTICLE);
 	}
 }

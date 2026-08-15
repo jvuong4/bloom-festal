@@ -27,6 +27,7 @@
 	"item.bloom_festal.rexcalibur": "Tempest",
 	"item.bloom_festal.bolganone": "Caldera",
 	"item.bloom_festal.whirlpool": "Deluge",
+	"item.bloom_festal.blossom": "Blossom",
 
 	"lore.bloom_festal.bloom_festal": "A humble healing staff. Recovers 2 hp to its target.",
 	"lore.bloom_festal.sun_festal": "A bright staff to embrace a brand new day. Recovers 6 hp to its target.",
@@ -54,11 +55,14 @@
 	"lore.bloom_festal.rexcalibur": "A magical tome. Casts quick-moving wind magic that deals 5 magic damage and heavy knockback. Effective against airborne enemies (3x damage).",
 	"lore.bloom_festal.bolganone": "A magical tome. Casts fire magic that deals 8 fireball damage and sets enemies hit on fire.",
 	"lore.bloom_festal.whirlpool": "A magical tome. Casts water magic that deals 4 magic damage. Damage is halved against enemies that cannot drown. 4x damage against water-sensitive or burning enemies.",
+	"lore.bloom_festal.blossom": "A foxglove staff? Used for 'healing.'",
 
 	"subtitles.entity.heal_orb.heal": "Healing",
 
 	"effect.bloom_festal.hexed": "Hexed",
 	"effect.bloom_festal.revelation": "Revelation",
 	"effect.bloom_festal.silence": "Silence",
-	"effect.bloom_festal.stillness": "Stillness"
+	"effect.bloom_festal.stillness": "Stillness",
+
+	"death.attack.blossom": "%1$s was healed"
 }

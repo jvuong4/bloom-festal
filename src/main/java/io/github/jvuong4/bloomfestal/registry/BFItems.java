@@ -152,8 +152,8 @@ public class BFItems {
 	public static MoonFestal MOON_FESTAL = register("moon_festal", MoonFestal:: new,
 		new MoonFestal.Properties().durability(10).useCooldown(4f).enchantable(1));
 
-	public static GreatFestal GREAT_FESTAL = register("great_festal", GreatFestal:: new,
-		new GreatFestal.Properties().durability(4).useCooldown(10f).enchantable(1));
+	public static GreatStaff GREAT_FESTAL = register("great_festal", GreatStaff:: new,
+		new GreatStaff.Properties().durability(4).useCooldown(10f).enchantable(1));
 
 	public static RewarpFestal REWARP_FESTAL = register("rewarp_festal", RewarpFestal:: new,
 		new RewarpFestal.Properties().durability(10).useCooldown(1.5f).enchantable(1));
@@ -186,6 +186,9 @@ public class BFItems {
 		new Bolganone.Properties().durability(50).useCooldown(2.5f).enchantable(1));
 	public static Whirlpool WHIRLPOOL = register("whirlpool", Whirlpool:: new,
 		new Whirlpool.Properties().durability(50).useCooldown(1.5f).enchantable(1));
+
+	public static Blossom BLOSSOM = register("blossom", Blossom:: new,
+		new Blossom.Properties().enchantable(1));
 
 	public static <T extends Item> T register(String name, Function<Item.Properties, T> itemFactory, Item.Properties settings) {
 		// Create the item key.

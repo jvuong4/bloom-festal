@@ -1,5 +1,6 @@
 package io.github.jvuong4.bloomfestal.client;
 
+import io.github.jvuong4.bloomfestal.client.Particle.BlossomParticle;
 import io.github.jvuong4.bloomfestal.registry.BFParticles;
 import net.fabricmc.fabric.api.client.particle.v1.ParticleProviderRegistry;
 import net.minecraft.client.particle.EndRodParticle;
@@ -10,5 +11,6 @@ public class BFParticlesClient {
 	{
 		ParticleProviderRegistry.getInstance().register(BFParticles.HARM_PETALS_PARTICLE, FallingLeavesParticle.CherryProvider::new);
 		ParticleProviderRegistry.getInstance().register(BFParticles.BUBBLE_PARTICLE, EndRodParticle.Provider::new);
+		ParticleProviderRegistry.getInstance().register(BFParticles.BLOSSOM_PARTICLE, BlossomParticle.BlossomProvider::new);
 	}
 }

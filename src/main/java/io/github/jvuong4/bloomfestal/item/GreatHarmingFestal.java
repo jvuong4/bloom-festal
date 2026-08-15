@@ -22,82 +22,33 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.gameevent.GameEvent;
 
-public class GreatHarmingFestal extends Item {
-	protected static double range = 8;
-	protected float healingPotency = 8.0f;
-
+public class GreatHarmingFestal extends GreatStaff {
+	//harming festal is weaker overall but deals more damage
 	public GreatHarmingFestal(final Properties properties) {
 		super(properties);
+		isHealing = false;
+		damageMultiplier = 1.0F;
 	}
 
+	protected SimpleParticleType getChargedParticle() {return BFParticles.HARM_PETALS_PARTICLE;}
+
 	@Override
-	public InteractionResult use(final Level level, final Player player, final InteractionHand hand) {
-		if(player.hasEffect(BFEffects.SILENCE))
-		{
-			level.playLocalSound(player,SoundEvents.SHIELD_BLOCK.value(),SoundSource.NEUTRAL, 0.5F, 0.4F / (level.getRandom().nextFloat() * 0.4F + 0.8F));
-			return InteractionResult.FAIL;
+	public float getHealingPotency(int power) {
+		switch (power) {
+			case 0:
+				return 1.5f;
+			case 1:
+				return 4.5F;
+			case 2:
+				return 6.75F;
+			case 3:
+				return 9F;
+			case 4:
+				return 11.25F;
+			case 5:
+				return 13.5F;
+			default:
+				return 1.5F;
 		}
-		ItemStack itemStack = player.getItemInHand(hand);
-		level.playSound(
-			null,
-			player.getX(),
-			player.getY(),
-			player.getZ(),
-			SoundEvents.TRIDENT_THUNDER.value(),
-			SoundSource.NEUTRAL,
-			0.5F,
-			1F
-		);
-		if (level instanceof ServerLevel serverLevel) {
-			for (LivingEntity entity : level.getEntitiesOfClass(LivingEntity.class, player.getBoundingBox().inflate(range)))
-			{
-				if(entity.distanceToSqr(player) < range * range) {
-					if (!entity.isInvertedHealAndHarm()) {
-						DamageSource damageSource = player.damageSources().indirectMagic(entity, player);
-						if (!entity.hurtServer(serverLevel, damageSource, healingPotency)) {
-						} else {
-							EnchantmentHelper.doPostAttackEffects(serverLevel, entity, damageSource);
-							for(int count = 0; count < 3; count++) {
-								serverLevel.sendParticles(ParticleTypes.DAMAGE_INDICATOR,
-									entity.getRandomX(1.0), entity.getY(0.5), entity.getRandomZ(1.0), 1, 0.02, 0.02, 0.02, 0.0);
-							}
-						}
-					}
-					else {
-						entity.heal(healingPotency);
-						for(int count = 0; count < 3; count++) {
-							serverLevel.sendParticles(ParticleTypes.SCULK_SOUL,
-								entity.getRandomX(1.0), entity.getY(0.5), entity.getRandomZ(1.0), 1, 0.02, 0.02, 0.02, 0.0);
-						}
-					}
-				}
-			}
-			double end = 48.0;
-			double pivot = player.getRandom().nextDouble();
-			for(double i=0; i<end; i++)
-			{
-				serverLevel.sendParticles(i%4>0 ? BFParticles.HARM_PETALS_PARTICLE : ParticleTypes.SOUL_FIRE_FLAME,
-					player.getX() + Math.cos((i+pivot)/end * 2.0 * Math.PI) * range,
-					player.getY() + 0.5,
-					player.getZ() + Math.sin((i+pivot)/end * 2.0 * Math.PI) * range,
-					1, 0.0, 0.5, 0.0, 0.0);
-			}
-			end = 16.0;
-			pivot = player.getRandom().nextDouble();
-			for(double i=0; i<end; i++)
-			{
-				serverLevel.sendParticles(i%3>0 ? BFParticles.HARM_PETALS_PARTICLE : ParticleTypes.SOUL_FIRE_FLAME,
-					player.getX() + Math.cos((i+pivot)/end * 2.0 * Math.PI) * range/2.0,
-					player.getY() + 1,
-					player.getZ() + Math.sin((i+pivot)/end * 2.0 * Math.PI) * range/2.0,
-					1, 0.0, 0.5, 0.0, 0.0);
-			}
-		}
-		MobEffectInstance instance = new MobEffectInstance(BFEffects.SILENCE,  80, 0, false, true, true);
-		player.addEffect(instance);
-		player.awardStat(Stats.ITEM_USED.get(this));
-		itemStack.causeUseVibration(player, GameEvent.ITEM_INTERACT_START);
-		itemStack.hurtAndBreak(1, player, hand.asEquipmentSlot());
-		return InteractionResult.SUCCESS;
 	}
 }

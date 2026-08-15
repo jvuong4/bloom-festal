@@ -42,9 +42,9 @@ public class RewarpFestal extends ProjectileMagicItem {
 		for(double i=0; i<count; i++)
 		{
 			level.sendParticles(i%3==0 ? ParticleTypes.PORTAL : i%3==1 ? ParticleTypes.REVERSE_PORTAL : ParticleTypes.WITCH,
-				entity.getX() + Math.cos((i+pivot)/count * 2.0 * Math.PI) * range,
+				entity.getX() + Math.cos((i+pivot * Math.PI)/count * 2.0 * Math.PI) * range,
 				entity.getY() + 0.5,
-				entity.getZ() + Math.sin((i+pivot)/count * 2.0 * Math.PI) * range,
+				entity.getZ() + Math.sin((i+pivot * Math.PI)/count * 2.0 * Math.PI) * range,
 				1, 0.0, 0.5, 0.0, 0.0);
 		}
 	}
@@ -54,13 +54,13 @@ public class RewarpFestal extends ProjectileMagicItem {
 	{
 		if(power > 1)
 		{
-			spawnMagicCircle(27,5,entity,serverLevel);
-			spawnMagicCircle(18,3,entity,serverLevel);
+			spawnMagicCircle(9,5,entity,serverLevel);
+			spawnMagicCircle(6,3,entity,serverLevel);
 		}
 		else if(power == 1)
 		{
-			spawnMagicCircle(18,4,entity,serverLevel);
-			spawnMagicCircle(12,2,entity,serverLevel);
+			spawnMagicCircle(6,4,entity,serverLevel);
+			spawnMagicCircle(4,2,entity,serverLevel);
 		}
 		else
 		{

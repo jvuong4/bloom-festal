@@ -61,7 +61,7 @@ public class NosferatuOrb extends ExplodingOrb {
 		}
 		particleSpawnChance = 0.5F;
 		explosionSound = SoundEvents.TRIDENT_THUNDER.value();
-		damageParticle = ParticleTypes.SOUL_FIRE_FLAME;
+		damageParticle = ParticleTypes.TRIAL_OMEN;
 	}
 
 	@Override
@@ -82,44 +82,20 @@ public class NosferatuOrb extends ExplodingOrb {
 
 	@Override
 	public void onLifeOver() {
-		if(charge == 0)
+		if(explosionRadius <= 0)
 			this.discard();
 		else
 			super.onLifeOver();
 	}
 
 	@Override
-	protected void onHitEntity(final EntityHitResult hitResult) {
-		super.onHitEntity(hitResult);
-		if (this.level() instanceof ServerLevel serverLevel) {
-			Entity var7 = hitResult.getEntity();
-			Entity owner = this.getOwner();
-			if(var7 instanceof LivingEntity mob)
-			{
-				if(explosionSound != null)
-					playSound(explosionSound,0.5f,0.4F / (level().getRandom().nextFloat() * 0.4F + 0.8F));
-
-				if(charge > 0)
-					explode(serverLevel);
-				else
-				{
-					DamageSource damageSource = this.damageSources().indirectMagic(this, this.getOwner());
-					playSound(SoundEvents.TRIDENT_THUNDER.value(),0.3f,0.4F / (level().getRandom().nextFloat() * 0.4F + 0.8F));
-
-					if (var7.hurtServer(serverLevel, damageSource,potency))
-					{
-						EnchantmentHelper.doPostAttackEffects(serverLevel, var7, damageSource);
-						if(owner instanceof LivingEntity livingOwner)
-							livingOwner.heal(potency/2f);
-						for(int count = 0; count < 3; count++) {
-							serverLevel.sendParticles(ParticleTypes.TRIAL_OMEN,
-								mob.getRandomX(1.0), mob.getY(0.5), mob.getRandomZ(1.0), 1, 0.02, 0.02, 0.02, 0.0);
-						}
-					}
-				}
-			}
-
-		}
+	public void SingleTargetEffect(LivingEntity target, ServerLevel level) {
+		float damage = potency;
+		Entity owner = this.getOwner();
+		if(owner instanceof LivingEntity livingOwner)
+			livingOwner.heal(potency/2f);
+		target.hurtServer(level, this.damageSources().indirectMagic(this, this.getOwner()), damage);
+		spawnDamageParticles(target, damageParticle, level);
 	}
 
 	@Override

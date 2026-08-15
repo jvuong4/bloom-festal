@@ -1,7 +1,12 @@
 package io.github.jvuong4.bloomfestal.item;
 
 import io.github.jvuong4.bloomfestal.entity.HealOrb;
+import io.github.jvuong4.bloomfestal.entity.MagicalOrb;
+import io.github.jvuong4.bloomfestal.entity.MagicalOrbs.ExplodingOrbs.BolganoneOrb;
+import io.github.jvuong4.bloomfestal.registry.BFDataComponents;
 import io.github.jvuong4.bloomfestal.registry.BFEffects;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -9,6 +14,7 @@ import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.Item;
@@ -17,22 +23,26 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.Vec3;
 
-public class HealingStaff extends Item {
-	protected float healingPotency = 2.0f;
-	protected int range = 6;
+public class HealingStaff extends ProjectileMagicItem {
+	protected int healingPotency = 0;
 
-	public HealingStaff(final net.minecraft.world.item.Item.Properties properties) {
+	public HealingStaff(final Properties properties) {
 		super(properties);
 	}
 
 	@Override
-	public InteractionResult use(final Level level, final Player player, final InteractionHand hand) {
-		if(player.hasEffect(BFEffects.SILENCE))
-		{
-			level.playLocalSound(player,SoundEvents.SHIELD_BLOCK.value(),SoundSource.NEUTRAL, 0.5F, 0.4F / (level.getRandom().nextFloat() * 0.4F + 0.8F));
-			return InteractionResult.FAIL;
-		}
-		ItemStack itemStack = player.getItemInHand(hand);
+	protected SimpleParticleType getChargedParticle() {
+		return ParticleTypes.CHERRY_LEAVES;
+	}
+
+	@Override
+	protected MagicalOrb getOrb(ServerLevel level, LivingEntity player, Vec3 direction, double d) {
+		return new HealOrb(level, player, (direction.normalize()).scale(d));
+	}
+
+	@Override
+	public boolean releaseUsing(final ItemStack itemStack, final Level level, final LivingEntity player, final int remainingTime) {
+		//ItemStack itemStack = player.getItemInHand(hand);
 		level.playSound(
 			null,
 			player.getX(),
@@ -47,16 +57,24 @@ public class HealingStaff extends Item {
 			double d = 20.0;
 			Vec3 viewVector = player.getViewVector(1.0F);
 			Vec3 direction = new Vec3(viewVector.x, viewVector.y, viewVector.z);
-			HealOrb entity = new HealOrb(level, player, (direction.normalize()).scale(d));
-			entity.setPos(player.getX() + viewVector.x, player.getY(0.5) + 0.5, entity.getZ() + viewVector.z);
-			entity.setStats(range, healingPotency);
+			MagicalOrb entity = getOrb(serverLevel, player, direction, d);
+			int timeHeld = this.getUseDuration(itemStack, player) - remainingTime;
+			entity.setCharge(getPowerForTime(timeHeld) + healingPotency);
+			entity.setPos(player.getX() + viewVector.x, player.getEyeY() + viewVector.y, entity.getZ() + viewVector.z);
 			Projectile.spawnProjectile(entity, serverLevel, itemStack);
+
 		}
-		MobEffectInstance instance = new MobEffectInstance(BFEffects.SILENCE,  10, 0, false, true, true);
-		player.addEffect(instance);
-		player.awardStat(Stats.ITEM_USED.get(this));
-		itemStack.causeUseVibration(player, GameEvent.ITEM_INTERACT_START);
-		itemStack.hurtAndBreak(1, player, hand.asEquipmentSlot());
-		return InteractionResult.SUCCESS;
+		if(player instanceof Player person) {
+			person.awardStat(Stats.ITEM_USED.get(this));
+			itemStack.causeUseVibration(player, GameEvent.ITEM_INTERACT_START);
+			InteractionHand hand = person.getUsedItemHand();
+			itemStack.hurtAndBreak(1, player, hand.asEquipmentSlot());
+		}
+		if(itemStack.getOrDefault(BFDataComponents.SILENCE_TICKS,0) > 0)
+		{
+			MobEffectInstance instance = new MobEffectInstance(BFEffects.SILENCE,  itemStack.getOrDefault(BFDataComponents.SILENCE_TICKS,0), 0, false, true, true);
+			player.addEffect(instance);
+		}
+		return true;
 	}
 }

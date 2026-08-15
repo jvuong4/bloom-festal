@@ -1,13 +1,11 @@
 package io.github.jvuong4.bloomfestal.item;
 
 public class WaneFestal extends HealingStaff {
-	protected float healingPotency = 5.0f;
-	protected int range = 18;
+	protected int healingPotency = 6;
 
 	public WaneFestal(final Properties properties) {
 		super(properties);
 		super.healingPotency = this.healingPotency;
-		super.range = this.range;
 	}
 
 }

@@ -39,18 +39,15 @@ abstract public class ExplodingOrb extends MagicalOrb {
 
 	public ExplodingOrb(final EntityType<? extends ExplodingOrb> type, final Level level) {
 		super(type, level);
-		accelerationPower = 0.1;
 	}
 
 
 	public ExplodingOrb(final EntityType<? extends ExplodingOrb> type, final Level level, final LivingEntity mob, final Vec3 direction) {
 		super(type, level, mob, direction);
-		accelerationPower = 0.1;
 	}
 
 	public ExplodingOrb(final EntityType<? extends ExplodingOrb> type, final Level level, final double x, final double y, final double z, final Vec3 direction) {
 		super(type,level, x, y, z, direction);
-		accelerationPower = 0.1;
 	}
 
 	@Override
@@ -68,14 +65,27 @@ abstract public class ExplodingOrb extends MagicalOrb {
 		if (this.level() instanceof ServerLevel serverLevel) {
 			Entity var7 = hitResult.getEntity();
 			Entity owner = this.getOwner();
-			if(var7 instanceof LivingEntity mob)
+			if(var7 instanceof LivingEntity target)
 			{
 				if(explosionSound != null)
 					playSound(explosionSound,0.5f,0.4F / (level().getRandom().nextFloat() * 0.4F + 0.8F));
-				explode(serverLevel);
+				if(explosionRadius > 0) {
+					explode(serverLevel);
+				}
+				else {
+					if(owner instanceof LivingEntity livingOwner)
+						SingleTargetEffect(target,serverLevel);
+				}
+
 			}
 
 		}
+	}
+
+	public void SingleTargetEffect(LivingEntity target, ServerLevel level) {
+		float damage = potency;
+		target.hurtServer(level, this.damageSources().indirectMagic(this, this.getOwner()), damage);
+		spawnDamageParticles(target, damageParticle, level);
 	}
 
 	@Override

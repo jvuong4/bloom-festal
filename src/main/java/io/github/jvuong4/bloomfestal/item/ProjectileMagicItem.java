@@ -130,7 +130,7 @@ public class ProjectileMagicItem extends Item {
 			MagicalOrb entity = getOrb(serverLevel, player, direction, d);
 			int timeHeld = this.getUseDuration(itemStack, player) - remainingTime;
 			entity.setCharge(getPowerForTime(timeHeld));
-			entity.setPos(player.getX() + viewVector.x, player.getEyeY(), entity.getZ() + viewVector.z);
+			entity.setPos(player.getX() + viewVector.x, player.getEyeY() + viewVector.y, entity.getZ() + viewVector.z);
 			Projectile.spawnProjectile(entity, serverLevel, itemStack);
 
 		}

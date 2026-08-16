@@ -1,11 +1,10 @@
-package io.github.jvuong4.bloomfestal.item;
+package io.github.jvuong4.bloomfestal.item.GreatStaffs;
 
+import io.github.jvuong4.bloomfestal.item.GreatStaff;
 import io.github.jvuong4.bloomfestal.registry.BFDamageTypes;
 import io.github.jvuong4.bloomfestal.registry.BFEffects;
 import io.github.jvuong4.bloomfestal.registry.BFParticles;
 import io.github.jvuong4.bloomfestal.registry.BFSounds;
-import net.minecraft.client.telemetry.TelemetryProperty;
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
@@ -13,7 +12,6 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.damagesource.DamageSources;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;

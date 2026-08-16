@@ -9,6 +9,7 @@ import net.minecraft.sounds.SoundEvent;
 public class BFSounds {
 	public static final SoundEvent THUNDER = registerSound("thunder");
 	public static final SoundEvent HEAL = registerSound("heal");
+	public static final SoundEvent CRIT = registerSound("crit");
 
 	// actual registration of all the custom SoundEvents
 	private static SoundEvent registerSound(String id) {

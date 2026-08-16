@@ -6,5 +6,9 @@
 	"heal": {
 		"subtitle": "subtitles.entity.heal_orb.heal",
 		"sounds": ["bloom_festal:heal"]
+	},
+	"crit": {
+		"subtitle": "subtitles.entity.generic.crit",
+		"sounds": ["bloom_festal:crit"]
 	}
 }

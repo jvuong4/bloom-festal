@@ -2,6 +2,9 @@ package io.github.jvuong4.bloomfestal.registry;
 
 import io.github.jvuong4.bloomfestal.BloomFestal;
 import io.github.jvuong4.bloomfestal.item.*;
+import io.github.jvuong4.bloomfestal.item.Axes.HunterAxe;
+import io.github.jvuong4.bloomfestal.item.GreatStaffs.Blossom;
+import io.github.jvuong4.bloomfestal.item.GreatStaffs.GreatHarmingFestal;
 import io.github.jvuong4.bloomfestal.item.ProjectileItems.*;
 import io.github.jvuong4.bloomfestal.item.ProjectileItems.HealingStaffVariant.MoonFestal;
 import io.github.jvuong4.bloomfestal.item.ProjectileItems.HealingStaffVariant.SunFestal;
@@ -140,6 +143,10 @@ public class BFItems {
 		.component(DataComponents.USE_EFFECTS, new UseEffects(true, false, 1.0F))
 		.component(DataComponents.WEAPON, new Weapon(1)));
 
+	public static HunterAxe HUNTER_AXE = register("hunter_axe", HunterAxe::new,
+		new HunterAxe.Properties().axe(ToolMaterial.DIAMOND,1.0F, -3.3F).durability(30));
+	//public static HunterAxe DEMON_AXE = register("demon_axe", HunterAxe::new, new HunterAxe.Properties().axe(ToolMaterial.DIAMOND,3.0F, -3.0F).durability(30));
+
 	public static HealingStaff BLOOM_FESTAL = register("bloom_festal", HealingStaff:: new,
 		new HealingStaff.Properties().durability(40).useCooldown(1f).enchantable(1));
 
@@ -228,6 +235,9 @@ public class BFItems {
 
 			output.accept(BRAVE_LANCE);
 			output.accept(GUARD_NAGINATA);
+
+			output.accept(HUNTER_AXE);
+			//output.accept(DEMON_AXE);
 
 			output.accept(THORON);
 			output.accept(BOLGANONE);

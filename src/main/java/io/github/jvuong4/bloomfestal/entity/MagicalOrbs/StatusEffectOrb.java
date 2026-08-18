@@ -68,8 +68,6 @@ public abstract class StatusEffectOrb extends MagicalOrb {
 			{
 				if(explosionSound != null)
 					playSound(explosionSound,0.5f,0.4F / (level().getRandom().nextFloat() * 0.4F + 0.8F));
-				explode(serverLevel);
-
 				if(mob instanceof Player playerTarget && owner instanceof Player playerOwner)
 				{
 					if(canGiveStatusEffect(playerOwner, playerTarget))
@@ -81,6 +79,8 @@ public abstract class StatusEffectOrb extends MagicalOrb {
 				{
 					giveStatusEffect(owner,mob,(int)(potency * 20));
 				}
+
+				explode(serverLevel);
 			}
 
 		}
